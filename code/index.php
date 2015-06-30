@@ -2,32 +2,34 @@
 
 echo 'hola';
 	class Usuario{
-		private $Cuenta;
-		private $Nombre;
-		private $Sexo;
-		private $Dieta;
-		private $PreferenciaAlimentarias;
-		private $Rutina;
-		private $RecetasPropias;
-		private $Complexion;
-		private $Fecha;
-		private $Condiciones;
+		private $cuenta;
+		private $nombre;
+		private $sexo;
+		private $dieta;
+		private $preferenciaAlimentarias;
+		private $rutina;
+		private $recetasPropias;
+		private $complexion;
+		private $fecha;
+		private $condiciones;
 
-		public function __construct($Nombre_in,$Sexo,$Dieta,$PreferenciaAlimentarias,$Rutina,$Complexion,$Fecha,$Condiciones)
+		public function __construct($cuenta_in,$nombre_in,$sexo_in,$dieta_in,$preferenciaAlimentarias_in,$rutina_in,$complexion_in,$fecha_in,$condiciones_in)
 		{
-			$this->Nombre=$Nombre;
-			$this->Sexo=$Sexo;
-			$this->Dieta=$Dieta;
-			$this->PreferenciaAlimentarias=$PreferenciaAlimentarias;
-			$this->Rutina=$Rutina;
-			$this->Complexion=$Complexion;
-			$this->Fecha=$Fecha;
-			$this->Condiciones=$Condiciones;
+			$this->cuenta=$cuenta_in;
+			$this->nombre=$nombre_in;
+			$this->sexo=$sexo_in;
+			$this->dieta=$dieta_in;
+			$this->preferenciaAlimentarias=$preferenciaAlimentarias_in;
+			$this->rutina=$rutina_in;
+			$this->complexion=$complexion_in;
+			$this->fecha=$fecha_in;
+			$this->condiciones=$condiciones_in;
 		}
-
+public function getNombre()
+{echo $this->nombre;}
 	}
 
-	class Complexion{
+	class complexion{
 		private $Altura;
 		private $MedidaTorax;
 		private $MedidaCintura;
@@ -48,12 +50,12 @@ echo 'hola';
 		}
 	}
 
-	class Fecha{
+	class fecha{
 		private $Dia;
 		private $Mes;
 		private $Año;
 
-		public function CargarFecha($Dia, $Mes, $Año)
+		public function Cargarfecha($Dia, $Mes, $Año)
 		{
 			$this->Dia=$Dia;
 			$this->Mes=$Mes;
@@ -61,20 +63,20 @@ echo 'hola';
 		}
 	}
 
-	class Condiciones{
+	class condiciones{
 
 		public function filtrar($ListaDeRecetas){
 			return $ListaDeRecetas;
 		}
 	}
 
-		class Diabetes extends Condiciones{
+		class Diabetes extends condiciones{
 		}
 
-		class Hipertension extends Condiciones{
+		class Hipertension extends condiciones{
 		}
 
-		class Celiasis extends Condiciones{
+		class Celiasis extends condiciones{
 		}
 
 	class Receta{
@@ -133,31 +135,36 @@ echo 'hola';
 
 
 	class Ingrediente{
-		private $Nombre;
+		private $nombre;
 		private $Tipo;
 		private $CaloriaPorPorcion;
 
-		public function __construct($Nombre, $Tipo, $CaloriaPorPorcion)
+		public function __construct($nombre, $Tipo, $CaloriaPorPorcion)
 		{
 
-			$this->Nombre=$Nombre;
+			$this->nombre=$nombre;
 			$this->Tipo=$Tipo;
 			$this->CaloriaPorPorcion=$CaloriaPorPorcion;
 		}
 	}
 
 	class Condimento{
-		private $Nombre;
+		private $nombre;
 		private $Tipo;
 
-		public function __construct($Nombre, $Tipo)
+		public function __construct($nombre, $Tipo)
 		{
 
-			$this->Nombre=$Nombre;
+			$this->nombre=$nombre;
 			$this->Tipo=$Tipo;
 		}
 	}
-
 	
+	
+	$medidas = new complexion('234','423','45','76','455','343','54');
+	$usuario1 = new Usuario('LeanWag','Leandro','Masculino','Omnívoro','gadf','PC',$medidas,'30/06/2015','extremadamente copado');
+	
+	echo '<br>';
+	$usuario1->getNombre();
 	
 ?>
