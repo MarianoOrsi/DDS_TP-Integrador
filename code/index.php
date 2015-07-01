@@ -1,6 +1,6 @@
 <?php 
 
-echo 'hola';
+
 	class Usuario{
 		private $cuenta;
 		private $nombre;
@@ -29,7 +29,7 @@ public function getNombre()
 {echo $this->nombre;}
 	}
 
-	class complexion{
+	class Complexion{
 		private $Altura;
 		private $MedidaTorax;
 		private $MedidaCintura;
@@ -50,7 +50,7 @@ public function getNombre()
 		}
 	}
 
-	class fecha{
+	class Fecha{
 		private $Dia;
 		private $Mes;
 		private $Año;
@@ -63,7 +63,7 @@ public function getNombre()
 		}
 	}
 
-	class condiciones{
+	class Condiciones{
 
 		public function filtrar($ListaDeRecetas){
 			return $ListaDeRecetas;
@@ -101,67 +101,69 @@ public function getNombre()
 			$this->Condimento=$Condimento;
 		}
 
-		public  function CargarReceta($Clasificacion, $Temporada, $Dificultad)
+		public  function CargarReceta($clasificacion_in, $temporada_in, $dificultad_in)
 		{
 
-			$this->Clasificacion=$Clasificacion;
-			$this->Temporada=$Temporada;
-			$this->Dificultad=$Dificultad;
+			$this->clasificacion=$clasificacion_in;
+			$this->temporada=$temporada_in;
+			$this->dificultad=$dificultad_in;
+			
+			
+			
 		}
-
-		public function CargarPaso($Paso)
-		{
-			#No tengo idea que hacer :D
-		}
-
+public function CargarPaso($Paso)
+			{
+			# va a cambiar nuestra lógica cuando implementemos bases de d
+			}
 	}
 
 	class Paso{
-		private $Descripcion;
-		private $Foto;
+		private $descripcion;
+		private $foto;
 
-		public function CargarDescripcion($Descripcion)
+		public function CargarDescripcion($descripcion_in)
 		{
 
-			$this->Descripcion=$Descripcion;
+			$this->descripcion=$descripcion_in;
+						
 		}
 
-		public function CargarFoto($Foto)
+		public function CargarFoto($foto_in)
 		{
 
-			$this->Foto=$Foto;
+			$this->foto=$foto_in;
 		}
 	}
 
 
 	class Ingrediente{
 		private $nombre;
-		private $Tipo;
+		private $tipo;
 		private $CaloriaPorPorcion;
 
-		public function __construct($nombre, $Tipo, $CaloriaPorPorcion)
+		public function __construct($nombre_in, $tipo_in, $caloriaPorPorcion_in)
 		{
 
-			$this->nombre=$nombre;
-			$this->Tipo=$Tipo;
-			$this->CaloriaPorPorcion=$CaloriaPorPorcion;
+			$this->nombre=$nombre_in;
+			$this->tipo=$tipo_in;
+			$this->caloriaPorPorcion=$caloriaPorPorcion_in;
 		}
 	}
 
 	class Condimento{
 		private $nombre;
-		private $Tipo;
+		private $tipo;
 
-		public function __construct($nombre, $Tipo)
+		public function __construct($nombre_in, $tipo_in)
 		{
 
-			$this->nombre=$nombre;
-			$this->Tipo=$Tipo;
+			$this->nombre=$nombre_in;
+			$this->tipo=$tipo_in;
 		}
 	}
 	
 	
-	$medidas = new complexion('234','423','45','76','455','343','54');
+	$medidas = new Complexion('234','423','45','76','455','343','54');
 	$usuario1 = new Usuario('LeanWag','Leandro','Masculino','Omnívoro','gadf','PC',$medidas,'30/06/2015','extremadamente copado');
 	
 	echo '<br>';
