@@ -25,8 +25,11 @@
 			$this->fecha=$fecha_in;
 			$this->condiciones=$condiciones_in;
 		}
-public function getNombre()
-{echo $this->nombre;}
+		
+		public function getNombre()
+		{
+			echo $this->nombre;
+		}
 	}
 
 	class Complexion{
