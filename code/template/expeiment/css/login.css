@@ -42,14 +42,14 @@ form.login input[type="text"], form.login input[type="password"]
     padding: 5px 10px;
     background: 0;
     border: 0;
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 1px solid #4C5052;
     outline: 0;
     font-style: italic;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     letter-spacing: 1px;
     margin-bottom: 5px;
-    color: #FFFFFF;
+    color: #000000;
     outline: 0;
 }
 
@@ -97,6 +97,11 @@ form.login a
 form.login a:hover
 {
     color: #2ecc71;
+}
+
+form.login input[type="text"], form.login input[type="password"]{
+    background-color: #FFFFFF;
+    opacity: 0.8;
 }
 
 .pr-wrap
