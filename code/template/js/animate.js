@@ -119,22 +119,6 @@ jQuery(document).ready(function($) {
 		$(this).removeClass("animated fadeIn");
 		}
 	);		
-	$(".e_fadeInUp").hover(
-		function () {
-		$(this).addClass("animated fadeInUp");
-		},
-		function () {
-		$(this).removeClass("animated fadeInUp");
-		}
-	);	
-	$(".e_fadeInDown").hover(
-		function () {
-		$(this).addClass("animated fadeInDown");
-		},
-		function () {
-		$(this).removeClass("animated fadeInDown");
-		}
-	);
 	$(".e_fadeInLeft").hover(
 		function () {
 		$(this).addClass("animated fadeInLeft");
