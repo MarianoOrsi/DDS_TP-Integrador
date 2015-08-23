@@ -41,11 +41,11 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><span>Que</span> comemos?</a>
+                    <a class="navbar-brand"><span>Que</span> comemos?</a>
                 </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Inicio</a></li>
+                        <li class="active"><a href="index.php">Inicio</a></li>
 						
 						<?php if(isset($_SESSION["idUsuario"])){ // SI no esta seteado, muestra lo primero
 								echo '<li><a href="login.html">Mis Recetas</a></li>';
@@ -84,7 +84,7 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
 					<p>Las mejores entradas para quedar con todo un chef</p>
 					<p><font size="1">Aunque no sepas ni hervir agua</font></p>
                     
-					<a href="expeiment/login.html" class="btn btn-theme">Registrate ya!</a>
+					<a href="registrarme.html" class="btn btn-theme">Registrate ya!</a>
                 </div>
               </li>
               <li>
@@ -93,7 +93,7 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
                     <h3>Conservas</h3> 
 					<p>Huevos en salmuiera?<br>
 						Si Moe puede porque vos no?</p> 
-					<a href="expeiment/login.html" class="btn btn-theme">Registrate ya!</a>
+					<a href="registrarme.html" class="btn btn-theme">Registrate ya!</a>
                 </div>
               </li>
               <li>
@@ -101,7 +101,7 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
                 <div class="flex-caption">
                     <h3>No sabemos que es esto</h3> 
 					<p>Pero si te salió bien subí la receta y ponele el nombre que quieras!</p> 
-					<a href="expeiment/login.html" class="btn btn-theme">Registrate ya!</a>
+					<a href="iniciarSesion.html" class="btn btn-theme">Iniciar Sesión</a>
                 </div>
               </li>
             </ul>
