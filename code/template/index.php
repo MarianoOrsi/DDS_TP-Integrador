@@ -1,3 +1,13 @@
+<?php session_start();
+
+if(isset($_GET["logout"]) && $_GET["logout"]==1){
+		unset($_SESSION["idUsuario"]); 
+		session_destroy();
+		
+		}	?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,8 +46,21 @@
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.html">Inicio</a></li>
-								<li><a href="login.html">Ingresar</a></li>
-                                <li><a href="expeiment/login.html">Registrarse</a></li>
+						
+						<?php if(isset($_SESSION["idUsuario"])){ // SI no esta seteado, muestra lo primero
+								echo '<li><a href="login.html">Mis Recetas</a></li>';
+                                echo '<li><a href="login.html">Mis Grupos</a></li>';
+                                echo '<li><a href="login.html">Estadisticas y Reportes</a></li>';
+                                echo '<li><a href="login.html">Actualizar Perfil</a></li>';
+								echo '<li><a href="index.php?logout=1">Salir</a></li>';
+								}
+								else {
+								echo '<li><a href="login.html">Ingresar</a></li>';
+                                echo '<li><a href="registrarme.html">Registrarse</a></li>';
+										
+								}
+								?>
+								
                             </ul>
                         </li>
                     </ul>
@@ -165,12 +188,9 @@
 		<!-- Portfolio Projects -->
 		<div class="row">
 			<div class="col-lg-12">
-<<<<<<< HEAD
-				<h4 class="heading">Recomendaciones del dia</h4>
-=======
-				<h4 class="heading">Algunas recetas</h4>
-				
->>>>>>> 5a44d1a87068811591ba546d6582621c532761c8
+
+				<h4 class="heading">Recomendaciones del día</h4>
+
 				<div class="row">
 					<section id="projects">
 					<ul id="thumbs" class="portfolio">

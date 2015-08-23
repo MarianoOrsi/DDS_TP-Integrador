@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TP Integrador - Grupo 81</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="http://bootstraptaste.com" />
+<!-- css -->
+<link href="experiment/css/bootstrap.min.css" rel="stylesheet" />
+<link href="experiment/css/fancybox/jquery.fancybox.css" rel="stylesheet">
+<link href="experiment/css/jcarousel.css" rel="stylesheet" />
+<link href="experiment/css/flexslider.css" rel="stylesheet" />
+<link href="experiment/css/style.css" rel="stylesheet" />
+<link href="experiment/css/login.css" rel="stylesheet" />
+<!-- Theme skin -->
+<link href="skins/default.css" rel="stylesheet" />
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pr-wrap">
+                <div class="pass-reset">
+                    <label>
+                        Enter the email you signed up with</label>
+                    <input type="email" placeholder="Email" />
+                    <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
+                </div>
+            </div>
+            <div class="wrap">
+                 <p class="form-title">Registrarme</p>
+                <form class="login" action="registrarUsuario.php" method="post" style="background-image:url(experiment/img/SignUp/SignUp.png)">
+                <input type="text" name="usuario" placeholder="Usuario"/>
+                <input type="text" name="contrasenia" placeholder="Contraseña" />
+                <input type="text" name="email" placeholder="mail@algunServidor.com" />
+                <select class="combo" name="genero">
+                    <option value="">Sexo</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                </select>
+                <input type="text" name="edad" placeholder="Edad" />
+                <input type="text" name="altura" placeholder="Altura" />
+                <select class="combo" name="complexion">
+                    <option value="">Complexion</option>
+                    <option value="Peque">Pequeña</option>
+                    <option value="Mediana">Media</option>
+                    <option value="Grande">Grande</option>
+                </select>
+                <!--<label>Condicion Preexistente</label>-->
+                <select class="combo" name="condPre">
+                    <option value="">Condiciones Preexistentes</option>
+                    <option value="diabetes">Diabetes</option>
+                    <option value="hipertension">Hipertension</option>
+                    <option value="celiasis">Celiasis</option>
+                    <option value="ninguna">Ninguna</option>
+                </select>
+                <select class="combo" name="dieta">
+                    <option value="">Dieta</option>
+                    <option value="normal">Normal</option>
+                    <option value="ovolacto">Ovolactovegetariano</option>
+                    <option value="vegetariano">Vegetariano</option>
+                    <option value="vegano">Vegano</option>
+                </select>
+                <select class="combo" name="rutina">
+                    <option value="">Rutina</option>
+                    <option value="Nada">Sedentaria con nada de ejercicio</option>
+                    <option value="Leve">Sedentaria con algo de ejercicio (-30 min.)</option>
+                    <option value="Mediano">Sedentaria con ejercicio (+30 min.)</option>
+                    <option value="Fuerte">Activa sin ejercicio adicional</option>
+					<option value="Intensivo">Activa con ejercicio adicional (+30 min.)</option>
+                </select>
+                <input type="text" name="preferencias" placeholder="Preferencias alimenticias" />
+                
+                <input type="submit" value="Registrarse" name="submit" class="btn btn-success btn-sm" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
