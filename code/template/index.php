@@ -78,30 +78,30 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
         <div id="main-slider" class="flexslider">
             <ul class="slides">
               <li>
-                <img src="img/slides/4.jpg" alt="" />
+                <img src="img/slides/4.jpg" alt="imagen" />
                 <div class="flex-caption">
                     <h3>Variedad en Platos</h3> 
 					<p>Las mejores entradas para quedar con todo un chef</p>
 					<p><font size="1">Aunque no sepas ni hervir agua</font></p>
                     
-					<a href="registrarme.html" class="btn btn-theme">Registrate ya!</a>
+					<?php if(!isset($_SESSION["idUsuario"])){ echo'<a href="registrarme.html" class="btn btn-theme">Registrate ya!</a>';} ?>
                 </div>
               </li>
               <li>
-                <img src="img/slides/5.jpg" alt="" />
+                <img src="img/slides/5.jpg" alt="imagen" />
                 <div class="flex-caption">
                     <h3>Conservas</h3> 
 					<p>Huevos en salmuiera?<br>
 						Si Moe puede porque vos no?</p> 
-					<a href="registrarme.html" class="btn btn-theme">Registrate ya!</a>
+					<?php if(!isset($_SESSION["idUsuario"])){ echo'<a href="registrarme.html" class="btn btn-theme">Registrate ya!</a>';} ?>
                 </div>
               </li>
               <li>
-                <img src="img/slides/6.jpg" alt="" />
+                <img src="img/slides/6.jpg" alt="imagen" />
                 <div class="flex-caption">
                     <h3>No sabemos que es esto</h3> 
 					<p>Pero si te salió bien subí la receta y ponele el nombre que quieras!</p> 
-					<a href="iniciarSesion.html" class="btn btn-theme">Iniciar Sesión</a>
+					<?php if(!isset($_SESSION["idUsuario"])){ echo'<a href="iniciarSesion.html" class="btn btn-theme">Iniciar Sesión</a>';} ?>
                 </div>
               </li>
             </ul>
@@ -123,12 +123,12 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
 							<div class="box-gray aligncenter">
 								<h4>Receta 1</h4>
 								<div class="icon">
-								<i class="fa fa-desktop fa-3x"></i>
+								<i class="fa fa-desktop fa-3x" style= ></i>
 								</div>
 								<p>
-								 Voluptatem accusantium doloremque laudantium sprea totam rem aperiam.
+								 Elegí el menú que más te guste y sorprendé a tus amigos!
 								</p>
-									
+									<br>
 							</div>
 						</div>
 					</div>
