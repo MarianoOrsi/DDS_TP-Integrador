@@ -55,7 +55,7 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
 								echo '<li><a href="index.php?logout=1">Salir</a></li>';
 								}
 								else {
-								echo '<li><a href="login.html">Ingresar</a></li>';
+								echo '<li><a href="iniciarSesion.html">Ingresar</a></li>';
                                 echo '<li><a href="registrarme.html">Registrarse</a></li>';
 										
 								}

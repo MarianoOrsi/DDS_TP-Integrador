@@ -2,7 +2,7 @@
 $servidor = "localhost";    // todos los strings con los valores para el conector SQL
 $user = "root";
 $pass = "";
-$dbname = "diseñosistemas";
+$dbname = "diseniosistemas";
 $con = mysql_connect($servidor,$user,$pass);
 mysql_select_db($dbname,$con) or die(mysql_error());
 
@@ -22,7 +22,7 @@ if(isset($_POST["submit"])){
 	 
 	 session_start();
 	 $_SESSION["idUsuario"]= $id['0']; // ya que me devuelve un array, elijo la primera posición
-	 echo $_SESSION["idUsuario"];
+	
 		header("location: index.php"); // para poner el header, no hay que tener NADA 
 												//  de HTML o ningún ECHO en el código
 }

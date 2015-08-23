@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-08-2015 a las 22:57:47
+-- Tiempo de generación: 23-08-2015 a las 23:52:05
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `diseñosistemas`
+-- Base de datos: `diseniosistemas`
 --
 
 -- --------------------------------------------------------
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `acciones` (
 `IdAccion` int(11) NOT NULL,
   `Accion` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `acciones`
@@ -414,7 +414,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `IdPreexistente` int(11) NOT NULL,
   `IdDieta` int(11) NOT NULL,
   `Email` varchar(40) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -446,7 +446,12 @@ INSERT INTO `usuarios` (`IdUsuario`, `Usuario`, `Contrase`, `fechaCreacion`, `Id
 (27, 'gt3', 'gttt', '2015-08-23 17:46:29', 1, 'f', NULL, 1, 0, 34, 3, 4, 'r'),
 (28, 'gt4', 'qe', '2015-08-23 17:47:39', 1, 'f', NULL, 3, 0, 1, 3, 4, 'qe'),
 (29, 'Maxi', 'pepe', '2015-08-23 17:49:27', 2, 'm', NULL, 1, 0, 34, 3, 4, 'pepe'),
-(30, 'fdfdafdafdfa', 'fadfad', '2015-08-23 17:56:42', 1, 'm', NULL, 2, 234, 5245, 3, 4, 'fadfadfa');
+(30, 'fdfdafdafdfa', 'fadfad', '2015-08-23 17:56:42', 1, 'm', NULL, 2, 234, 5245, 3, 4, 'fadfadfa'),
+(31, '45245245', '45', '2015-08-23 18:05:48', 1, 'm', NULL, 2, 5454, 545, 3, 4, '454'),
+(32, '425245', '5245', '2015-08-23 18:11:13', 2, 'm', NULL, 2, 42524, 42524, 3, 4, '42524'),
+(33, 'LeanBiker', 'pepe', '2015-08-23 18:28:28', 1, 'm', NULL, 1, 21, 23, 3, 4, 'easa'),
+(34, '646', '6464', '2015-08-23 18:38:28', 1, 'm', NULL, 2, 446, 464, 3, 4, '4646'),
+(35, 'gdfa', 'fad', '2015-08-23 18:51:10', 1, 'm', NULL, 1, 234, 245, 3, 4, 'fad');
 
 --
 -- Índices para tablas volcadas
@@ -604,7 +609,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `acciones`
 --
 ALTER TABLE `acciones`
-MODIFY `IdAccion` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `IdAccion` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `condimentos`
 --
@@ -719,7 +724,7 @@ MODIFY `IdUsuarioGrupo` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
