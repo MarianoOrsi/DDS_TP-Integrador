@@ -310,9 +310,10 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
 	</div>
 	</section>
 	<footer>
-	<div class="container">
+	
+	<div class="container aligncenter">
 		<div class="row">
-			<div class="col-lg-3">
+			<div class="col-lg-">
 				<div class="widget">
 					<h5 class="widgetheading">Integrantes</h5>
 					<ul class="link-list">
@@ -327,17 +328,17 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
 			</div>
 		</div>
 	</div>
-	<div id="sub-footer">
+	<div id="sub-footer" class="aligncenter">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6">
-					<div class="copyright">
+				<div class="col-lg-12">
+					<div class="copyright aligncenter">
 						<p>
-							<span>&copy; UTN FRBA - Diseño de Sistemas - Curso K3152</span>
+							<span>&copy; UTN FRBA - Diseño de Sistemas - Curso K3152 - Grupo 81</span>
 						</p>
 					</div>
 				</div>
-				<div class="col-lg-6">
+				<!-- <div class="col-lg-6">
 					<ul class="social-network">
 						<li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a></li>
 						<li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a></li>
@@ -345,10 +346,11 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
 						<li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
 						<li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus"></i></a></li>
 					</ul>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
+
 	</footer>
 </div>
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
