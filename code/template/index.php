@@ -51,7 +51,7 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
 								echo '<li><a href="login.html">Mis Recetas</a></li>';
                                 echo '<li><a href="login.html">Mis Grupos</a></li>';
                                 echo '<li><a href="login.html">Estadisticas y Reportes</a></li>';
-                                echo '<li><a href="login.html">Actualizar Perfil</a></li>';
+                                echo '<li><a href="perfil.php">Perfil</a></li>';
 								echo '<li><a href="index.php?logout=1">Salir</a></li>';
 								}
 								else {

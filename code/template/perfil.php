@@ -98,11 +98,20 @@ function dameNombreRutina($id)
 								<li>
 									<a href="index.php">Inicio</a>
 								</li>
-								<li class="active">
-									<a href="iniciarSesion.html">Ingresar</a>
-								</li>
 								<li>
-									<a href="registrarme.html">Registrarse</a>
+									<a href="login.html">Mis Recetas</a>
+								</li>
+                                <li>
+                                	<a href="login.html">Mis Grupos</a>
+                                </li>
+                                <li>
+                                	<a href="login.html">Estadisticas y Reportes</a>
+                               	</li>
+                                <li>
+                                	<a href="perfil.php">Perfil</a>
+                               	</li>
+								<li>
+									<a href="index.php?logout=1">Salir</a>
 								</li>
 							</ul>
 						</div>
@@ -138,7 +147,7 @@ function dameNombreRutina($id)
 					 ?>
 				</ul>
 				
-				<a href="actualizarPerfil.html" class="btn btn-theme">Actualizar Perfil</a>
+				<a href="actualizarPerfil.php" class="btn btn-theme">Actualizar Perfil</a>
 				<br/>
 				<h3> </h3>
 		</section>
