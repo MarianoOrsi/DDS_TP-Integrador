@@ -308,7 +308,7 @@ ul.nav li.dropdown a {
 
 #featured{
 	width: 100%;
-	background:#fcfcfc;
+	background:#f6f6f6;
 	position:relative;
 	margin:0;
 	padding:0;
@@ -377,7 +377,7 @@ section.callaction {
 	width: 100%;
 }
 .box-gray  {
-	background: #f8f8f8;
+	background: #f6f6f6;
 	padding: 20px 20px 30px;
 }
 .box-gray  h4,.box-gray  i {
@@ -402,7 +402,7 @@ section.callaction {
 ==================================== */
 
 #bottom {
-	background:#fcfcfc;
+	background:#f6f6f6;
 	padding:50px 0 0;
 
 }
@@ -916,7 +916,7 @@ ul.team-detail li ul.social-network li i {
 }
 
 .pricing-offer{
-	background: #fcfcfc;
+	background: #f6f6f6;
 	text-align: center;
 	padding:40px 0 40px 0;
 	font-size:18px;
@@ -963,7 +963,7 @@ color:#353535;
 
 .pricing-action{
 	margin:0;
-	background: #fcfcfc;
+	background: #f6f6f6;
 	text-align:center;
 	padding:20px 0 30px 0;
 }
@@ -977,7 +977,7 @@ color:#353535;
 /* --- pricing box alt 1 --- */
 .pricing-box-alt {
 border: 1px solid #e6e6e6;
-	background:#fcfcfc;
+	background:#f6f6f6;
 	position:relative;
 	margin:0 0 20px 0;
 	padding:0;
@@ -990,13 +990,13 @@ border: 1px solid #e6e6e6;
 }
 
 .pricing-box-alt .pricing-heading {
-	background: #fcfcfc;
+	background: #f6f6f6;
 	text-align: center;
 	padding:40px 0 0px 0;
 	display:block;
 }
 .pricing-box-alt.special .pricing-heading {
-	background: #fcfcfc;
+	background: #f6f6f6;
 	text-align: center;
 	padding:40px 0 1px 0;
 	border-bottom:none;
@@ -1084,7 +1084,7 @@ article .post-heading h3 a:hover {
 
 /* --- post meta --- */
 .post-meta {
-	background:#fcfcfc;
+	background:#f6f6f6;
 	border:1px solid #e6e6e6;
 	border-top:none;
 	text-align:center;
@@ -1468,7 +1468,7 @@ ul.time-post{
 
 ul.time-post li{
 	float:none;
-	background:#f8f8f8;
+	background:#f6f6f6;
 	list-style:none;
 	margin:0 0 2px 0;
 	padding:0;
@@ -1521,7 +1521,7 @@ ul.time-post li.time{
 
 footer{
 	padding:50px 0 0 0;
-	color:#f8f8f8;
+	color:#f6f6f6;
 }
 
 footer a {
@@ -1627,7 +1627,7 @@ section.demogrid .col-lg-12.nest {
 ================================ */
 
 .solidline {
-	border-top:1px solid #f5f5f5;
+	border-top:1px solid #d64131;
 	margin:0 0 30px;
 }
 
