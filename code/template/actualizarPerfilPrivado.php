@@ -75,7 +75,7 @@ if(isset($_POST["submit"])){
 		
 				
 		 
-		header("location: index.php"); // para poner el header, no hay que tener NADA 
+		header("location: perfil.php"); // para poner el header, no hay que tener NADA 
 												//  de HTML o ning�n ECHO en el c�digo
 }
 

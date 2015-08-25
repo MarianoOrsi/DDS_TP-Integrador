@@ -89,14 +89,16 @@ function dameSexo($idSexo)//Jajajajaa recien medi cuenta del nombre que le puse 
 
 			<section class="callaction">
 				<div class="row mar-bot40">
-					<div class="col-md-offset-3 col-md-6">
+					
+					
+				</div>
+				<div class="row">
+				
+					<div class="col-md-8 col-md-offset-2">
 						<div class="section-header">
 							<h3>Editar Perfil</h3>
 						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
+					
 						<div class="cform" id="contact-form">
 							<form action="actualizarPerfilPrivado.php" method="post" role="form" class="contactForm">
 							<?php
@@ -174,7 +176,7 @@ function dameSexo($idSexo)//Jajajajaa recien medi cuenta del nombre que le puse 
 								<input type="text" class="form-control"  name="preferencias" placeholder="Preferencias alimenticias" />
 								</div>';
 							?>
-								<input type="submit" value="Actualizar" name="submit" class="btn btn-theme" />
+								<input type="submit" value="Actualizar" name="submit" class="btn btn-theme aligncenter" />
 							</form>
 
 						</div>
@@ -185,8 +187,8 @@ function dameSexo($idSexo)//Jajajajaa recien medi cuenta del nombre que le puse 
 			</section>
 
 			<!-- start footer -->
-				<?php include("include/footer.php")?>
-			<!-- end footer -->
+		<?php include("include/footer.php")?>
+	<!-- end footer -->
 		</div>
 		<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 		<!-- stop footer-->

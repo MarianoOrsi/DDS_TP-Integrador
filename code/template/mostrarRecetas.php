@@ -41,28 +41,48 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 			<!-- end header -->
 
 
-			<section class="callaction">
+				<section class="callaction">
 
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="error-template">
-								<h1> Oops!</h1>
-								<h2> 404 Not Found</h2>
-								<div class="error-details">
-									Huy, creo que todavia no llegamos a esto.. Pero quedate tranquilo<br/>
-									Estamos trabajando para solucionarlo ;)
-								</div>
+					<div class="container">
+						<div class="row">
+							
 								
-								<img src="img/EstamosTrabajandoPAraUsted.jpg" title="Tecnicos Trabajando" />
-																
-								<div class="error-actions">
-									<a href="index.php" class="btn btn-primary btn-lg"> Llevame al Inicio </a>
+									<h1>Mis Recetas</h1>
+									<table class="table table-hover">
+													<thead>
+													<tr>													
+														<th>Nombre</th>
+														<th>Horarios</th>
+														<th>Calor&iacute;as</th>
+														<th></th>
+													</tr>
+													</thead>
+													<tbody>
+													<tr>
+														<td>John</td>
+														<td>Doe</td>
+														<td>john@example.com</td>
+														<td><input type="button" value="Editar" class="btn btn-lg"/></td>
+														</tr>
+													<tr>
+														<td>Mary</td>
+														<td>Moe</td>
+														<td>mary@example.com</td>
+														<td><input type="button" value="Editar" class="btn btn-lg"/></td>
+													</tr>
+													<tr>
+													<td>July</td>
+													<td>Dooley</td>
+													<td>july@example.com</td>
+													<td><input type="button" value="Editar" class="btn btn-lg"/></td>
+													</tr>
+													</tbody>
+													</table>
+									
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
+						
+					
 
 			</section>
 

@@ -100,6 +100,10 @@ function damePreferencias($id)
 			<!-- end header -->
 			
 		<section class="callaction">
+		
+
+					<div class="container">
+						<div class="row">
 					<?php 
 
 					echo '<h3>Perfil de '.$id['1'].'</h3>';
@@ -126,9 +130,11 @@ function damePreferencias($id)
 					 ?>
 				</ul>
 				
-				<a href="actualizarPerfil.php" class="btn btn-theme">Actualizar Perfil</a>
+				<a href="actualizarPerfil.php" class="btn btn-theme aligncenter">Actualizar Perfil</a>
 				<br/>
-				<h3> </h3>
+				
+				</div>
+				</div>
 		</section>
 
 				<!-- start footer -->
