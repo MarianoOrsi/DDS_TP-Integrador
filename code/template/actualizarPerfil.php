@@ -46,18 +46,14 @@ function dameNombreRutina($id) {
 	return $id['0'];
 }
 
-function dameSexo($idSexo) //Jajajajaa recien medi cuenta del nombre que le puse jajaj
+function dameSexo($idSexo)//Jajajajaa recien medi cuenta del nombre que le puse jajaj
 {
-	if($idSexo=='m')
-	{
-	  	return 'Masculino';
+	if ($idSexo == 'm') {
+		return 'Masculino';
+	} else {
+		return 'Femenino';
 	}
-	else
-	{
-	  	return 'Femenino';
-	}	
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -104,13 +100,13 @@ function dameSexo($idSexo) //Jajajajaa recien medi cuenta del nombre que le puse
 									<a href="index.php">Inicio</a>
 								</li>
 								<li>
-									<a href="login.html">Mis Recetas</a>
+									<a href="PantallaDeError.php">Mis Recetas</a>
 								</li>
 								<li>
 									<a href="gestionGrupos.php">Mis Grupos</a>
 								</li>
 								<li>
-									<a href="login.html">Estadisticas y Reportes</a>
+									<a href="PantallaDeError.php">Estadisticas y Reportes</a>
 								</li>
 								<li>
 									<a href="perfil.php">Perfil</a>
@@ -123,38 +119,6 @@ function dameSexo($idSexo) //Jajajajaa recien medi cuenta del nombre que le puse
 					</div>
 				</div>
 			</header>
-			<!-- end header -->
-
-			<!--	<section class="callaction">
-			<?php
-
-			echo '<h3>Perfil de '.$id['1'].'</h3>';
-			echo '<ul class="list-group">';
-
-			echo '<li class="list-group-item">Mail: '.$id['12'].'</li>';
-
-			if($id[5]=='m')
-			{
-			echo '<li class="list-group-item">Sexo: Masculino</li>';
-			}else
-			{
-			echo '<li class="list-group-item">Sexo: Femenino</li>';
-			}
-			echo '<li class="list-group-item">Edad: '.$id['8'].'</li>';
-			echo '<li class="list-group-item">Altura: '.$id['9'].' cm</li>';
-			echo '<li class="list-group-item">Complexion: '.dameNombreComplexion($id['4']).'</li>';
-			echo '<li class="list-group-item">Condiciones preexistentes: '.dameNombreCondicionPreexistente($id['10']).'</li>';
-			echo '<li class="list-group-item">Dieta: '.dameNombreDieta($id['11']).'</li>';
-			echo '<li class="list-group-item">Rutina: '.dameNombreRutina($id['7']).'</li>';
-			//  echo '<li class="list-group-item">Preferencia alimenticias: '.$id[''].'</li>';
-
-			?>
-			</ul>
-
-			<a href="actualizarPerfil.php" class="btn btn-theme">Actualizar Perfil</a>
-			<br/>
-			<h3> </h3>
-			</section> -->
 
 			<section class="callaction">
 				<div class="row mar-bot40">
@@ -165,92 +129,92 @@ function dameSexo($idSexo) //Jajajajaa recien medi cuenta del nombre que le puse
 					</div>
 				</div>
 				<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-				<div class="cform" id="contact-form">
-				<form action="actualizarPerfilPrivado.php" method="post" role="form" class="contactForm">
-				<?php
-				echo '<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control" name="email" placeholder="'. $id['12'].'" data-rule="email" data-msg="Please enter a valid email" />
-						<div class="validation"></div>
-					</div>';
+					<div class="col-md-8 col-md-offset-2">
+						<div class="cform" id="contact-form">
+							<form action="actualizarPerfilPrivado.php" method="post" role="form" class="contactForm">
+							<?php
+								echo '<div class="form-group">
+								<label>Email</label>
+								<input type="email" class="form-control" name="email" placeholder="' . $id['12'] . '" data-rule="email" data-msg="Please enter a valid email" />
+								<div class="validation"></div>
+								</div>';
 
-				echo '<div class="form-group">
-				<label>Sexo</label>
-				<select  class="form-control"  name="genero">
-				<option value="">'.dameSexo($id['5']).'</option>
-				<option value="masculino">Masculino</option>
-				<option value="femenino">Femenino</option>
-				</select>
-				</div>';
+								echo '<div class="form-group">
+								<label>Sexo</label>
+								<select  class="form-control"  name="genero">
+								<option value="">' . dameSexo($id['5']) . '</option>
+								<option value="masculino">Masculino</option>
+								<option value="femenino">Femenino</option>
+								</select>
+								</div>';
 
-				echo '<div class="form-group">
-				<label>Edad</label>
-				<input type="text" class="form-control"  name="edad" placeholder="'.$id['8'].'" />
-				</div>';
+								echo '<div class="form-group">
+								<label>Edad</label>
+								<input type="text" class="form-control"  name="edad" placeholder="' . $id['8'] . '" />
+								</div>';
 
-				echo '<div class="form-group">
-				<label>Altura</label>
-				<input type="text"  class="form-control" name="altura" placeholder="'.$id['9'].'" />
-				</div>';
+								echo '<div class="form-group">
+								<label>Altura</label>
+								<input type="text"  class="form-control" name="altura" placeholder="' . $id['9'] . '" />
+								</div>';
 
-				echo '<div class="form-group">
-				<label>Complexion</label>
-				<select  class="form-control"  name="complexion">
-				<option value="">'.dameNombreComplexion($id['4']).'</option>
-				<option value="Peque">Pequeña</option>
-				<option value="Mediana">Media</option>
-				<option value="Grande">Grande</option>
-				</select>
-				</div>';
+								echo '<div class="form-group">
+								<label>Complexion</label>
+								<select  class="form-control"  name="complexion">
+								<option value="">' . dameNombreComplexion($id['4']) . '</option>
+								<option value="Peque">Pequeña</option>
+								<option value="Mediana">Media</option>
+								<option value="Grande">Grande</option>
+								</select>
+								</div>';
 
-				echo '<div class="form-group">
-				<label>Condiciones Preexistentes</label>
-				<select  class="form-control"  name="condPre">
-				<option value="">'.dameNombreCondicionPreexistente($id['10']).'</option>
-				<option value="diabetes">Diabetes</option>
-				<option value="hipertension">Hipertension</option>
-				<option value="celiasis">Celiasis</option>
-				<option value="ninguna">Ninguna</option>
-				</select>
-				</div>';
+								echo '<div class="form-group">
+								<label>Condiciones Preexistentes</label>
+								<select  class="form-control"  name="condPre">
+								<option value="">' . dameNombreCondicionPreexistente($id['10']) . '</option>
+								<option value="diabetes">Diabetes</option>
+								<option value="hipertension">Hipertension</option>
+								<option value="celiasis">Celiasis</option>
+								<option value="ninguna">Ninguna</option>
+								</select>
+								</div>';
 
-				echo '<div class="form-group">
-				<label>Dieta</label>
-				<select  class="form-control"  name="dieta">
-				<option value="">'.dameNombreDieta($id['11']).'</option>
-				<option value="normal">Normal</option>
-				<option value="ovolacto">Ovolactovegetariano</option>
-				<option value="vegetariano">Vegetariano</option>
-				<option value="vegano">Vegano</option>
-				</select>
-				</div>';
+								echo '<div class="form-group">
+								<label>Dieta</label>
+								<select  class="form-control"  name="dieta">
+								<option value="">' . dameNombreDieta($id['11']) . '</option>
+								<option value="normal">Normal</option>
+								<option value="ovolacto">Ovolactovegetariano</option>
+								<option value="vegetariano">Vegetariano</option>
+								<option value="vegano">Vegano</option>
+								</select>
+								</div>';
 
-				echo '<div class="form-group">
-				<label>Rutina</label>
-				<select c class="form-control"  name="rutina">
-				<option value="">'.dameNombreRutina($id['7']).'</option>
-				<option value="Nada">Sedentaria con nada de ejercicio</option>
-				<option value="Leve">Sedentaria con algo de ejercicio (-30 min.)</option>
-				<option value="Mediano">Sedentaria con ejercicio (+30 min.)</option>
-				<option value="Fuerte">Activa sin ejercicio adicional</option>
-				<option value="Intensivo">Activa con ejercicio adicional (+30 min.)</option>
-				</select>
-				</div>';
+								echo '<div class="form-group">
+								<label>Rutina</label>
+								<select c class="form-control"  name="rutina">
+								<option value="">' . dameNombreRutina($id['7']) . '</option>
+								<option value="Nada">Sedentaria con nada de ejercicio</option>
+								<option value="Leve">Sedentaria con algo de ejercicio (-30 min.)</option>
+								<option value="Mediano">Sedentaria con ejercicio (+30 min.)</option>
+								<option value="Fuerte">Activa sin ejercicio adicional</option>
+								<option value="Intensivo">Activa con ejercicio adicional (+30 min.)</option>
+								</select>
+								</div>';
 
-				echo '<div class="form-group">
-				<label>Preferencias</label>
-				<input type="text" class="form-control"  name="preferencias" placeholder="Preferencias alimenticias" />
-				</div>';
-?>
-				<input type="submit" value="Actualizar" name="submit" class="btn btn-theme" />
-				</form>
+								echo '<div class="form-group">
+								<label>Preferencias</label>
+								<input type="text" class="form-control"  name="preferencias" placeholder="Preferencias alimenticias" />
+								</div>';
+							?>
+								<input type="submit" value="Actualizar" name="submit" class="btn btn-theme" />
+							</form>
 
+						</div>
+					</div>
+					<!-- ./span12 -->
 				</div>
-				</div>
-				<!-- ./span12 -->
-				</div>
-				
+
 			</section>
 
 			<!-- start footer-->

@@ -76,13 +76,13 @@
 									<a href="index.php">Inicio</a>
 								</li>
 								<li>
-									<a href="login.html">Mis Recetas</a>
+									<a href="PantallaDeError.php">Mis Recetas</a>
 								</li>
 								<li>
 									<a href="gestionGrupos.php">Mis Grupos</a>
 								</li>
 								<li>
-									<a href="login.html">Estadisticas y Reportes</a>
+									<a href="PantallaDeError.php">Estadisticas y Reportes</a>
 								</li>
 								<li>
 									<a href="perfil.php">Perfil</a>

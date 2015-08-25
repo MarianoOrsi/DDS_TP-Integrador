@@ -48,9 +48,9 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
                         <li class="active"><a href="index.php">Inicio</a></li>
 						
 						<?php if(isset($_SESSION["idUsuario"])){ // SI no esta seteado, muestra lo primero
-								echo '<li><a href="login.html">Mis Recetas</a></li>';
+								echo '<li><a href="PantallaDeError.php">Mis Recetas</a></li>';
                                 echo '<li><a href="gestionGrupos.php">Mis Grupos</a></li>';
-                                echo '<li><a href="login.html">Estadisticas y Reportes</a></li>';
+                                echo '<li><a href="PantallaDeError.php">Estadisticas y Reportes</a></li>';
                                 echo '<li><a href="perfil.php">Perfil</a></li>';
 								echo '<li><a href="index.php?logout=1">Salir</a></li>';
 								}
