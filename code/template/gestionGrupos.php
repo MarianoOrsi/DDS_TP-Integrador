@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -58,44 +59,10 @@
 	</head>
 	<body>
 		<div id="wrapper">
-			<!-- start header -->
-			<header>
-				<div class="navbar navbar-default navbar-static-top">
-					<div class="container">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-							<a class="navbar-brand" href="index.php"><span>Que</span> comemos?</a>
-						</div>
-						<div class="navbar-collapse collapse ">
-							<ul class="nav navbar-nav">
-								<li>
-									<a href="index.php">Inicio</a>
-								</li>
-								<li>
-									<a href="PantallaDeError.php">Mis Recetas</a>
-								</li>
-								<li>
-									<a href="gestionGrupos.php">Mis Grupos</a>
-								</li>
-								<li>
-									<a href="PantallaDeError.php">Estadisticas y Reportes</a>
-								</li>
-								<li>
-									<a href="perfil.php">Perfil</a>
-								</li>
-								<li>
-									<a href="index.php?logout=1">Salir</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</header>
+				<!-- start header -->
+					<?php include("include/header.php")?>
 			<!-- end header -->
+
 			<section id="content">
 				<div class="container">
 					<div id="column1" style="float:left; margin:0; width:33%;">
@@ -142,69 +109,9 @@
 
 			</section>
 
-			<footer>
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-3">
-							<div class="widget">
-								<h5 class="widgetheading">Integrantes</h5>
-								<ul class="link-list">
-									<li>
-										Jonatan Boianover
-									</li>
-									<li>
-										Maximiliano Cantarell
-									</li>
-									<li>
-										Santiago H. Garcia
-									</li>
-									<li>
-										Lucas Mangano
-									</li>
-									<li>
-										Mariano Orsi
-									</li>
-									<li>
-										Leandro Wagner
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="sub-footer">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="copyright">
-									<p>
-										<span>&copy; UTN FRBA - Diseño de Sistemas - Curso K3152</span>
-									</p>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<ul class="social-network">
-									<li>
-										<a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a>
-									</li>
-									<li>
-										<a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a>
-									</li>
-									<li>
-										<a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a>
-									</li>
-									<li>
-										<a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"></i></a>
-									</li>
-									<li>
-										<a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus"></i></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</footer>
+			<!-- start footer -->
+				<?php include("include/footer.php")?>
+			<!-- end footer -->
 		</div>
 		<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 		<!-- javascript

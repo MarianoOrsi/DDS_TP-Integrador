@@ -1,10 +1,4 @@
-<?php session_start();
-
-if(isset($_GET["logout"]) && $_GET["logout"]==1){
-		unset($_SESSION["idUsuario"]); 
-		session_destroy();
-		
-		}	?>
+<?php session_start();?>
 
 
 
@@ -32,42 +26,7 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
 <body>
 <div id="wrapper">
 	<!-- start header -->
-	<header>
-        <div class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                   <a class="navbar-brand" href="index.php"><span>Que</span> comemos?</a>
-                </div>
-                <div class="navbar-collapse collapse ">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.php">Inicio</a></li>
-						
-						<?php if(isset($_SESSION["idUsuario"])){ // SI no esta seteado, muestra lo primero
-								echo '<li><a href="PantallaDeError.php">Mis Recetas</a></li>';
-                                echo '<li><a href="gestionGrupos.php">Mis Grupos</a></li>';
-                                echo '<li><a href="PantallaDeError.php">Estadisticas y Reportes</a></li>';
-                                echo '<li><a href="perfil.php">Perfil</a></li>';
-								echo '<li><a href="index.php?logout=1">Salir</a></li>';
-								}
-								else {
-								echo '<li><a href="iniciarSesion.html">Ingresar</a></li>';
-                                echo '<li><a href="registrarme.html">Registrarse</a></li>';
-										
-								}
-								?>
-								
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-	</header>
+	<?php include("include/header.php")?>
 	<!-- end header -->
 	<section id="featured">
 	<!-- start slider -->
@@ -309,49 +268,11 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
 
 	</div>
 	</section>
-	<footer>
 	
-	<div class="container aligncenter">
-		<div class="row">
-			<div class="col-lg-">
-				<div class="widget">
-					<h5 class="widgetheading">Integrantes</h5>
-					<ul class="link-list">
-						<li>Jonatan Boianover</li>
-						<li>Maximiliano Cantarell</li>
-						<li>Santiago H. Garcia</li>
-						<li>Lucas Mangano</li>
-						<li>Mariano Orsi</li>
-						<li>Leandro Wagner</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="sub-footer" class="aligncenter">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="copyright aligncenter">
-						<p>
-							<span>&copy; UTN FRBA - Diseño de Sistemas - Curso K3152 - Grupo 81</span>
-						</p>
-					</div>
-				</div>
-				<!-- <div class="col-lg-6">
-					<ul class="social-network">
-						<li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-						<li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
-						<li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus"></i></a></li>
-					</ul>
-				</div> -->
-			</div>
-		</div>
-	</div>
-
-	</footer>
+	<!-- start footer -->
+		<?php include("include/footer.php")?>
+	<!-- end footer -->
+	
 </div>
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 <!-- javascript
