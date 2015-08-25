@@ -55,6 +55,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 														<th>Horarios</th>
 														<th>Calor&iacute;as</th>
 														<th></th>
+														<th></th>
 													</tr>
 													</thead>
 													<tbody>
@@ -63,22 +64,29 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 														<td>Doe</td>
 														<td>john@example.com</td>
 														<td><input type="button" value="Editar" class="btn btn-lg"/></td>
+														<td><a href="index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
 														</tr>
 													<tr>
 														<td>Mary</td>
 														<td>Moe</td>
 														<td>mary@example.com</td>
 														<td><input type="button" value="Editar" class="btn btn-lg"/></td>
+														<td><a href="index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
 													</tr>
 													<tr>
 													<td>July</td>
 													<td>Dooley</td>
 													<td>july@example.com</td>
 													<td><input type="button" value="Editar" class="btn btn-lg"/></td>
+													<td><a href="index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
 													</tr>
+													
 													</tbody>
 													</table>
+													<div class="container aligncenter">
+													<a href="agregarReceta.php" class="btn btn-theme" align="center">Agregar nueva receta</a>
 									
+								</div>
 								</div>
 							</div>
 						
