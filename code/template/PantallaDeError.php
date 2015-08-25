@@ -54,13 +54,13 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 									<a href="index.php">Inicio</a>
 								</li>
 								<li>
-									<a href="login.html">Mis Recetas</a>
+									<a href="PantallaDeError.php">Mis Recetas</a>
 								</li>
 								<li>
 									<a href="gestionGrupos.php">Mis Grupos</a>
 								</li>
 								<li>
-									<a href="login.html">Estadisticas y Reportes</a>
+									<a href="PantallaDeError.php">Estadisticas y Reportes</a>
 								</li>
 								<li>
 									<a href="perfil.php">Perfil</a>
@@ -91,7 +91,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 								<img src="img/EstamosTrabajandoPAraUsted.jpg" alt="Tecnicos Trabajando" />
 																
 								<div class="error-actions">
-									<a href="index.php" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span> Take Me Home </a>
+									<a href="index.php" class="btn btn-primary btn-lg"> Llevame al Inicio </a>
 								</div>
 							</div>
 						</div>
