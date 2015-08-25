@@ -13,21 +13,6 @@
 <!-- Theme skin -->
 <link href="skins/default.css" rel="stylesheet" />
 
-    <?php
-    function createGroup ($nombre)
-	{
-		 $servidor = "localhost";    
-		 $user = "root";
-         $pass = "";
-         $dbname = "diseniosistemas";
-         $con = mysql_connect($servidor,$user,$pass);
-
-         mysql_select_db($dbname,$con);
-         $return = mysql_query("INSERT INTO grupos(idGrupo,Nombre) VALUES (NULL,". $nombre .")",$con) or die (mysql_error());
- 
-    }
-    ?>
-
 <script type = "text/javascript">
    function readValuesGroup(x) {
     var content = x.children.length;
@@ -49,14 +34,23 @@
  function createGroup()
   {
   	var nombre = document.getElementById("Nombre").value;
-    var sentence = "\<\?php createGroup('" ;
-    var end = "'); \?\>";
-    sentence = sentence.concat(nombre,end);
-    document.getElementById("Nombre").value = sentence;
-    alert(sentence);
-    sentence = "";
+  	window.location.href = "abmGrupos.php?method=A&Id=" + nombre;
   }
+
+	function deleteGroup()
+	{
+		var id = document.getElementById("idGrupo").value;
+		window.location.href = "abmGrupos.php?method=B&Id=" + id;
+	}
  
+ 	function modifyGroup()
+	{
+		var id = document.getElementById("idGrupo").value;
+		var name = document.getElementById("Nombre").value;
+
+		window.location.href = "abmGrupos.php?method=M&Id=" + id + "&Name=" + name;
+	}
+
   </script>
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -83,7 +77,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index.html">Inicio</a></li>
 								<li><a href="login.html">Mis Recetas</a></li>
-                                <li><a href="gestionGrupos.html">Mis Grupos</a></li>
+                                <li><a href="gestionGrupos.php">Mis Grupos</a></li>
                                 <li><a href="expeiment/login.html">Estadisticas y Reportes</a></li>
                                 <li><a href="expeiment/login.html">Actualizar Perfil</a></li>
                             </ul>
@@ -130,11 +124,11 @@
 	</table>
     </div>
 	  <div id="column2" style="float:left; margin:0; width:33%;">
-		<li><input id="idGrupo" type="text" disabled/></li>
-		<li><input id="Nombre" type="text" /></li>
-		<input type="button" name="Crear" onclick="createGroup()" value="Crear">
-		<input type="button" name="Guardar" onclick="modifyGroup()" value="Guardar">
-		<input type="button" name="Delete" onclick="deleteGroup()" value="Borrar">
+			<input id="idGrupo" type="text" disabled/>
+			<input id="Nombre" type="text" />
+			<input type="button" name="Crear" onclick="createGroup()" value="Crear">
+			<input type="button" name="Guardar" onclick="modifyGroup()" value="Guardar">
+			<input type="button" name="Delete" onclick="deleteGroup()" value="Borrar">
       </div>
 	</div>
  
