@@ -11,10 +11,12 @@
 		<link href="css/jcarousel.css" rel="stylesheet" />
 		<link href="css/flexslider.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
+		<link href="css/grupos.css" rel="stylesheet" />
 		<!-- Theme skin -->
 		<link href="skins/default.css" rel="stylesheet" />
 
 		<script type = "text/javascript">
+
 			function readValuesGroup(x) {
 				var content = x.children.length;
 				for (var i = 0; i < content; i++) {
@@ -27,26 +29,50 @@
 			function changeColourGroup(x) {
 				var t = document.getElementById("groupsTable").getElementsByTagName("tbody")[0];
 				for (var i = 0; i < (t.children.length); i++) {
-					t.rows[i].style.backgroundColor = "#C8D1C8";
-					x.style.backgroundColor = "#E4FEDD";
+					t.rows[i].style.backgroundColor = "#FFFFFF";
+					t.rows[i].style.fontWeight = "normal";
+					x.style.backgroundColor = "#EFB1AB";
+					x.style.fontWeight="bold";
 				}
 			}
 
 			function createGroup() {
 				var nombre = document.getElementById("Nombre").value;
-				window.location.href = "abmGrupos.php?method=A&Id=" + nombre;
+
+				if(nombre == ""){
+					alert("Debe Ingresar un Nombre para el grupo a crear");
+				}
+				else{
+					window.location.href = "abmGrupos.php?method=A&Id=" + nombre;
+				}
 			}
 
 			function deleteGroup() {
 				var id = document.getElementById("idGrupo").value;
-				window.location.href = "abmGrupos.php?method=B&Id=" + id;
+
+				if(id == ""){
+					alert("Debe seleccionar un grupo para poder borrarlo");
+				}
+				else{
+					window.location.href = "abmGrupos.php?method=B&Id=" + id;	
+				}
 			}
 
 			function modifyGroup() {
 				var id = document.getElementById("idGrupo").value;
 				var name = document.getElementById("Nombre").value;
 
-				window.location.href = "abmGrupos.php?method=M&Id=" + id + "&Name=" + name;
+				if(id == ""){
+					alert("Debe seleccionar un grupo para modificarlo");
+				}
+				else{
+					if(name == ""){
+						alert("El nombre del grupo no puede estar vacio");	
+					}
+					else{
+						window.location.href = "abmGrupos.php?method=M&Id=" + id + "&Name=" + name;
+					}
+				}
 			}
 
 		</script>
@@ -60,17 +86,19 @@
 	<body>
 		<div id="wrapper">
 				<!-- start header -->
-					<?php include("include/header.php")?>
+					<?php include("include/header.php");?>
 			<!-- end header -->
 
 			<section id="content">
 				<div class="container">
-					<div id="column1" style="float:left; margin:0; width:33%;">
-						<table id="groupsTable" border="1">
+					<!--<div id="column1" style="float:left; margin:0; width:33%;">-->
+					<h3>Mis Grupos</h3>
+						<table id="groupsTable" border="1" cellspacing="3">
 							<tr>
 								<TD><b>&nbsp;ID&nbsp;</b></TD>
 								<TD><b>&nbsp;GRUPO&nbsp;</b></TD>
 								<TD><b>&nbsp;FECHA CREACION&nbsp;</b></TD>
+								<TD></TD
 							</tr>
 
 							<?php
@@ -88,6 +116,7 @@
 								echo "<TD>" . $row['IdGrupo'] . "</TD>";
 								echo "<TD>" . $row['Nombre'] . "</TD>";
 								echo "<TD>" . $row['Fecha'] . "</TD>";
+								echo "<TD><input type=\"button\" name=\"Invitar\" onclick=\"mostrarFormInvitaciones()\" value=\"Invitar Amigos\" class=\"btn btn-lg\"> </TD>";
 								echo "</TR>";
 							}
 							//liberamos memoria que ocupa la consulta...
@@ -97,20 +126,26 @@
 							mysql_close($con);
 							?>
 						</table>
-					</div>
-					<div id="column2" style="float:left; margin:0; width:33%;">
+					<!--</div>-->
+					<div id="botones">
+						Id Grupo  
 						<input id="idGrupo" type="text" disabled/>
+						<br />
+						<br />
+						Nombre Grupo  
 						<input id="Nombre" type="text" />
-						<input type="button" name="Crear" onclick="createGroup()" value="Crear">
-						<input type="button" name="Guardar" onclick="modifyGroup()" value="Guardar">
-						<input type="button" name="Delete" onclick="deleteGroup()" value="Borrar">
+						<br />
+						<br />
+						<input type="button" name="Crear" onclick="createGroup()" value="Crear" class="btn btn-lg">
+						<input type="button" name="Guardar" onclick="modifyGroup()" value="Guardar" class="btn btn-lg">
+						<input type="button" name="Delete" onclick="deleteGroup()" value="Borrar" class="btn btn-lg">
 					</div>
 				</div>
 
 			</section>
 
 			<!-- start footer -->
-				<?php include("include/footer.php")?>
+				<?php include("include/footer.php");?>
 			<!-- end footer -->
 		</div>
 		<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
