@@ -58,10 +58,13 @@ function damePreferencias($id)
 	$consulta="call VerPreferencias('".$id."')";
 	//print $consulta;
 	$Qid=mysql_query($consulta) or die (mysql_error());
-	$id= mysql_fetch_array($Qid);
+	$resultado='';
+	while($row=mysql_fetch_row($Qid))
+	{
+		$resultado=$resultado . $row[3] . '. ';
+	}
 	
-	
-    return $id['3'];
+    return $resultado;
 }
 
 ?>
@@ -113,7 +116,7 @@ function damePreferencias($id)
 									<a href="PantallaDeError.php">Mis Recetas</a>
 								</li>
                                 <li>
-                                	<a href="gestionGrupos.php">Mis Grupos</a>
+                                	<a href="login.html">Mis Grupos</a>
                                 </li>
                                 <li>
                                 	<a href="PantallaDeError.php">Estadisticas y Reportes</a>
