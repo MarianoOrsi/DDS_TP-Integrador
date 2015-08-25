@@ -1,4 +1,4 @@
-<?php session_start();
+﻿<?php session_start();
 
 						$servidor = "localhost";    // todos los strings con los valores para el conector SQL
 						$user = "root";
@@ -53,6 +53,17 @@ function dameNombreRutina($id)
     return $id['0'];
 }
 
+function damePreferencias($id)
+{
+	$consulta="call VerPreferencias('".$id."')";
+	//print $consulta;
+	$Qid=mysql_query($consulta) or die (mysql_error());
+	$id= mysql_fetch_array($Qid);
+	
+	
+    return $id['3'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +113,7 @@ function dameNombreRutina($id)
 									<a href="login.html">Mis Recetas</a>
 								</li>
                                 <li>
-                                	<a href="login.html">Mis Grupos</a>
+                                	<a href="gestionGrupos.php">Mis Grupos</a>
                                 </li>
                                 <li>
                                 	<a href="login.html">Estadisticas y Reportes</a>
@@ -141,7 +152,7 @@ function dameNombreRutina($id)
 					  echo '<li class="list-group-item">Condiciones preexistentes: '.dameNombreCondicionPreexistente($id['10']).'</li>';
 					  echo '<li class="list-group-item">Dieta: '.dameNombreDieta($id['11']).'</li>';
 					  echo '<li class="list-group-item">Rutina: '.dameNombreRutina($id['7']).'</li>';
-					//  echo '<li class="list-group-item">Preferencia alimenticias: '.$id[''].'</li>';
+					  echo '<li class="list-group-item">Preferencia alimenticias: '.damePreferencias($id['0']).'</li>';
 						
 						
 					 ?>

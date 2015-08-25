@@ -107,7 +107,7 @@ function dameSexo($idSexo) //Jajajajaa recien medi cuenta del nombre que le puse
 									<a href="login.html">Mis Recetas</a>
 								</li>
 								<li>
-									<a href="login.html">Mis Grupos</a>
+									<a href="gestionGrupos.php">Mis Grupos</a>
 								</li>
 								<li>
 									<a href="login.html">Estadisticas y Reportes</a>

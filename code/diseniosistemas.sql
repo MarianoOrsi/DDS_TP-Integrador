@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-08-2015 a las 04:03:40
+-- Tiempo de generación: 25-08-2015 a las 05:27:30
 -- Versión del servidor: 5.6.25
 -- Versión de PHP: 5.6.11
 
@@ -26,8 +26,8 @@ DELIMITER $$
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `VerPreferencias`(IN `IdUsu` INT)
     NO SQL
-SELECT IdPreferencia, p.IdIngrediente, IdUsuario, i.Ingrediente FROM preferencias as p inner join ingredientes as i on p.IdIngrediente=i.IdIngrediente
-where idusuario=@IdUsu$$
+SELECT IdPreferencia, preferencias.IdIngrediente, IdUsuario, ingredientes.Ingrediente FROM preferencias inner join ingredientes on preferencias.IdIngrediente=ingredientes.IdIngrediente
+where idusuario=IdUsu$$
 
 DELIMITER ;
 
@@ -210,7 +210,15 @@ CREATE TABLE IF NOT EXISTS `ingredientes` (
   `Ingrediente` varchar(50) NOT NULL,
   `Porcion` int(11) NOT NULL,
   `Calorias` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ingredientes`
+--
+
+INSERT INTO `ingredientes` (`IdIngrediente`, `Ingrediente`, `Porcion`, `Calorias`) VALUES
+(1, 'Pollo', 100, 23),
+(2, 'Carne', 100, 46);
 
 -- --------------------------------------------------------
 
@@ -287,7 +295,15 @@ CREATE TABLE IF NOT EXISTS `preferencias` (
   `IdIngrediente` int(11) NOT NULL,
   `IdUsuario` int(11) NOT NULL,
   `Fecha` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `preferencias`
+--
+
+INSERT INTO `preferencias` (`IdPreferencia`, `IdIngrediente`, `IdUsuario`, `Fecha`) VALUES
+(1, 2, 29, '2015-08-24 00:00:00'),
+(2, 1, 29, '2015-08-04 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -465,7 +481,7 @@ INSERT INTO `usuarios` (`IdUsuario`, `Usuario`, `Contrase`, `fechaCreacion`, `Id
 (33, 'LeanBiker', 'pepe', '2015-08-23 18:28:28', 1, 'm', NULL, 1, 21, 23, 3, 4, 'easa'),
 (34, '646', '6464', '2015-08-23 18:38:28', 1, 'm', NULL, 2, 446, 464, 3, 4, '4646'),
 (35, 'gdfa', 'fad', '2015-08-23 18:51:10', 1, 'm', NULL, 1, 234, 245, 3, 4, 'fad'),
-(36, 'lucas', '7410', '2015-08-24 22:20:29', 2, 'm', NULL, 2, 15, 174, 3, 4, 'luks_manga@hotmail.com');
+(36, 'lucas', '7410', '2015-08-24 22:20:29', 2, 'm', NULL, 2, 15, 174, 0, 3, 'luks_manga@hotmail.com');
 
 --
 -- Índices para tablas volcadas
@@ -670,7 +686,7 @@ ALTER TABLE `horarios`
 -- AUTO_INCREMENT de la tabla `ingredientes`
 --
 ALTER TABLE `ingredientes`
-  MODIFY `IdIngrediente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdIngrediente` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `pasos`
 --
@@ -695,7 +711,7 @@ ALTER TABLE `preexistentes`
 -- AUTO_INCREMENT de la tabla `preferencias`
 --
 ALTER TABLE `preferencias`
-  MODIFY `IdPreferencia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdPreferencia` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `procedimiento`
 --
