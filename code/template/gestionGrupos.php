@@ -80,16 +80,27 @@
                     <a class="navbar-brand" href="index.html"><span>Que</span> comemos?</a>
                 </div>
                 <div class="navbar-collapse collapse ">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Inicio</a></li>
-								<li><a href="login.html">Mis Recetas</a></li>
-                                <li><a href="gestionGrupos.html">Mis Grupos</a></li>
-                                <li><a href="expeiment/login.html">Estadisticas y Reportes</a></li>
-                                <li><a href="expeiment/login.html">Actualizar Perfil</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+							<ul class="nav navbar-nav">
+								<li>
+									<a href="index.php">Inicio</a>
+								</li>
+								<li>
+									<a href="login.html">Mis Recetas</a>
+								</li>
+								<li>
+									<a href="gestionGrupos.php">Mis Grupos</a>
+								</li>
+								<li>
+									<a href="login.html">Estadisticas y Reportes</a>
+								</li>
+								<li>
+									<a href="perfil.php">Perfil</a>
+								</li>
+								<li>
+									<a href="index.php?logout=1">Salir</a>
+								</li>
+							</ul>
+						</div>
             </div>
         </div>
 	</header>

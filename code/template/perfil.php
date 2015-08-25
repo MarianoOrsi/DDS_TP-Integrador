@@ -102,7 +102,7 @@ function dameNombreRutina($id)
 									<a href="login.html">Mis Recetas</a>
 								</li>
                                 <li>
-                                	<a href="login.html">Mis Grupos</a>
+                                	<a href="gestionGrupos.php">Mis Grupos</a>
                                 </li>
                                 <li>
                                 	<a href="login.html">Estadisticas y Reportes</a>
