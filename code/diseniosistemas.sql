@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-08-2015 a las 05:27:30
+-- Tiempo de generación: 25-08-2015 a las 22:22:04
 -- Versión del servidor: 5.6.25
 -- Versión de PHP: 5.6.11
 
@@ -60,8 +60,34 @@ INSERT INTO `acciones` (`IdAccion`, `Accion`) VALUES
 CREATE TABLE IF NOT EXISTS `condimentos` (
   `IdCondimento` int(11) NOT NULL,
   `Condimento` varchar(50) NOT NULL,
-  `Tipo` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Tipo` varchar(50) NOT NULL,
+  `imagen` varchar(60) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `condimentos`
+--
+
+INSERT INTO `condimentos` (`IdCondimento`, `Condimento`, `Tipo`, `imagen`) VALUES
+(1, 'ajiPicante', '', 'img\\Condimentos\\aji-puta-pario.jpg'),
+(2, 'ajiRePicante', '', 'img\\Condimentos\\aji-rocoto.jpg'),
+(3, 'albaca', '', 'img\\Condimentos\\albaca.jpg'),
+(4, 'azafran', '', 'img\\Condimentos\\Azafran.jpg'),
+(5, 'canela', '', 'img\\Condimentos\\Canela.jpg'),
+(6, 'cilantro', '', 'img\\Condimentos\\cilantro.jpg'),
+(7, 'clavo', '', 'img\\Condimentos\\clavos_de_olor.jpg'),
+(8, 'comino', '', 'img\\Condimentos\\comino.jpg'),
+(9, 'jengibre', '', 'img\\Condimentos\\jengibre.jpg'),
+(10, 'laurel', '', 'img\\Condimentos\\laurel.jpg'),
+(11, 'menta', '', 'img\\Condimentos\\menta.jpg'),
+(12, 'nuezMoscada', '', 'img\\Condimentos\\nuez_moscada.jpg'),
+(13, 'oregano', '', 'img\\Condimentos\\oregano.jpg'),
+(14, 'perejil', '', 'img\\Condimentos\\perejil.jpg'),
+(15, 'pimientaNegra', '', 'img\\Condimentos\\pimienta-negra.jpg'),
+(16, 'pimientaRoja', '', 'img\\Condimentos\\pimienta-roja.jpg'),
+(17, 'romero', '', 'romero.jpg'),
+(18, 'sal', '', 'img\\Condimentos\\sal.jpg'),
+(19, 'tomillo', '', 'img\\Condimentos\\Tomillo.jpg');
 
 -- --------------------------------------------------------
 
@@ -135,7 +161,7 @@ INSERT INTO `dificultades` (`IdDificultad`, `Dificultad`) VALUES
 CREATE TABLE IF NOT EXISTS `estaciones` (
   `IdEstacion` int(11) NOT NULL,
   `Estacion` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `estaciones`
@@ -187,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `historiales` (
 CREATE TABLE IF NOT EXISTS `horarios` (
   `IdHorario` int(11) NOT NULL,
   `Horario` varchar(25) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `horarios`
@@ -209,16 +235,56 @@ CREATE TABLE IF NOT EXISTS `ingredientes` (
   `IdIngrediente` int(11) NOT NULL,
   `Ingrediente` varchar(50) NOT NULL,
   `Porcion` int(11) NOT NULL,
-  `Calorias` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `Calorias` int(11) NOT NULL,
+  `imagen` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `ingredientes`
 --
 
-INSERT INTO `ingredientes` (`IdIngrediente`, `Ingrediente`, `Porcion`, `Calorias`) VALUES
-(1, 'Pollo', 100, 23),
-(2, 'Carne', 100, 46);
+INSERT INTO `ingredientes` (`IdIngrediente`, `Ingrediente`, `Porcion`, `Calorias`, `imagen`) VALUES
+(3, 'aceiteGirasol', 100, 154, 'img\\Ingredientes\\aceite-de-girasol.jpg'),
+(4, 'aceiteOliva', 100, 152, 'img\\Ingredientes\\aceite-oliva.jpg'),
+(5, 'aceituna', 1, 9, 'img\\Ingredientes\\aceituna.jpg'),
+(6, 'ajo', 1, 5, 'img\\Ingredientes\\ajo.jpg'),
+(7, 'arroz', 50, 68, 'img\\Ingredientes\\arroz.jpg'),
+(8, 'asado', 100, 59, 'img\\Ingredientes\\asado.jpg'),
+(9, 'banana', 1, 89, 'img\\Ingredientes\\banana.jpg'),
+(10, 'batata', 1, 56, 'img\\Ingredientes\\batata.jpg'),
+(11, 'cebolla', 1, 58, 'img\\Ingredientes\\cebolla.jpg'),
+(12, 'cebollaVerdeo', 5, 57, 'img\\Ingredientes\\cebolla-de-verdeo.jpg'),
+(13, 'esparrago', 5, 65, 'img\\Ingredientes\\esparragos.jpg'),
+(14, 'espinaca', 12, 78, 'img\\Ingredientes\\espinaca.jpg'),
+(15, 'fideos', 50, 32, 'img\\Ingredientes\\fideos.jpg'),
+(16, 'harinaTrigo', 50, 35, 'img\\Ingredientes\\harina-de-trigo.jpg'),
+(17, 'harinaMaiz', 50, 54, 'img\\Ingredientes\\harina-del-maiz.jpg'),
+(18, 'hongo', 1, 12, 'img\\Ingredientes\\hongo.jpg'),
+(19, 'huevo', 1, 36, 'img\\Ingredientes\\huevo.jpg'),
+(20, 'kiwi', 1, 34, 'img\\Ingredientes\\kiwi.jpg'),
+(21, 'leche', 50, 41, 'img\\Ingredientes\\leche.jpg'),
+(22, 'limon', 1, 29, 'img\\Ingredientes\\limon.jpg'),
+(23, 'lomo', 100, 92, 'img\\Ingredientes\\lomo.jpg'),
+(24, 'mandarina', 1, 59, 'img\\Ingredientes\\mandarina.jpg'),
+(25, 'manteca', 20, 89, 'img\\Ingredientes\\manteca.jpg'),
+(26, 'manzana', 1, 59, 'img\\Ingredientes\\manzana.jpg'),
+(27, 'matambre', 100, 89, 'img\\Ingredientes\\matambre.jpg'),
+(28, 'melon', 1, 340, 'img\\Ingredientes\\melon.jpg'),
+(29, 'morron', 10, 9, 'img\\Ingredientes\\morron-rojo.jpg'),
+(30, 'naranja.jpg', 1, 59, 'img\\Ingredientes\\naranja.jpg'),
+(31, 'papa', 1, 50, 'img\\Ingredientes\\papas.jpg'),
+(32, 'pepino', 1, 59, 'img\\Ingredientes\\pepinos.jpg'),
+(33, 'pera', 1, 59, 'img\\Ingredientes\\Pera.jpg'),
+(34, 'pescado', 30, 26, 'img\\Ingredientes\\pescado.jpg'),
+(35, 'pina', 1, 257, 'img\\Ingredientes\\pina.jpg'),
+(36, 'queso', 60, 38, 'img\\Ingredientes\\queso.jpg'),
+(37, 'repollo', 1, 674, 'img\\Ingredientes\\repollo_morado.jpg'),
+(38, 'sandia', 1, 102, 'img\\Ingredientes\\sandia.jpg'),
+(39, 'tomate', 1, 38, 'img\\Ingredientes\\tomate.jpg'),
+(40, 'vacio', 100, 98, 'img\\Ingredientes\\vacio.jpg'),
+(41, 'vinoBlanco', 1, 268, 'img\\Ingredientes\\vino-blanco.jpg'),
+(42, 'vinoTinto', 1, 126, 'img\\Ingredientes\\vino-timto.jpg'),
+(43, 'zanahoria', 1, 34, 'img\\Ingredientes\\zanahoria.jpg');
 
 -- --------------------------------------------------------
 
@@ -273,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `piramides` (
 CREATE TABLE IF NOT EXISTS `preexistentes` (
   `IdPreexistente` int(11) NOT NULL,
   `Nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `preexistentes`
@@ -295,7 +361,7 @@ CREATE TABLE IF NOT EXISTS `preferencias` (
   `IdIngrediente` int(11) NOT NULL,
   `IdUsuario` int(11) NOT NULL,
   `Fecha` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `preferencias`
@@ -398,7 +464,7 @@ CREATE TABLE IF NOT EXISTS `rutinas` (
   `IdRutina` int(11) NOT NULL,
   `Nombre` varchar(15) NOT NULL,
   `Descripcion` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `rutinas`
@@ -443,7 +509,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `IdPreexistente` int(11) NOT NULL,
   `IdDieta` int(11) NOT NULL,
   `Email` varchar(40) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -474,7 +540,7 @@ INSERT INTO `usuarios` (`IdUsuario`, `Usuario`, `Contrase`, `fechaCreacion`, `Id
 (26, 'gt2', 'gttt', '2015-08-23 17:46:01', 1, 'f', NULL, 1, 0, 34, 3, 4, 'r'),
 (27, 'gt3', 'gttt', '2015-08-23 17:46:29', 1, 'f', NULL, 1, 0, 34, 3, 4, 'r'),
 (28, 'gt4', 'qe', '2015-08-23 17:47:39', 1, 'f', NULL, 3, 0, 1, 3, 4, 'qe'),
-(29, 'Maxi', 'pepe', '2015-08-23 17:49:27', 2, 'm', NULL, 1, 0, 34, 3, 4, 'pepe'),
+(29, 'Maxi', 'pepe', '2015-08-23 17:49:27', 2, 'm', NULL, 3, 20, 100, 0, 1, 'maxi-cantarell@hotmail.com'),
 (30, 'fdfdafdafdfa', 'fadfad', '2015-08-23 17:56:42', 1, 'm', NULL, 2, 234, 5245, 3, 4, 'fadfadfa'),
 (31, '45245245', '45', '2015-08-23 18:05:48', 1, 'm', NULL, 2, 5454, 545, 3, 4, '454'),
 (32, '425245', '5245', '2015-08-23 18:11:13', 2, 'm', NULL, 2, 42524, 42524, 3, 4, '42524'),
@@ -646,7 +712,7 @@ ALTER TABLE `acciones`
 -- AUTO_INCREMENT de la tabla `condimentos`
 --
 ALTER TABLE `condimentos`
-  MODIFY `IdCondimento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdCondimento` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `contexturas`
 --
@@ -662,101 +728,6 @@ ALTER TABLE `dietas`
 --
 ALTER TABLE `dificultades`
   MODIFY `IdDificultad` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT de la tabla `estaciones`
---
-ALTER TABLE `estaciones`
-  MODIFY `IdEstacion` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT de la tabla `grupos`
---
-ALTER TABLE `grupos`
-  MODIFY `IdGrupo` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `historiales`
---
-ALTER TABLE `historiales`
-  MODIFY `IdHistoria` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `horarios`
---
-ALTER TABLE `horarios`
-  MODIFY `IdHorario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT de la tabla `ingredientes`
---
-ALTER TABLE `ingredientes`
-  MODIFY `IdIngrediente` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `pasos`
---
-ALTER TABLE `pasos`
-  MODIFY `IdPasos` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `pesos-ideales`
---
-ALTER TABLE `pesos-ideales`
-  MODIFY `IdPesos-Ideales` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `piramides`
---
-ALTER TABLE `piramides`
-  MODIFY `IdPiramide` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `preexistentes`
---
-ALTER TABLE `preexistentes`
-  MODIFY `IdPreexistente` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT de la tabla `preferencias`
---
-ALTER TABLE `preferencias`
-  MODIFY `IdPreferencia` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `procedimiento`
---
-ALTER TABLE `procedimiento`
-  MODIFY `IdProcedimiento` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `puntuaciones`
---
-ALTER TABLE `puntuaciones`
-  MODIFY `IdPuntuacion` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `receta-estaciones`
---
-ALTER TABLE `receta-estaciones`
-  MODIFY `IdRecetaEstacion` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `receta-horarios`
---
-ALTER TABLE `receta-horarios`
-  MODIFY `IdRecetaHorario` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `receta-ingredientes`
---
-ALTER TABLE `receta-ingredientes`
-  MODIFY `IdRecetaIngrediente` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `recetas`
---
-ALTER TABLE `recetas`
-  MODIFY `IdReceta` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `rutinas`
---
-ALTER TABLE `rutinas`
-  MODIFY `IdRutina` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT de la tabla `usuario-grupos`
---
-ALTER TABLE `usuario-grupos`
-  MODIFY `IdUsuarioGrupo` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
