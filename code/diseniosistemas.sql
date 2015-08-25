@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-08-2015 a las 02:34:38
+-- Tiempo de generación: 25-08-2015 a las 04:03:40
 -- Versión del servidor: 5.6.25
 -- Versión de PHP: 5.6.11
 
@@ -19,6 +19,17 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `diseniosistemas`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `VerPreferencias`(IN `IdUsu` INT)
+    NO SQL
+SELECT IdPreferencia, p.IdIngrediente, IdUsuario, i.Ingrediente FROM preferencias as p inner join ingredientes as i on p.IdIngrediente=i.IdIngrediente
+where idusuario=@IdUsu$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -416,7 +427,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `IdPreexistente` int(11) NOT NULL,
   `IdDieta` int(11) NOT NULL,
   `Email` varchar(40) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -453,7 +464,8 @@ INSERT INTO `usuarios` (`IdUsuario`, `Usuario`, `Contrase`, `fechaCreacion`, `Id
 (32, '425245', '5245', '2015-08-23 18:11:13', 2, 'm', NULL, 2, 42524, 42524, 3, 4, '42524'),
 (33, 'LeanBiker', 'pepe', '2015-08-23 18:28:28', 1, 'm', NULL, 1, 21, 23, 3, 4, 'easa'),
 (34, '646', '6464', '2015-08-23 18:38:28', 1, 'm', NULL, 2, 446, 464, 3, 4, '4646'),
-(35, 'gdfa', 'fad', '2015-08-23 18:51:10', 1, 'm', NULL, 1, 234, 245, 3, 4, 'fad');
+(35, 'gdfa', 'fad', '2015-08-23 18:51:10', 1, 'm', NULL, 1, 234, 245, 3, 4, 'fad'),
+(36, 'lucas', '7410', '2015-08-24 22:20:29', 2, 'm', NULL, 2, 15, 174, 3, 4, 'luks_manga@hotmail.com');
 
 --
 -- Índices para tablas volcadas
@@ -728,7 +740,7 @@ ALTER TABLE `usuario-grupos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
