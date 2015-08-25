@@ -116,7 +116,7 @@ function damePreferencias($id)
 									<a href="PantallaDeError.php">Mis Recetas</a>
 								</li>
                                 <li>
-                                	<a href="login.html">Mis Grupos</a>
+                                	<a href="gestionGrupos.php">Mis Grupos</a>
                                 </li>
                                 <li>
                                 	<a href="PantallaDeError.php">Estadisticas y Reportes</a>
@@ -155,7 +155,7 @@ function damePreferencias($id)
 					  echo '<li class="list-group-item">Condiciones preexistentes: '.dameNombreCondicionPreexistente($id['10']).'</li>';
 					  echo '<li class="list-group-item">Dieta: '.dameNombreDieta($id['11']).'</li>';
 					  echo '<li class="list-group-item">Rutina: '.dameNombreRutina($id['7']).'</li>';
-					  echo '<li class="list-group-item">Preferencia alimenticias: '.damePreferencias($id['0']).'</li>';
+					  //echo '<li class="list-group-item">Preferencia alimenticias: '.damePreferencias($id['0']).'</li>';
 						
 						
 					 ?>
