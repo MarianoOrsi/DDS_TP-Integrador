@@ -50,6 +50,18 @@ if(isset($_POST["submit"])){
 			$email=$_POST["email"];
 		}
 		
+		$preexistente=$id['10'];
+		if($_POST["condPre"]!='')
+		{
+			$preexistente=sacoIdPreexistente();
+		}
+		
+		$dieta=$id['11'];
+		if($_POST["dieta"]!='')
+		{
+			$dieta=sacoIdDieta();
+		}
+		
 		$idUser=$id['0'];
 		$usuario=$id['1'];
 		$contrasenia=$id['2'];
@@ -57,7 +69,7 @@ if(isset($_POST["submit"])){
 
 		
 		
-		$consultaParaMandar="UPDATE usuarios SET idContextura='".$complexion."',Sexo='".$genero."',IdRutina='".$rutina."',Edad='".$edad."',Altura='".$altura."',Email='".$email."' WHERE idUsuario='".$idUser."';";
+		$consultaParaMandar="UPDATE usuarios SET idContextura='".$complexion."',Sexo='".$genero."',IdRutina='".$rutina."',Edad='".$edad."',Altura='".$altura."',Email='".$email."',idPreexistente='".$preexistente."',idDieta='".$dieta."' WHERE idUsuario='".$idUser."';";
 		
 		$resultado = mysql_query($consultaParaMandar) or die (mysql_error());
 		
@@ -89,5 +101,26 @@ function sacoIdRutina()
     return $id['0'];
 }
 
+function sacoIdPreexistente()
+{
+
+	$consulta="SELECT idPreexistente FROM preexistentes WHERE Nombre='".$_POST["condPre"]."'";
+	$Qid=mysql_query($consulta) or die (mysql_error());
+	$id= mysql_fetch_array($Qid);
+	
+	
+    return $id['0'];
+}
+
+function sacoIdDieta()
+{
+
+	$consulta="SELECT idDieta FROM dietas WHERE Nombre='".$_POST["dieta"]."'";
+	$Qid=mysql_query($consulta) or die (mysql_error());
+	$id= mysql_fetch_array($Qid);
+	
+	
+    return $id['0'];
+}
 
  ?>
