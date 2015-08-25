@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-08-2015 a las 04:57:33
+-- Tiempo de generación: 25-08-2015 a las 05:27:30
 -- Versión del servidor: 5.6.25
 -- Versión de PHP: 5.6.11
 
@@ -295,14 +295,15 @@ CREATE TABLE IF NOT EXISTS `preferencias` (
   `IdIngrediente` int(11) NOT NULL,
   `IdUsuario` int(11) NOT NULL,
   `Fecha` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `preferencias`
 --
 
 INSERT INTO `preferencias` (`IdPreferencia`, `IdIngrediente`, `IdUsuario`, `Fecha`) VALUES
-(1, 2, 29, '2015-08-24 00:00:00');
+(1, 2, 29, '2015-08-24 00:00:00'),
+(2, 1, 29, '2015-08-04 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -710,7 +711,7 @@ ALTER TABLE `preexistentes`
 -- AUTO_INCREMENT de la tabla `preferencias`
 --
 ALTER TABLE `preferencias`
-  MODIFY `IdPreferencia` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `IdPreferencia` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `procedimiento`
 --
