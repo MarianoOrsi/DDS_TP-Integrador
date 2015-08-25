@@ -96,7 +96,7 @@ function dameSexo($idSexo) //Jajajajaa recien medi cuenta del nombre que le puse
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand"><span>Que</span> comemos?</a>
+							<a class="navbar-brand" href="index.php"><span>Que</span> comemos?</a>
 						</div>
 						<div class="navbar-collapse collapse ">
 							<ul class="nav navbar-nav">
