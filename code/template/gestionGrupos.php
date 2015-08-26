@@ -127,7 +127,11 @@
 							?>
 						</table>
 					<!--</div>-->
-					<div id="botones">
+						</div>
+	
+						
+						<div class="container">
+					<div  id="botones">
 						Id Grupo  
 						<input id="idGrupo" type="text" disabled/>
 						<br />
@@ -140,7 +144,8 @@
 						<input type="button" name="Guardar" onclick="modifyGroup()" value="Guardar" class="btn btn-lg">
 						<input type="button" name="Delete" onclick="deleteGroup()" value="Borrar" class="btn btn-lg">
 					</div>
-				</div>
+					</div>
+			
 
 			</section>
 
