@@ -1,7 +1,8 @@
 <?php 
 
 
-	class Usuario{
+	class Usuario
+	{
 		private $Cuenta;
 		private $Nombre;
 		private $Sexo;
@@ -27,7 +28,8 @@
 
 	}
 
-	class Complexion{
+	class Complexion
+	{
 		private $Altura;
 		private $MedidaTorax;
 		private $MedidaCintura;
@@ -51,13 +53,28 @@
 	class Fecha{
 		private $Dia;
 		private $Mes;
-		private $Año;
+		private $Anio;
 
-		public CargarFecha($Dia, $Mes, $Año)
+		public CargarFecha($Dia, $Mes, $Anio)
 		{
 			this->Dia=$Dia;
 			this->Mes=$Mes;
-			this->Año=$Año;
+			this->Anio=$Anio;
+		}
+
+		public GetDia()
+		{
+			return this->Dia;
+		}
+
+		public GetMes()
+		{
+			return this->Mes;
+		}
+
+		public GetAnio()
+		{
+			return this->Anio;
 		}
 	}
 
@@ -83,20 +100,19 @@
 		private $Dificultad;
 		private $Temporada;
 		private $Clasificacion;
-		private $Ingrediente;
-		private $Condimento;
+		private $Ingrediente = array();
+		private $Condimento = array();
 		private $Paso = array();
 
-		public CargarIngrediente($Ingrediente)
+		public CargarIngrediente($ingrediente)
 		{
-
-			this->Ingrediente=$Ingrediente;
+			array_push(this->Ingrediente, $ingrediente);
 		}
 
-		public CargarCondimento($Condimento)
+		public CargarCondimento($condimento)
 		{
 
-			this->Condimento=$Condimento;
+			array_push(this->Condimento, $condimento);
 		}
 
 		public CargarReceta($Clasificacion, $Temporada, $Dificultad)
@@ -107,9 +123,9 @@
 			this->Dificultad=$Dificultad;
 		}
 
-		public CargarPaso($Paso)
+		public CargarPaso($paso)
 		{
-			#No tengo idea que hacer :D
+			array_push(this->Paso, $paso);
 		}
 
 	}
