@@ -11,7 +11,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 $consulta="SELECT Receta,Calorias,Dificultad FROM recetas INNER JOIN Dificultades ON Dificultades.idDificultad=recetas.idDificultad;";
 
 $Qid = mysql_query($consulta) or die(mysql_error());
-$id = mysql_fetch_array($Qid);
+
 ?>
 
 <!DOCTYPE html>
@@ -66,15 +66,15 @@ $id = mysql_fetch_array($Qid);
 													<tbody>
 													<?php
 													
-													
+													while ($row = mysql_fetch_array($Qid)) {
 													echo'<tr>
-														<td>'.$id['0'].'</td>
-														<td>'.$id['2'].'</td>
-														<td>'.$id['1'].'</td>
+														<td>'.$row['0'].'</td>
+														<td>'.$row['2'].'</td>
+														<td>'.$row['1'].'</td>
 														<td><input type="button" value="Editar" class="btn btn-lg"/></td>
 														<td><a href="index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
 														</tr>';
-														
+													}
 														?>
 													<!-- <tr>
 														 <td>Mary</td>
