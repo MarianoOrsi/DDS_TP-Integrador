@@ -22,6 +22,7 @@
 				for (var i = 0; i < content; i++) {
 					document.getElementById("idGrupo").value = x.cells[0].innerHTML;
 					document.getElementById("Nombre").value = x.cells[1].innerHTML;
+					document.getElementById("idGrupoInvitado").value = x.cells[0].innerHTML;
 				}
 				changeColourGroup(x);
 			}
@@ -75,6 +76,27 @@
 				}
 			}
 
+			function habilitarInvitaciones(){
+				
+				var hiddenValue = document.getElementById("idGrupoInvitado").value;
+				
+				if(hiddenValue != ""){
+					//var usuarioInvitado = document.getElementById("usuarioAmigo");
+					//usuarioInvitado.disabled = false;
+
+					window.location.href = "gestionGrupos.php?idGrupo=" + hiddenValue;
+				}
+				else{
+					alert("Debe seleccionar el grupo para gestionar amigos");
+				}					
+			}
+
+			function invitarAmigo(){
+				usuarioInvitado.disabled = true;
+				var usuarioInvitado = document.getElementById("usuarioAmigo").value;
+				window.location.href = "abmGrupos.php?method=Add&idGrupo=" + hiddenValue + "&IdUser=" + usuarioInvitado;
+			}
+
 		</script>
 
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -116,7 +138,7 @@
 								echo "<TD>" . $row['IdGrupo'] . "</TD>";
 								echo "<TD>" . $row['Nombre'] . "</TD>";
 								echo "<TD>" . $row['Fecha'] . "</TD>";
-								echo "<TD><input type=\"button\" name=\"Invitar\" onclick=\"mostrarFormInvitaciones()\" value=\"Invitar Amigos\" class=\"btn btn-lg\"> </TD>";
+								echo "<TD><input type=\"button\" name=\"Invitar\" onclick=\"habilitarInvitaciones()\" value=\"Invitar Amigos\" class=\"btn btn-lg\"> </TD>";
 								echo "</TR>";
 							}
 							//liberamos memoria que ocupa la consulta...
@@ -126,24 +148,73 @@
 							mysql_close($con);
 							?>
 						</table>
+
+						<div id="invitarAmigos">
+							<h4>Integrantes del grupo</h4>
+
+								<?php
+								
+									if(isset($_GET["idGrupo"])){
+
+										$servidor = "localhost";
+										$user = "root";
+										$pass = "";
+										$dbname = "diseniosistemas";
+										$con = mysql_connect($servidor, $user, $pass);
+
+										mysql_select_db($dbname, $con);
+
+										$consulta="call UsuariosDeGrupo(".$_GET["idGrupo"].")";
+										//$consulta="call UsuariosDeGrupo(7)";
+										//print $consulta;
+										$Qid=mysql_query($consulta) or die (mysql_error());
+
+										echo "<select name=\"dos\">";
+										while($row=mysql_fetch_row($Qid)){
+										    echo "<option value=\"".$row[0]."\">".$row[0]."</option>";
+										}
+										echo '</select>';
+									}
+
+									//$result = mysql_query("select distinct usu.Usuario from usuarios usu inner join `usuario-grupos` ug on usu.IdUsuario = ug.IdUsuario where ug.IdGrupo =" .$_GET["idgrupo"]. , $con);
+
+							    ?>
+							<h5>Invita a tus Amigos!</h5>
+							<input type="hidden" id="idGrupoInvitado" value="" />
+							Ingresa el usuario de tu amigo:
+							
+							<?php
+								//if(isset($_GET["idGrupo"])){
+								//	echo "<input id=\"usuarioAmigo\" type=\"text\" />";
+								//}
+								//else{
+								//	echo "<input id=\"usuarioAmigo\" type=\"text\" disabled />";
+								//}
+							?>
+
+							<input id="usuarioAmigo" type="text" />
+							<br />
+							<br />
+							<input type="button" name="Invitar" onclick="invitarAmigo()" value="Invitar" class="btn btn-lg" />
+						</div>
 					<!--</div>-->
 						</div>
 	
 						
-						<div class="container">
-					<div  id="botones">
-						Id Grupo  
-						<input id="idGrupo" type="text" disabled/>
-						<br />
-						<br />
-						Nombre Grupo  
-						<input id="Nombre" type="text" />
-						<br />
-						<br />
-						<input type="button" name="Crear" onclick="createGroup()" value="Crear" class="btn btn-lg">
-						<input type="button" name="Guardar" onclick="modifyGroup()" value="Guardar" class="btn btn-lg">
-						<input type="button" name="Delete" onclick="deleteGroup()" value="Borrar" class="btn btn-lg">
-					</div>
+					<div class="container">
+						<div  id="botones">
+							Id Grupo  
+							<input id="idGrupo" type="text" disabled/>
+							<br />
+							<br />
+							Nombre Grupo  
+							<input id="Nombre" type="text" />
+							<br />
+							<br />
+							<input type="button" name="Crear" onclick="createGroup()" value="Crear" class="btn btn-lg" />
+							<input type="button" name="Guardar" onclick="modifyGroup()" value="Guardar" class="btn btn-lg" />
+							<input type="button" name="Delete" onclick="deleteGroup()" value="Borrar" class="btn btn-lg" />
+						</div>
 					</div>
 			
 
