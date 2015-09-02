@@ -1,14 +1,18 @@
 <?php
-$servidor = "localhost";    // todos los strings con los valores para el conector SQL
-$user = "root";
-$pass = "";
-$dbname = "diseniosistemas";
-$con = mysql_connect($servidor,$user,$pass);
-mysql_select_db($dbname,$con) or die(mysql_error());
+
+include("clases/Usuario.php");
+include("capaDatos.php");
 
 if(isset($_POST["submit"])){
+		
+		$userObj = new Usuario($_POST["usuario"], $_POST["contrasenia"], $_POST["genero"], $_POST["altura"], $_POST["dieta"],1, $_POST["rutina"], $_POST["complexion"], $_POST["condPre"], $_POST["email"], $_POST["edad"]);
+		$datosObj = new accesoDatos();
 
-		$consulta="INSERT INTO usuarios(idUsuario,Usuario,Contrase,fechaCreacion,idContextura,Sexo,Trabajo,IdRutina,Edad,Altura,IdPreexistente,IdDieta,Email) 
+		//ACA SERIA LA CAPA LOGICA O DE NEGOCIO, QUE LE PASA LOS DATOS A LA CAPA DE DATOS Y ESTA PERSISTE AL USUARIO.
+		$datosObj->RegistrarUsario($userObj);
+
+
+		/*$consulta="INSERT INTO usuarios(idUsuario,Usuario,Contrase,fechaCreacion,idContextura,Sexo,Trabajo,IdRutina,Edad,Altura,IdPreexistente,IdDieta,Email) 
 		VALUES (NULL,'".$_POST["usuario"]."','".$_POST["contrasenia"]."',NOW(),".sacoIdContextura().",'".$_POST["genero"]."',NULL,".sacoIdRutina().",'".$_POST["edad"]."','".$_POST["altura"]."',3,4,'".$_POST["email"]."')";          // hago la constulta como un string
 		
 		
@@ -18,7 +22,7 @@ if(isset($_POST["submit"])){
 		 
 	 $sacarID="SELECT idUsuario FROM usuarios WHERE Usuario='".$_POST["usuario"]."';";
 	 $Qid=mysql_query($sacarID) or die (mysql_error());
-	 $id= mysql_fetch_array($Qid);
+	 $id= mysql_fetch_array($Qid);*/
 	 
 	 session_start();
 	 $_SESSION["idUsuario"]= $id['0']; // ya que me devuelve un array, elijo la primera posición
@@ -27,6 +31,7 @@ if(isset($_POST["submit"])){
 												//  de HTML o ningún ECHO en el código
 }
 
+/*
 function sacoIdContextura()
 {
 
@@ -46,7 +51,7 @@ function sacoIdRutina()
 	$id= mysql_fetch_array($Qid);
 	
 	
-    return $id['0'];
+    return $id['0'];*/
 }
 
 

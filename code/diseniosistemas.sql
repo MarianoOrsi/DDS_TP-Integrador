@@ -31,6 +31,44 @@ where idusuario=IdUsu$$
 
 DELIMITER ;
 
+--
+
+-- Propongo normalizar los nombres de los procedimientos almacenados de la forma sp_Nombre
+
+DELIMITER ;;
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_RegistrarUsuario`(
+    IN usuario_param VARCHAR(50),
+    IN pass_param VARCHAR(25),
+    IN sexo_param VARCHAR(1),
+    IN dieta VARCHAR(50),
+    IN rutina VARCHAR(50),
+    IN complexion VARCHAR(50),
+    IN preexistentes VARCHAR(50),
+    IN altura_param INT,
+    IN edad_param INT,
+    IN email_param VARCHAR(40)
+    )
+BEGIN
+
+DECLARE idDieta_var int;
+DECLARE idRutina_var int;
+DECLARE idComplexion_var int;
+DECLARE idPreexistentes_var int;
+
+select IdDieta into idDieta_var from dietas where Nombre = dieta;
+select IdRutina into idRutina_var from rutinas where Nombre = rutina;
+select IdContextura into idComplexion_var from contexturas where Nombre = complexion;
+select IdPreexistente into idPreexistentes_var from preexistentes where Nombre = preexistentes;
+
+insert into usuarios
+(Usuario,Contrase,fechaCreacion,IdContextura,Sexo,IdRutina,Edad,Altura,IdPreexistente,IdDieta,Email)
+VALUES
+(usuario_param,pass_param,NOW(),idComplexion_var,sexo_param,idRutina_var,edad_param,altura_param,idPreexistentes_var,idDieta_var,`email_param`);
+
+END
+;;
+
 -- --------------------------------------------------------
 
 --
