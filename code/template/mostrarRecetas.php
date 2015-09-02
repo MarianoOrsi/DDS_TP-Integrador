@@ -7,11 +7,6 @@ $pass = "";
 $dbname = "diseniosistemas";
 $con = mysql_connect($servidor, $user, $pass);
 mysql_select_db($dbname, $con) or die(mysql_error());
-
-$consulta="SELECT Receta,Calorias,Dificultad FROM recetas INNER JOIN Dificultades ON Dificultades.idDificultad=recetas.idDificultad;";
-
-$Qid = mysql_query($consulta) or die(mysql_error());
-
 ?>
 
 <!DOCTYPE html>
@@ -57,44 +52,39 @@ $Qid = mysql_query($consulta) or die(mysql_error());
 													<thead>
 													<tr>													
 														<th>Nombre</th>
-														<th>Dificultad</th>
+														<th>Horarios</th>
 														<th>Calor&iacute;as</th>
 														<th></th>
 														<th></th>
 													</tr>
 													</thead>
 													<tbody>
-													<?php
-													
-													while ($row = mysql_fetch_array($Qid)) {
-													echo'<tr>
-														<td>'.$row['0'].'</td>
-														<td>'.$row['2'].'</td>
-														<td>'.$row['1'].'</td>
+													<tr>
+														<td>John</td>
+														<td>Doe</td>
+														<td>john@example.com</td>
 														<td><input type="button" value="Editar" class="btn btn-lg"/></td>
 														<td><a href="index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
-														</tr>';
-													}
-														?>
-													<!-- <tr>
-														 <td>Mary</td>
-														 <td>Moe</td>
-														 <td>mary@example.com</td>
+														</tr>
+													<tr>
+														<td>Mary</td>
+														<td>Moe</td>
+														<td>mary@example.com</td>
 														<td><input type="button" value="Editar" class="btn btn-lg"/></td>
-														 <td><a href="index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
-													 </tr>
-													 <tr>
-													 <td>July</td>
-													 <td>Dooley</td>
-													 <td>july@example.com</td>
-													 <td><input type="button" value="Editar" class="btn btn-lg"/></td>
+														<td><a href="index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
+													</tr>
+													<tr>
+													<td>July</td>
+													<td>Dooley</td>
+													<td>july@example.com</td>
+													<td><input type="button" value="Editar" class="btn btn-lg"/></td>
 													<td><a href="index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
-													 </tr>-->
+													</tr>
 													
 													</tbody>
 													</table>
 													<div class="container aligncenter">
-													<a href="UI-agregarReceta.php" class="btn btn-theme" align="center">Agregar nueva receta</a>
+													<a href="agregarReceta.php" class="btn btn-theme" align="center">Agregar nueva receta</a>
 									
 								</div>
 								</div>

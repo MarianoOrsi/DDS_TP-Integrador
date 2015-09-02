@@ -88,7 +88,10 @@ function dameSexo($idSexo)//Jajajajaa recien medi cuenta del nombre que le puse 
 			<!-- end header -->
 
 			<section class="callaction">
-				
+				<div class="row mar-bot40">
+					
+					
+				</div>
 				<div class="row">
 				
 					<div class="col-md-8 col-md-offset-2">

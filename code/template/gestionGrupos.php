@@ -37,14 +37,15 @@
 				}
 			}
 
-			function createGroup() {
+
+			function createGroup(idUsuario) {
 				var nombre = document.getElementById("Nombre").value;
 
 				if(nombre == ""){
 					alert("Debe Ingresar un Nombre para el grupo a crear");
 				}
 				else{
-					window.location.href = "abmGrupos.php?method=A&Id=" + nombre;
+					window.location.href = "abmGrupos.php?method=A&IdUser=" + idUsuario + "&IdGroup=0&Name=" + nombre;
 				}
 			}
 
@@ -55,7 +56,7 @@
 					alert("Debe seleccionar un grupo para poder borrarlo");
 				}
 				else{
-					window.location.href = "abmGrupos.php?method=B&Id=" + id;	
+					window.location.href = "abmGrupos.php?method=B&IdGroup=" + id + "&IdUser=0&Name=_";	
 				}
 			}
 
@@ -71,30 +72,44 @@
 						alert("El nombre del grupo no puede estar vacio");	
 					}
 					else{
-						window.location.href = "abmGrupos.php?method=M&Id=" + id + "&Name=" + name;
+						window.location.href = "abmGrupos.php?method=M&IdGroup=" + id + "&Name=" + name + "&IdUser=0";
 					}
 				}
 			}
 
 			function habilitarInvitaciones(){
 				
-				var hiddenValue = document.getElementById("idGrupoInvitado").value;
+				var idGrupo = document.getElementById("idGrupo").value;
 				
-				if(hiddenValue != ""){
-					//var usuarioInvitado = document.getElementById("usuarioAmigo");
-					//usuarioInvitado.disabled = false;
+				if(idGrupo != ""){
 
-					window.location.href = "gestionGrupos.php?idGrupo=" + hiddenValue;
+					window.location.href = "gestionGrupos.php?IdGrupo=" + idGrupo;
 				}
 				else{
 					alert("Debe seleccionar el grupo para gestionar amigos");
 				}					
 			}
 
-			function invitarAmigo(){
-				usuarioInvitado.disabled = true;
-				var usuarioInvitado = document.getElementById("usuarioAmigo").value;
-				window.location.href = "abmGrupos.php?method=Add&idGrupo=" + hiddenValue + "&IdUser=" + usuarioInvitado;
+			function agregarAmigo(idGrupo){
+				
+				var usuario = document.getElementById("usuarioAmigo").value;
+
+				if(usuario != ""){
+					window.location.href = "abmGrupos.php?method=ADD&User=" + usuario + "&IdGrupo=" + idGrupo;
+				}
+				else{
+					alert("Debe seleccionar un amigo");
+				}	
+			}
+
+			function eliminarAmigo(idGrupo, idUsuario){
+
+				if(idUsuario != "" && idGrupo != ""){
+					window.location.href = "abmGrupos.php?method=DEL&User=" + idUsuario + "&IdGrupo=" + idGrupo;
+				}
+				else{
+					alert("Debe seleccionar un amigo");
+				}	
 			}
 
 		</script>
@@ -124,78 +139,66 @@
 							</tr>
 
 							<?php
-							$servidor = "localhost";
-							$user = "root";
-							$pass = "";
-							$dbname = "diseniosistemas";
-							$con = mysql_connect($servidor, $user, $pass);
+							include("capaNegocio.php");
+							/*include("clases/Grupo.php");*/
 
-							mysql_select_db($dbname, $con);
-							$result = mysql_query("SELECT * FROM grupos", $con);
+							$logica = new logicaDeNegocio();
 
-							while ($row = mysql_fetch_array($result)) {
-								echo "<TR onclick= \"readValuesGroup(this)\">";
-								echo "<TD>" . $row['IdGrupo'] . "</TD>";
-								echo "<TD>" . $row['Nombre'] . "</TD>";
-								echo "<TD>" . $row['Fecha'] . "</TD>";
+							$arrayGrupos = $logica->getGruposDeUsuario($_SESSION["idUsuario"]);
+
+							foreach($arrayGrupos as $grupo) {
+							    echo "<TR onclick= \"readValuesGroup(this)\">";
+								echo "<TD>" . $grupo->getIdGrupo() . "</TD>";
+								echo "<TD>" . $grupo->getNombreGrupo() . "</TD>";
+								echo "<TD>" . $grupo->getFecha() . "</TD>";
 								echo "<TD><input type=\"button\" name=\"Invitar\" onclick=\"habilitarInvitaciones()\" value=\"Invitar Amigos\" class=\"btn btn-lg\"> </TD>";
 								echo "</TR>";
 							}
-							//liberamos memoria que ocupa la consulta...
-							mysql_free_result($result);
 
-							//cerramos la conexión con el motor de BD
-							mysql_close($con);
 							?>
 						</table>
 
 						<div id="invitarAmigos">
 							<h4>Integrantes del grupo</h4>
+							<table border="1" cellspacing="3" style="width:70%">
+								<tr>
+									<TD><b>&nbsp;ID Usuario&nbsp;</b></TD>
+									<TD><b>&nbsp;Nombre&nbsp;</b></TD>
+									<TD></TD>
+								</tr>
 
 								<?php
-								
-									if(isset($_GET["idGrupo"])){
 
-										$servidor = "localhost";
-										$user = "root";
-										$pass = "";
-										$dbname = "diseniosistemas";
-										$con = mysql_connect($servidor, $user, $pass);
+									if(isset($_GET["IdGrupo"])){
 
-										mysql_select_db($dbname, $con);
+										$logica = new logicaDeNegocio();
 
-										$consulta="call UsuariosDeGrupo(".$_GET["idGrupo"].")";
-										//$consulta="call UsuariosDeGrupo(7)";
-										//print $consulta;
-										$Qid=mysql_query($consulta) or die (mysql_error());
+										$arrayUsuariosDeGrupo = $logica->getUsuariosDeGrupo($_GET["IdGrupo"]);
 
-										echo "<select name=\"dos\">";
-										while($row=mysql_fetch_row($Qid)){
-										    echo "<option value=\"".$row[0]."\">".$row[0]."</option>";
+										foreach($arrayUsuariosDeGrupo as $usuario) {
+										    echo "<TR>";
+											echo "<TD>" . $usuario->getIdUsuario() . "</TD>";
+											echo "<TD>" . $usuario->getUsuario() . "</TD>";
+											echo "<TD>
+												  <input type=\"button\" name=\"Invitar\" onclick=\"eliminarAmigo(".$_GET["IdGrupo"].",".$usuario->getIdUsuario().")\" value=\"Eliminar\" class=\"btn btn-lg\">  
+												  </TD>";
+											echo "</TR>";
 										}
-										echo '</select>';
 									}
-
-									//$result = mysql_query("select distinct usu.Usuario from usuarios usu inner join `usuario-grupos` ug on usu.IdUsuario = ug.IdUsuario where ug.IdGrupo =" .$_GET["idgrupo"]. , $con);
-
-							    ?>
-							<h5>Invita a tus Amigos!</h5>
-							<input type="hidden" id="idGrupoInvitado" value="" />
-							Ingresa el usuario de tu amigo:
-							
+								?>
+							</table>
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
 							<?php
-								//if(isset($_GET["idGrupo"])){
-								//	echo "<input id=\"usuarioAmigo\" type=\"text\" />";
-								//}
-								//else{
-								//	echo "<input id=\"usuarioAmigo\" type=\"text\" disabled />";
-								//}
+								if(isset($_GET["IdGrupo"])){
+									echo "Agrega a un amigo: <input id=\"usuarioAmigo\" type=\"text\" />";
+									echo "     <input type=\"button\" name=\"AgregarAmigo\" onclick=\"agregarAmigo(".$_GET["IdGrupo"].")\" value=\"agregar\" class=\"btn btn-lg\" />";
+									echo "<br />";
+								}
 							?>
-
-							<input id="usuarioAmigo" type="text" />
-							<br />
-							<br />
-							<input type="button" name="Invitar" onclick="invitarAmigo()" value="Invitar" class="btn btn-lg" />
 						</div>
 					<!--</div>-->
 						</div>
@@ -211,7 +214,9 @@
 							<input id="Nombre" type="text" />
 							<br />
 							<br />
-							<input type="button" name="Crear" onclick="createGroup()" value="Crear" class="btn btn-lg" />
+							<?php
+								echo "<input type=\"button\" name=\"Crear\" onclick=\"createGroup(".$_SESSION["idUsuario"].")\" value=\"Crear\" class=\"btn btn-lg\" />";
+							?>
 							<input type="button" name="Guardar" onclick="modifyGroup()" value="Guardar" class="btn btn-lg" />
 							<input type="button" name="Delete" onclick="deleteGroup()" value="Borrar" class="btn btn-lg" />
 						</div>

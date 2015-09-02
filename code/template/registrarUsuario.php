@@ -1,11 +1,11 @@
 <?php
 
-include("clases/Usuario.php");
+//include("clases/Usuario.php");
 include("capaDatos.php");
 
 if(isset($_POST["submit"])){
 		
-		$userObj = new Usuario($_POST["usuario"], $_POST["contrasenia"], $_POST["genero"], $_POST["altura"], $_POST["dieta"],1, $_POST["rutina"], $_POST["complexion"], $_POST["condPre"], $_POST["email"], $_POST["edad"]);
+		$userObj = new Usuario(0,$_POST["usuario"], $_POST["contrasenia"], $_POST["genero"], $_POST["altura"], $_POST["dieta"],1, $_POST["rutina"], $_POST["complexion"], $_POST["condPre"], $_POST["email"], $_POST["edad"]);
 		$datosObj = new accesoDatos();
 
 		//ACA SERIA LA CAPA LOGICA O DE NEGOCIO, QUE LE PASA LOS DATOS A LA CAPA DE DATOS Y ESTA PERSISTE AL USUARIO.
@@ -52,7 +52,4 @@ function sacoIdRutina()
 	
 	
     return $id['0'];*/
-}
-
-
  ?>

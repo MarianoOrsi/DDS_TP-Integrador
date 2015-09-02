@@ -2,6 +2,7 @@
 
 class Usuario{
 
+		private $idUsuario;
 		private $usuario;
 		private $contraseña;
 		private $sexo;
@@ -15,8 +16,9 @@ class Usuario{
 		private $email;
 		private $edad;
 
-		public function __construct($usuario_in, $contraseña_in, $sexo_in, $altura_in, $dieta_in, $preferenciaAlimentarias_in, $rutina_in, $complexion_in, $condiciones_in, $email_in, $edad_in)
+		public function __construct($idUsuario_in, $usuario_in, $contraseña_in, $sexo_in, $altura_in, $dieta_in, $preferenciaAlimentarias_in, $rutina_in, $complexion_in, $condiciones_in, $email_in, $edad_in)
 		{
+			$this->idUsuario=$idUsuario_in;
 			$this->usuario=$usuario_in;
 			$this->contraseña=$contraseña_in;
 			$this->sexo=$sexo_in;
@@ -29,6 +31,11 @@ class Usuario{
 			$this->recetasPropias = array();
 			$this->email = $email_in;
 			$this->edad = $edad_in;
+		}
+
+		public function getIdUsuario()
+		{
+			return $this->idUsuario;
 		}
 		
 		public function getNombre()

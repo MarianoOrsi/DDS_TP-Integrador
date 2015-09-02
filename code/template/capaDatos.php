@@ -1,4 +1,8 @@
 <?php
+
+	include("clases/Grupo.php");
+	include("clases/Usuario.php");
+	
 	class accesoDatos{
 
 		private $servidorDB;
@@ -23,6 +27,46 @@
 			$consulta = "call sp_RegistrarUsuario('".$usuario->getUsuario()."','".$usuario->getContrasenia()."','".$usuario->getSexo()."','".$usuario->getDieta()."','".$usuario->getRutina()."','".$usuario->getComplexion()."','".$usuario->getCondicionesPreexistentes()."',".$usuario->getAltura().",".$usuario->getEdad().",'".$usuario->getEmail()."')";
 			
 			$exec_sp = mysql_query($consulta) or die (mysql_error());
+		}
+
+		public function getGruposDeUsuario($idUsuario){
+
+			mysql_select_db($this->nameDB, $this->connectionDB);
+
+			$consulta = "SELECT * FROM grupos WHERE IdGrupo IN (SELECT IdGrupo FROM `usuario-grupos` WHERE IdUsuario =".$idUsuario.")";
+			
+			$result = mysql_query($consulta) or die (mysql_error());
+
+			$arrayGrupos = array();
+
+			while ($row = mysql_fetch_array($result)){
+
+				$grupo = new Grupo($row["IdGrupo"],$row["IdUsuarioCreador"],$row["Nombre"],$row["Fecha"]);
+
+				array_push($arrayGrupos, $grupo);
+			}
+
+			return $arrayGrupos;
+		}
+
+		public function getUsuariosDeGrupo($idGrupo){
+
+			mysql_select_db($this->nameDB, $this->connectionDB);
+
+			$consulta = "call UsuariosDeGrupo(".$idGrupo.")";
+			
+			$arrayUsuarios = array();
+			
+			$result = mysql_query($consulta) or die (mysql_error());
+
+			while ($row = mysql_fetch_array($result)){
+
+				$usuario = new Usuario($row["IdUsuario"],$row["Usuario"],$row["Contrase"],$row["Sexo"],$row["Altura"],$row["IdDieta"],1,$row["IdRutina"],$row["IdContextura"],$row["IdPreexistente"],$row["Email"],$row["Edad"]);
+
+				array_push($arrayUsuarios, $usuario);
+			}
+
+			return $arrayUsuarios;
 		}
 	}
 ?>
