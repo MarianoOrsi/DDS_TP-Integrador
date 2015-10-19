@@ -1,6 +1,6 @@
 <?php
-	$servidor = "localhost";
-	$user = "root";
-	$pass = "";
-	$dbname = "diseniosistemas";
+	$servidor = "localhost"; //localhost
+	$user = "root"; //root
+	$pass = ""; //""
+	$dbname = "diseniosistemas"; //diseniosistemas
 ?>

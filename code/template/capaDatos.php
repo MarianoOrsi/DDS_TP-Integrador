@@ -33,7 +33,7 @@
 
 			mysql_select_db($this->nameDB, $this->connectionDB);
 
-			$consulta = "SELECT * FROM grupos WHERE IdGrupo IN (SELECT IdGrupo FROM `usuario-grupos` WHERE IdUsuario =".$idUsuario.")";
+			$consulta = "call sp_BuscarGruposDeUsuario(".$idUsuario.")";
 			
 			$result = mysql_query($consulta) or die (mysql_error());
 
@@ -62,6 +62,27 @@
 			while ($row = mysql_fetch_array($result)){
 
 				$usuario = new Usuario($row["IdUsuario"],$row["Usuario"],$row["Contrase"],$row["Sexo"],$row["Altura"],$row["IdDieta"],1,$row["IdRutina"],$row["IdContextura"],$row["IdPreexistente"],$row["Email"],$row["Edad"]);
+
+				array_push($arrayUsuarios, $usuario);
+			}
+			return $arrayUsuarios;
+		}
+
+		public function getUsuariosPorNombre($usuario){
+
+			$usuario_param = "%".$usuario."%";
+
+			mysql_select_db($this->nameDB, $this->connectionDB);
+
+			$consulta = "call sp_BuscarUsuario_PorNombre(".$usuario_param.")";
+			
+			$arrayUsuarios = array();
+			
+			$result = mysql_query($consulta) or die (mysql_error());
+
+			while ($row = mysql_fetch_array($result)){
+
+				$usuario = $row["Usuario"];
 
 				array_push($arrayUsuarios, $usuario);
 			}

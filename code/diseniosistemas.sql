@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.4.12
 -- http://www.phpmyadmin.net
 --
@@ -20,10 +20,30 @@ SET time_zone = "+00:00";
 -- Base de datos: `diseniosistemas`
 --
 
-DELIMITER $$
 --
 -- Procedimientos
 --
+
+DELIMITER ;;
+
+CREATE PROCEDURE `UsuariosDeGrupo`(IN `idGrupoParam` INT)
+    NO SQL
+select * from usuarios usu inner join `usuario-grupos` ug on usu.IdUsuario = ug.IdUsuario where ug.IdGrupo = idGrupoParam;;
+
+
+DELIMITER ;;
+
+CREATE PROCEDURE `sp_BuscarGruposDeUsuario`(
+    IN usuarioId INT
+    )
+BEGIN
+
+SELECT * FROM grupos WHERE IdGrupo IN (SELECT IdGrupo FROM `usuario-grupos` WHERE IdUsuario = usuarioId);
+
+END;;
+
+DELIMITER $$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_RegistrarUsuario`(
     IN usuario_param VARCHAR(50),
     IN pass_param VARCHAR(25),

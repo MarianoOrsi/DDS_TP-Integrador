@@ -14,7 +14,11 @@
 		<link href="css/grupos.css" rel="stylesheet" />
 		<!-- Theme skin -->
 		<link href="skins/default.css" rel="stylesheet" />
-
+		<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+		<link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.min.css" />
+		<script src="js/jquery-1.10.2.min.js"></script>	
+		<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+		
 		<script type = "text/javascript">
 
 			function readValuesGroup(x) {
@@ -194,7 +198,7 @@
 							<br />
 							<?php
 								if(isset($_GET["IdGrupo"])){
-									echo "Agrega a un amigo: <input id=\"usuarioAmigo\" type=\"text\" />";
+									echo "Agrega a un amigo: <input id=\"usuarioAmigo\" type=\"text\" placeholder=\"Buscar\" />";
 									echo "     <input type=\"button\" name=\"AgregarAmigo\" onclick=\"agregarAmigo(".$_GET["IdGrupo"].")\" value=\"agregar\" class=\"btn btn-lg\" />";
 									echo "<br />";
 								}

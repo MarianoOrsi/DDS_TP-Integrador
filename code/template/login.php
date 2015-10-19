@@ -1,8 +1,5 @@
 <?php
-$servidor = "localhost";    // todos los strings con los valores para el conector SQL
-$user = "root";
-$pass = "";
-$dbname = "diseniosistemas";
+include("configuracion.php");
 $con = mysql_connect($servidor,$user,$pass);
 mysql_select_db($dbname,$con) or die(mysql_error());
 

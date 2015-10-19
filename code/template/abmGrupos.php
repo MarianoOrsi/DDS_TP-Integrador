@@ -1,10 +1,21 @@
 <?php
         
-        $servidor = "localhost";    
-        $user = "root";
-        $pass = "";
-        $dbname = "diseniosistemas";
-        $con = mysql_connect($servidor,$user,$pass);
+    $servidor = "localhost";    
+    $user = "root";
+    $pass = "";
+    $dbname = "diseniosistemas";
+    $con = mysql_connect($servidor,$user,$pass);
+
+    include("capaNegocio.php");
+
+    if(isset($_GET['Usuario'])){
+        $result = mysql_query("call sp_BuscarUsuario_PorNombre('%".$_GET['Usuario']."%'");  
+        $data = array();
+        while ($row = mysql_fetch_array($result)) {
+            array_push($data, $row['Usuario']);    
+        }   
+        echo json_encode($data);
+    }
 
 //TODO PARA ABM DE GRUPOS
     if(isset($_GET["method"]) && isset($_GET["IdUser"]) && isset($_GET["Name"]) && isset($_GET["IdGroup"])){

@@ -26,5 +26,12 @@
 
 			return $arrayDeUsuarios;
 		}
+
+		public function getUsuariosPorNombre($usuario){
+			
+			$arrayDeUsuarios =  $this->accessData->getUsuariosPorNombre($usuario);
+
+			return $arrayDeUsuarios;
+		}
 	}
 ?>
