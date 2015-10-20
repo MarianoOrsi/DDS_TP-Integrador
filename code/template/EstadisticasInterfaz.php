@@ -35,9 +35,15 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 		<script type = "text/javascript">
 
 					function selectRecetas() {
-						$dificultad = document.getElementById("dificultad").value;
-						$sexo       = document.getElementById("sexo").value;
-		                window.location.href = "EstadisticasNegocio.php?method=SEL&Dificultad=" + dificultad + "&Sexo=" + sexo;
+
+						var dificultades = document.getElementById("dificultad");
+						var sexos       = document.getElementById("sexo");
+						var ruta = "EstadisticasInterfaz.php?&Dificultad="
+						            + dificultades.options[dificultades.selectedIndex].value 
+						            + "&Sexo=" 
+						            + sexos.options[sexos.selectedIndex].value;
+						
+		                window.location.href = ruta;
 					}
 		</script>
 
@@ -56,15 +62,15 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 					
 					  <h1>Recetas Consultadas</h1>
 
-              		  <select class="combo" name="sexo">
-                   		 <option value="">Sexo</option>
-                	     <option value="masculino">Masculino</option>
-                         <option value="femenino">Femenino</option>
+              		  <select class="combo" id="sexo" onChange="selectRecetas()">
+                   		<option value="">Sexo</option>
+                	     <option value="M">Masculino</option>
+                         <option value="F">Femenino</option>
                       </select>
 
 
-                      <select class="combo" name="dificultad" onselect="selectRecetas()">
-                   		 <option value="">Dificultades</option>
+                      <select class="combo" id="dificultad" onChange="selectRecetas()">
+                   		<option value="">Dificultades</option>
                    		  <?php
 							include("EstadisticasNegocio.php");
 							$logica = new logicaDeNegocio();
@@ -86,10 +92,32 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 									</tr>
 									</thead>
 									<tbody>
-									<tr>
-										<td>NConsulta</td>
-										<td>Receta</td>
-									</tr>
+						             <?php
+                                        $dificultad='';
+                                        $sexo = '';
+								        
+								        if(isset($_GET["Dificultad"]))
+								        {
+ 										  $dificultad = $_GET["Dificultad"];
+								        }
+
+								        if(isset($_GET["Sexo"]))
+								        {
+								          $sexo = $_GET["Sexo"];
+								          echo $sexo;
+								        }
+
+										$logica = new logicaDeNegocio();
+
+										$arrayRecetasConsultadas = $logica->selectRecetas($dificultad,$sexo);
+
+										foreach($arrayRecetasConsultadas as $receta) {
+										    echo "<TR>";
+											echo "<TD>" . $receta->getCantConsultas() . "</TD>";
+											echo "<TD>" . $receta->getReceta() . "</TD>";
+											echo "</TR>";
+									}
+								?>
 									
 									</tbody>
 									</table>

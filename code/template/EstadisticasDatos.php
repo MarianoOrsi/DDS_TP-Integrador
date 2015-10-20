@@ -1,6 +1,7 @@
 <?php
 
 	include("clases/Dificultad.php");
+	include("clases/RecetaConsultada.php");
 	
 	class accesoDatos{
 
@@ -39,20 +40,41 @@
 
 	    public function selectRecetas($dificultad,$sexo){
 			mysql_select_db($this->nameDB, $this->connectionDB);
-			$consulta = "SELECT SUM FROM dificultades";
+			$consulta = "SELECT COUNT(idAccion) AS CantConsultas,
+                                recetas.Receta AS Receta
+                            FROM diseniosistemas.historiales
+						   	INNER JOIN usuarios
+						   	ON usuarios.IdUsuario = historiales.IdUsuario
+						   	INNER JOIN recetas 
+						   	ON recetas.IdReceta = historiales.IdReceta
+						   	WHERE historiales.IdAccion = '1'";
+
+            if(strcmp($dificultad,""))
+            {
+            	$consulta = $consulta . " AND recetas.IdDificultad = '" . $dificultad . "'";
+            }
+
+			if(strcmp($sexo,""))
+            {
+            	$consulta = $consulta . " AND usuarios.Sexo = '" . $sexo . "'";
+            }
+           
+          
+
+            $consulta = $consulta . " GROUP BY recetas.idReceta";
 
 			$result = mysql_query($consulta) or die (mysql_error());
 
-			$arrayDificultades = array();
+			$arrayRecetas = array();
 
 			while ($row = mysql_fetch_array($result)){
 
-				$dificultad = new Dificultad($row['IdDificultad'],$row['Dificultad']);
+				$receta = new RecetaConsultada($row['CantConsultas'],$row['Receta']);
 
-				array_push($arrayDificultades, $dificultad);
+				array_push($arrayRecetas, $receta);
 			}
 
-			return $arrayDificultades;
+			return $arrayRecetas;
 		}
 
 	}
