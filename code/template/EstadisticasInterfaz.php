@@ -32,8 +32,16 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 		<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
+		
 		<script type = "text/javascript">
 
+					function getUrlVars() {
+						var vars = {};
+						var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+						vars[key] = value;
+						});
+				      	return vars;
+					}
 					function selectRecetas() {
 
 						var dificultades = document.getElementById("dificultad");
@@ -45,10 +53,36 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 						
 		                window.location.href = ruta;
 					}
+					 function preloadFunc()
+					    {  
+					       var dificultades = document.getElementById("dificultad");
+						   var sexos       = document.getElementById("sexo");
+					       var dif = getUrlVars()["Dificultad"];
+						   var sex = getUrlVars()["Sexo"];
+
+						   if(typeof dif != "undefined")
+						   {
+						   	dificultades.value = dif;
+						   }else
+						   {
+						   	dificultades.value = "";
+						   }
+
+						 if(typeof sex != "undefined")
+						   {
+						   	sexos.value = sex;
+						   }else
+						   {
+						   	sexos.value = "";
+						   }
+
+						     
+					    }
+
 		</script>
 
 	</head>
-	<body>
+	<body onload="preloadFunc()">
 		<div id="wrapper">
 				<!-- start header -->
 		<?php include("include/header.php")?>
@@ -63,14 +97,14 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 					  <h1>Recetas Consultadas</h1>
 
               		  <select class="combo" id="sexo" onChange="selectRecetas()">
-                   		<option value="">Sexo</option>
+                   	     <option value="">Sexo</option>
                 	     <option value="M">Masculino</option>
                          <option value="F">Femenino</option>
                       </select>
 
 
                       <select class="combo" id="dificultad" onChange="selectRecetas()">
-                   		<option value="">Dificultades</option>
+                   		<option value="">Dificultad</option>
                    		  <?php
 							include("EstadisticasNegocio.php");
 							$logica = new logicaDeNegocio();
@@ -104,7 +138,6 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 								        if(isset($_GET["Sexo"]))
 								        {
 								          $sexo = $_GET["Sexo"];
-								          echo $sexo;
 								        }
 
 										$logica = new logicaDeNegocio();
