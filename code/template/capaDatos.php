@@ -115,5 +115,125 @@
 
 			return $arrayUsuarios;
 		}
+		
+		public function getRecetasCalificadas($sexo,$idContextura,$puntuacion){
+
+			mysql_select_db($this->nameDB, $this->connectionDB);
+
+			$consulta = "call sp_Recetacalificadasxsexocontexturacalificacion(".$sexo.",".$idContextura",".$puntuacion")";
+			
+			$result = mysql_query($consulta) or die (mysql_error());
+
+			$arrayRecetas = array();
+
+			while ($row = mysql_fetch_array($result)){
+
+				$Receta = new Receta($row["IdReceta"],$row["Receta"]);
+
+				array_push($arrayRecetas, $Receta);
+			}
+
+			return $arrayRecetas;
+		}
+
+		public function getRecetasxDieta($iddieta){
+
+			mysql_select_db($this->nameDB, $this->connectionDB);
+
+			$consulta = "call sp_recetasxdieta(".$idideta.")";
+			
+			$result = mysql_query($consulta) or die (mysql_error());
+
+			$arrayRecetas = array();
+
+			while ($row = mysql_fetch_array($result)){
+
+				$Receta = new Receta($row["IdReceta"],$row["Receta"]);
+
+				array_push($arrayRecetas, $Receta);
+			}
+
+			return $arrayRecetas;
+		}
+
+		public function getRecetasxPuntuacionyEstacion($idestacion,$puntuacion){
+
+			mysql_select_db($this->nameDB, $this->connectionDB);
+
+			$consulta = "call sp_Recetaxcalificacionyestacion(".$puntuacion.",".$idestacion.")";
+			
+			$result = mysql_query($consulta) or die (mysql_error());
+
+			$arrayRecetas = array();
+
+			while ($row = mysql_fetch_array($result)){
+
+				$Receta = new Receta($row["IdReceta"],$row["Receta"]);
+
+				array_push($arrayRecetas, $Receta);
+			}
+
+			return $arrayRecetas;
+		}
+
+		public function getRecetasxCondimento($idCondimento){
+
+			mysql_select_db($this->nameDB, $this->connectionDB);
+
+			$consulta = "call sp_recetaxcond(".$idcondimento.")";
+			
+			$result = mysql_query($consulta) or die (mysql_error());
+
+			$arrayRecetas = array();
+
+			while ($row = mysql_fetch_array($result)){
+
+				$Receta = new Receta($row["IdReceta"],$row["Receta"]);
+
+				array_push($arrayRecetas, $Receta);
+			}
+
+			return $arrayRecetas;
+		}
+
+		public function getRecetasxPiramide($idPiramide){
+
+			mysql_select_db($this->nameDB, $this->connectionDB);
+
+			$consulta = "call sp_RecetaxPiramide(".$idPiramide.")";
+			
+			$result = mysql_query($consulta) or die (mysql_error());
+
+			$arrayRecetas = array();
+
+			while ($row = mysql_fetch_array($result)){
+
+				$Receta = new Receta($row["IdReceta"],$row["Receta"]);
+
+				array_push($arrayRecetas, $Receta);
+			}
+
+			return $arrayRecetas;
+		}
+
+		public function getRecetasxPreferencias($idUsuario){
+
+			mysql_select_db($this->nameDB, $this->connectionDB);
+
+			$consulta = "call sp_recetaxpreferencias(".$idUsuario.")";
+			
+			$result = mysql_query($consulta) or die (mysql_error());
+
+			$arrayRecetas = array();
+
+			while ($row = mysql_fetch_array($result)){
+
+				$Receta = new Receta($row["IdReceta"],$row["Receta"]);
+
+				array_push($arrayRecetas, $Receta);
+			}
+
+			return $arrayRecetas;
+		}
 	}
 ?>
