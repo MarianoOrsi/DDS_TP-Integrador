@@ -37,9 +37,10 @@ td {
 #invitarAmigos{
 	padding: 10px;
 	float: left;
-	width: 45%;
+	width: 60%;
 	border-style: solid;
 	border-width: 1px;
+	visibility: hidden;
 }
 
 #invitarAmigos select{

@@ -51,21 +51,47 @@
 
 		public function getUsuariosDeGrupo($idGrupo){
 
-			mysql_select_db($this->nameDB, $this->connectionDB);
+			$db = new mysqli('localhost','root','','diseniosistemas');
 
-			$consulta = "call UsuariosDeGrupo(".$idGrupo.")";
-			
-			$arrayUsuarios = array();
-			
-			$result = mysql_query($consulta) or die (mysql_error());
-
-			while ($row = mysql_fetch_array($result)){
-
-				$usuario = new Usuario($row["IdUsuario"],$row["Usuario"],$row["Contrase"],$row["Sexo"],$row["Altura"],$row["IdDieta"],1,$row["IdRutina"],$row["IdContextura"],$row["IdPreexistente"],$row["Email"],$row["Edad"]);
-
-				array_push($arrayUsuarios, $usuario);
+			// Check for errors
+			if(mysqli_connect_errno()){
+			 echo mysqli_connect_error();
 			}
-			return $arrayUsuarios;
+
+			$Usuarios = array();
+
+			// 1st Query
+			$result = $db->query("call UsuariosDeGrupo(".$idGrupo.")");
+			if($result){
+			     // Cycle through results
+			    while ($row = $result->fetch_object()){
+			        //$user_arr[] = $row;
+			        $usuario = new Usuario($row->IdUsuario,$row->Usuario,$row->Contrase,$row->Sexo,$row->Altura,$row->IdDieta,1,$row->IdRutina,$row->IdContextura,$row->IdPreexistente,$row->Email,$row->Edad);
+			        //$usuario = new Usuario($row["IdUsuario"],$row["Usuario"],$row["Contrase"],$row["Sexo"],$row["Altura"],$row["IdDieta"],1,$row["IdRutina"],$row["IdContextura"],$row["IdPreexistente"],$row["Email"],$row["Edad"]);
+			        array_push($Usuarios, $usuario);
+			    }
+			    // Free result set
+			    $result->close();
+			    $db->next_result();
+			}
+
+			//mysql_select_db($this->nameDB, $this->connectionDB);
+
+			//$consulta = "call UsuariosDeGrupo(".$idGrupo.")";
+			
+			//$arrayUsuarios = array();
+			
+			//$result = mysql_query($consulta) or die (mysql_error());
+
+			//while ($row = mysql_fetch_array($result)){
+
+			//	$usuario = new Usuario($row["IdUsuario"],$row["Usuario"],$row["Contrase"],$row["Sexo"],$row["Altura"],$row["IdDieta"],1,$row["IdRutina"],$row["IdContextura"],$row["IdPreexistente"],$row["Email"],$row["Edad"]);
+
+			//	array_push($arrayUsuarios, $usuario);
+			//}
+			//return $arrayUsuarios;
+
+			return $Usuarios;
 		}
 
 		public function getUsuariosPorNombre($usuario){

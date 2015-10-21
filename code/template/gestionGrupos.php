@@ -14,7 +14,7 @@
 		<link href="css/grupos.css" rel="stylesheet" />
 		<!-- Theme skin -->
 		<link href="skins/default.css" rel="stylesheet" />
-		<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.min.css" />
 		<script src="js/jquery-1.10.2.min.js"></script>	
 		<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -40,7 +40,6 @@
 					x.style.fontWeight="bold";
 				}
 			}
-
 
 			function createGroup(idUsuario) {
 				var nombre = document.getElementById("Nombre").value;
@@ -86,7 +85,6 @@
 				var idGrupo = document.getElementById("idGrupo").value;
 				
 				if(idGrupo != ""){
-
 					window.location.href = "gestionGrupos.php?IdGrupo=" + idGrupo;
 				}
 				else{
@@ -162,7 +160,32 @@
 							?>
 						</table>
 
-						<div id="invitarAmigos">
+						<!--<div class="container">-->
+						<div  id="botones">
+							Id Grupo  
+							<input id="idGrupo" type="text" disabled/>
+							<br />
+							<br />
+							Nombre Grupo  
+							<input id="Nombre" type="text" />
+							<br />
+							<br />
+							<?php
+								echo "<input type=\"button\" name=\"Crear\" onclick=\"createGroup(".$_SESSION["idUsuario"].")\" value=\"Crear\" class=\"btn btn-lg\" />";
+							?>
+							<input type="button" name="Guardar" onclick="modifyGroup()" value="Guardar" class="btn btn-lg" />
+							<input type="button" name="Delete" onclick="deleteGroup()" value="Borrar" class="btn btn-lg" />
+						</div>
+					<!--</div>-->
+						<br />
+
+						<?php
+
+						if(isset($_GET["IdGrupo"]))
+							echo "<div id=\"invitarAmigos\" style=\"visibility: visible\">";
+						else
+							echo "<div id=\"invitarAmigos\">";
+						?>
 							<h4>Integrantes del grupo</h4>
 							<table border="1" cellspacing="3" style="width:70%">
 								<tr>
@@ -198,7 +221,11 @@
 							<br />
 							<?php
 								if(isset($_GET["IdGrupo"])){
-									echo "Agrega a un amigo: <input id=\"usuarioAmigo\" type=\"text\" placeholder=\"Buscar\" />";
+									echo "Agrega a un amigo:";
+									echo "<br />"; 
+									echo "<input id=\"usuarioAmigo\" type=\"text\" placeholder=\"Buscar\" / >";
+									echo "<br />";
+									echo "<br />";
 									echo "     <input type=\"button\" name=\"AgregarAmigo\" onclick=\"agregarAmigo(".$_GET["IdGrupo"].")\" value=\"agregar\" class=\"btn btn-lg\" />";
 									echo "<br />";
 								}
@@ -208,23 +235,7 @@
 						</div>
 	
 						
-					<div class="container">
-						<div  id="botones">
-							Id Grupo  
-							<input id="idGrupo" type="text" disabled/>
-							<br />
-							<br />
-							Nombre Grupo  
-							<input id="Nombre" type="text" />
-							<br />
-							<br />
-							<?php
-								echo "<input type=\"button\" name=\"Crear\" onclick=\"createGroup(".$_SESSION["idUsuario"].")\" value=\"Crear\" class=\"btn btn-lg\" />";
-							?>
-							<input type="button" name="Guardar" onclick="modifyGroup()" value="Guardar" class="btn btn-lg" />
-							<input type="button" name="Delete" onclick="deleteGroup()" value="Borrar" class="btn btn-lg" />
-						</div>
-					</div>
+					
 			
 
 			</section>
