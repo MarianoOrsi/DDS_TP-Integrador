@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.4.12
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-10-2015 a las 03:04:15
+-- Tiempo de generación: 21-10-2015 a las 18:56:07
 -- Versión del servidor: 5.6.25
 -- Versión de PHP: 5.6.11
 
@@ -20,29 +20,60 @@ SET time_zone = "+00:00";
 -- Base de datos: `diseniosistemas`
 --
 
+DELIMITER $$
 --
 -- Procedimientos
 --
-
-DELIMITER ;;
-
-CREATE PROCEDURE `UsuariosDeGrupo`(IN `idGrupoParam` INT)
-    NO SQL
-select * from usuarios usu inner join `usuario-grupos` ug on usu.IdUsuario = ug.IdUsuario where ug.IdGrupo = idGrupoParam;;
-
-
-DELIMITER ;;
-
-CREATE PROCEDURE `sp_BuscarGruposDeUsuario`(
-    IN usuarioId INT
-    )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_BuscarGruposDeUsuario`(IN `usuarioid` INT)
 BEGIN
 
 SELECT * FROM grupos WHERE IdGrupo IN (SELECT IdGrupo FROM `usuario-grupos` WHERE IdUsuario = usuarioId);
 
-END;;
+END$$
 
-DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Recetacalificadasxsexocontexturacalificacion`(IN `sexo` VARCHAR(1), IN `idcont` INT, IN `calif` INT)
+    NO SQL
+SELECT recetas.IdReceta, recetas.Receta
+from recetas inner join 
+puntuaciones on puntuaciones.IdReceta=recetas.IdReceta inner JOIN
+usuarios on puntuaciones.IdUsuario=usuarios.IdUsuario
+where puntuaciones.Puntuacion=calif and usuarios.IdContextura=idcont and usuarios.Sexo=sexo
+limit 10$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_recetasxdieta`(IN `iddiet` INT)
+    NO SQL
+SELECT recetas.IdReceta, recetas.Receta FROM recetas
+where recetas.IdDieta>=iddiet$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Recetaxcalificacionyestacion`(IN `nota` INT, IN `idestacion` INT)
+    NO SQL
+select recetas.IdReceta, recetas.Receta FROM recetas inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta inner JOIN puntuaciones on puntuaciones.IdReceta=recetas.IdReceta
+where puntuaciones.Puntuacion=nota and `receta-estaciones`.IdEstacion=idestacion$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_recetaxcond`(IN `idcond` INT)
+    NO SQL
+SELECT recetas.IdReceta,recetas.Receta
+from recetas inner join 
+`receta-ingredientes` on `receta-ingredientes`.`IdReceta`=recetas.IdReceta
+WHERE `receta-ingredientes`.`Tipo`=2 and `receta-ingredientes`.`IdIngrediente`=idcond
+LIMIT 5$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_RecetaxPiramide`(IN `idPiram` INT)
+    NO SQL
+select recetas.IdReceta, recetas.Receta
+from recetas
+where recetas.IdPiramide=idpiram
+limit 5$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_recetaxpreferencias`(IN `idUsu` INT)
+    NO SQL
+SELECT recetas.IdReceta,recetas.Receta
+from preferencias inner JOIN 
+ingredientes on preferencias.IdIngrediente=ingredientes.IdIngrediente inner JOIN
+`receta-ingredientes` on`receta-ingredientes`.IdIngrediente=ingredientes.IdIngrediente inner JOIN
+recetas on recetas.IdReceta=`receta-ingredientes`.`IdReceta`
+where preferencias.IdUsuario=idusu
+limit 3$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_RegistrarUsuario`(
     IN usuario_param VARCHAR(50),
@@ -75,10 +106,14 @@ VALUES
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UsuariosDeGrupo`(IN `idGrupoParam` INT)
+    NO SQL
+select * from usuarios usu inner join `usuario-grupos` ug on usu.IdUsuario = ug.IdUsuario where ug.IdGrupo = idGrupoParam$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `VerPreferencias`(IN `IdUsu` INT)
     NO SQL
 SELECT IdPreferencia, preferencias.IdIngrediente, IdUsuario, ingredientes.Ingrediente FROM preferencias inner join ingredientes on preferencias.IdIngrediente=ingredientes.IdIngrediente
-where idusuario=IdUsu$$$$
+where idusuario=IdUsu$$
 
 DELIMITER ;
 
@@ -212,7 +247,7 @@ INSERT INTO `dificultades` (`IdDificultad`, `Dificultad`) VALUES
 CREATE TABLE IF NOT EXISTS `estaciones` (
   `IdEstacion` int(11) NOT NULL,
   `Estacion` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `estaciones`
@@ -275,7 +310,7 @@ CREATE TABLE IF NOT EXISTS `historiales` (
 CREATE TABLE IF NOT EXISTS `horarios` (
   `IdHorario` int(11) NOT NULL,
   `Horario` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `horarios`
@@ -299,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `ingredientes` (
   `Porcion` int(11) NOT NULL,
   `Calorias` int(11) NOT NULL,
   `imagen` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `ingredientes`
@@ -397,7 +432,15 @@ CREATE TABLE IF NOT EXISTS `piramides` (
   `Sector` varchar(50) NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `Contraindicaciones` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `piramides`
+--
+
+INSERT INTO `piramides` (`IdPiramide`, `Sector`, `Descripcion`, `Contraindicaciones`) VALUES
+(1, 'carne', 'desc1', 'nada'),
+(2, 'frutas', 'perfectas', 'ni idea');
 
 -- --------------------------------------------------------
 
@@ -408,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `piramides` (
 CREATE TABLE IF NOT EXISTS `preexistentes` (
   `IdPreexistente` int(11) NOT NULL,
   `Nombre` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `preexistentes`
@@ -466,7 +509,14 @@ CREATE TABLE IF NOT EXISTS `puntuaciones` (
   `IdUsuario` int(11) NOT NULL,
   `Fecha` datetime NOT NULL,
   `Puntuacion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `puntuaciones`
+--
+
+INSERT INTO `puntuaciones` (`IdPuntuacion`, `IdReceta`, `IdUsuario`, `Fecha`, `Puntuacion`) VALUES
+(1, 1, 29, '2015-10-06 00:00:00', 5);
 
 -- --------------------------------------------------------
 
@@ -478,7 +528,14 @@ CREATE TABLE IF NOT EXISTS `receta-estaciones` (
   `IdRecetaEstacion` int(11) NOT NULL,
   `IdReceta` int(11) NOT NULL,
   `IdEstacion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `receta-estaciones`
+--
+
+INSERT INTO `receta-estaciones` (`IdRecetaEstacion`, `IdReceta`, `IdEstacion`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -490,8 +547,16 @@ CREATE TABLE IF NOT EXISTS `receta-ingredientes` (
   `IdRecetaIngrediente` int(11) NOT NULL,
   `IdReceta` int(11) NOT NULL,
   `IdIngrediente` int(11) NOT NULL,
-  `Tipo` int(11) NOT NULL COMMENT '0 Ing. Principal'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Tipo` int(11) NOT NULL COMMENT '0 Ing. Principal 1 Ing 2 Cond'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `receta-ingredientes`
+--
+
+INSERT INTO `receta-ingredientes` (`IdRecetaIngrediente`, `IdReceta`, `IdIngrediente`, `Tipo`) VALUES
+(1, 1, 2, 2),
+(2, 1, 7, 0);
 
 -- --------------------------------------------------------
 
@@ -507,7 +572,14 @@ CREATE TABLE IF NOT EXISTS `recetas` (
   `IdPiramide` int(11) NOT NULL,
   `IdDieta` int(11) NOT NULL,
   `Calorias` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `recetas`
+--
+
+INSERT INTO `recetas` (`IdReceta`, `Receta`, `IdDificultad`, `IdUsuario`, `IdPiramide`, `IdDieta`, `Calorias`) VALUES
+(1, 'carne con arroz', 1, 29, 1, 1, 90);
 
 -- --------------------------------------------------------
 
@@ -519,7 +591,7 @@ CREATE TABLE IF NOT EXISTS `rutinas` (
   `IdRutina` int(11) NOT NULL,
   `Nombre` varchar(15) NOT NULL,
   `Descripcion` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `rutinas`
@@ -565,7 +637,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `IdDieta` int(11) NOT NULL,
   `Email` varchar(40) NOT NULL,
   `IdPesos-Ideales` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -811,15 +883,100 @@ ALTER TABLE `dietas`
 ALTER TABLE `dificultades`
   MODIFY `IdDificultad` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT de la tabla `estaciones`
+--
+ALTER TABLE `estaciones`
+  MODIFY `IdEstacion` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT de la tabla `grupos`
+--
+ALTER TABLE `grupos`
+  MODIFY `IdGrupo` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `historial-horarios`
+--
+ALTER TABLE `historial-horarios`
+  MODIFY `IdRecetaHorario` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `historiales`
+--
+ALTER TABLE `historiales`
+  MODIFY `IdHistoria` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `horarios`
+--
+ALTER TABLE `horarios`
+  MODIFY `IdHorario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `ingredientes`
+--
+ALTER TABLE `ingredientes`
+  MODIFY `IdIngrediente` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
+--
+-- AUTO_INCREMENT de la tabla `pasos`
+--
+ALTER TABLE `pasos`
+  MODIFY `IdPasos` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `pesos-ideales`
 --
 ALTER TABLE `pesos-ideales`
   MODIFY `IdPesos-Ideales` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT de la tabla `piramides`
+--
+ALTER TABLE `piramides`
+  MODIFY `IdPiramide` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `preexistentes`
+--
+ALTER TABLE `preexistentes`
+  MODIFY `IdPreexistente` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT de la tabla `preferencias`
 --
 ALTER TABLE `preferencias`
   MODIFY `IdPreferencia` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `procedimiento`
+--
+ALTER TABLE `procedimiento`
+  MODIFY `IdProcedimiento` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `puntuaciones`
+--
+ALTER TABLE `puntuaciones`
+  MODIFY `IdPuntuacion` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `receta-estaciones`
+--
+ALTER TABLE `receta-estaciones`
+  MODIFY `IdRecetaEstacion` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `receta-ingredientes`
+--
+ALTER TABLE `receta-ingredientes`
+  MODIFY `IdRecetaIngrediente` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `recetas`
+--
+ALTER TABLE `recetas`
+  MODIFY `IdReceta` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `rutinas`
+--
+ALTER TABLE `rutinas`
+  MODIFY `IdRutina` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT de la tabla `usuario-grupos`
+--
+ALTER TABLE `usuario-grupos`
+  MODIFY `IdUsuarioGrupo` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 --
 -- Restricciones para tablas volcadas
 --
@@ -828,56 +985,56 @@ ALTER TABLE `preferencias`
 -- Filtros para la tabla `grupos`
 --
 ALTER TABLE `grupos`
-  ADD CONSTRAINT `UsuarioCreador` FOREIGN KEY (`IdUsuarioCreador`) REFERENCES `usuarios` (`IdUsuario`);
+  ADD CONSTRAINT `UsuCread` FOREIGN KEY (`IdUsuarioCreador`) REFERENCES `usuarios` (`IdUsuario`);
 
 --
 -- Filtros para la tabla `historial-horarios`
 --
 ALTER TABLE `historial-horarios`
-  ADD CONSTRAINT `Historial` FOREIGN KEY (`IdHistorial`) REFERENCES `historiales` (`IdHistoria`),
-  ADD CONSTRAINT `Horarios` FOREIGN KEY (`IdHorario`) REFERENCES `horarios` (`IdHorario`);
+  ADD CONSTRAINT `Historial-Horarios` FOREIGN KEY (`IdHistorial`) REFERENCES `historiales` (`IdHistoria`),
+  ADD CONSTRAINT `Horario` FOREIGN KEY (`IdHorario`) REFERENCES `horarios` (`IdHorario`);
 
 --
 -- Filtros para la tabla `historiales`
 --
 ALTER TABLE `historiales`
   ADD CONSTRAINT `Historial-Accion` FOREIGN KEY (`IdAccion`) REFERENCES `acciones` (`IdAccion`),
-  ADD CONSTRAINT `Historial-Receta` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`IdReceta`),
-  ADD CONSTRAINT `Historial-Usuario` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`);
+  ADD CONSTRAINT `HistorialReceta` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`IdReceta`),
+  ADD CONSTRAINT `HistorialUsu` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`);
 
 --
 -- Filtros para la tabla `preferencias`
 --
 ALTER TABLE `preferencias`
-  ADD CONSTRAINT `Ingrediente` FOREIGN KEY (`IdIngrediente`) REFERENCES `ingredientes` (`IdIngrediente`),
-  ADD CONSTRAINT `Preferencia-Usuario` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`);
+  ADD CONSTRAINT `Ingredientes` FOREIGN KEY (`IdIngrediente`) REFERENCES `ingredientes` (`IdIngrediente`),
+  ADD CONSTRAINT `PrefUsuario` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`);
 
 --
 -- Filtros para la tabla `procedimiento`
 --
 ALTER TABLE `procedimiento`
   ADD CONSTRAINT `Pasos` FOREIGN KEY (`IdPaso`) REFERENCES `pasos` (`IdPasos`),
-  ADD CONSTRAINT `Recetas` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`IdReceta`);
+  ADD CONSTRAINT `RecetaPasos` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`IdReceta`);
 
 --
 -- Filtros para la tabla `puntuaciones`
 --
 ALTER TABLE `puntuaciones`
-  ADD CONSTRAINT `Puntuacion-Receta` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`IdReceta`),
-  ADD CONSTRAINT `Puntuacion-Usuario` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`);
+  ADD CONSTRAINT `PuntuacionRece` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`IdReceta`),
+  ADD CONSTRAINT `PuntuacionUusu` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`);
 
 --
 -- Filtros para la tabla `receta-estaciones`
 --
 ALTER TABLE `receta-estaciones`
   ADD CONSTRAINT `Estaciones` FOREIGN KEY (`IdEstacion`) REFERENCES `estaciones` (`IdEstacion`),
-  ADD CONSTRAINT `Receta-Estaciones2` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`IdReceta`);
+  ADD CONSTRAINT `RecetaEstacuion` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`IdReceta`);
 
 --
 -- Filtros para la tabla `receta-ingredientes`
 --
 ALTER TABLE `receta-ingredientes`
-  ADD CONSTRAINT `Receta-Ingredientes` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`IdReceta`);
+  ADD CONSTRAINT `RecetaIng` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`IdReceta`);
 
 --
 -- Filtros para la tabla `recetas`
@@ -885,25 +1042,24 @@ ALTER TABLE `receta-ingredientes`
 ALTER TABLE `recetas`
   ADD CONSTRAINT `Receta-Dieta` FOREIGN KEY (`IdDieta`) REFERENCES `dietas` (`IdDieta`),
   ADD CONSTRAINT `Receta-Dificultad` FOREIGN KEY (`IdDificultad`) REFERENCES `dificultades` (`IdDificultad`),
-  ADD CONSTRAINT `Receta-Piramide` FOREIGN KEY (`IdPiramide`) REFERENCES `piramides` (`IdPiramide`),
-  ADD CONSTRAINT `Receta-Usuario` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`);
+  ADD CONSTRAINT `Receta-Piramides` FOREIGN KEY (`IdPiramide`) REFERENCES `piramides` (`IdPiramide`);
 
 --
 -- Filtros para la tabla `usuario-grupos`
 --
 ALTER TABLE `usuario-grupos`
   ADD CONSTRAINT `Grupo` FOREIGN KEY (`IdGrupo`) REFERENCES `grupos` (`IdGrupo`),
-  ADD CONSTRAINT `Grupo-Usuario` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`);
+  ADD CONSTRAINT `UsuarioGrupos` FOREIGN KEY (`IdUsuario`) REFERENCES `usuarios` (`IdUsuario`);
 
 --
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
+  ADD CONSTRAINT `UsuRutina` FOREIGN KEY (`IdRutina`) REFERENCES `rutinas` (`IdRutina`),
   ADD CONSTRAINT `Usuario-Contextura` FOREIGN KEY (`IdContextura`) REFERENCES `contexturas` (`IdContextura`),
   ADD CONSTRAINT `Usuario-Dieta` FOREIGN KEY (`IdDieta`) REFERENCES `dietas` (`IdDieta`),
   ADD CONSTRAINT `Usuario-Peso` FOREIGN KEY (`IdPesos-Ideales`) REFERENCES `pesos-ideales` (`IdPesos-Ideales`),
-  ADD CONSTRAINT `Usuario-Preexistentes` FOREIGN KEY (`IdPreexistente`) REFERENCES `preexistentes` (`IdPreexistente`),
-  ADD CONSTRAINT `Usuario-Rutina` FOREIGN KEY (`IdRutina`) REFERENCES `rutinas` (`IdRutina`);
+  ADD CONSTRAINT `Usuario-Preexistente` FOREIGN KEY (`IdPreexistente`) REFERENCES `preexistentes` (`IdPreexistente`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
