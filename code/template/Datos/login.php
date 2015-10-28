@@ -1,5 +1,5 @@
 <?php
-include("configuracion.php");
+include("../configuracion.php");
 $con = mysql_connect($servidor,$user,$pass);
 mysql_select_db($dbname,$con) or die(mysql_error());
 
@@ -12,6 +12,6 @@ echo $consulta;
 	 
 		session_start();
 		$_SESSION["idUsuario"]=$id['0'];
-		header("location: index.php");
+		header("location: http://localhost/index.php");
 	}
 ?>

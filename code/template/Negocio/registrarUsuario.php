@@ -1,7 +1,7 @@
 <?php
 
 //include("clases/Usuario.php");
-include("capaDatos.php");
+include("../datos/capaDatos.php");
 
 if(isset($_POST["submit"])){
 		

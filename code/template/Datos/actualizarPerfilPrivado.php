@@ -1,4 +1,4 @@
-<?php session_start();
+﻿<?php session_start();
 
 $servidor = "localhost";    // todos los strings con los valores para el conector SQL
 $user = "root";
@@ -75,7 +75,7 @@ if(isset($_POST["submit"])){
 		
 				
 		 
-		header("location: perfil.php"); // para poner el header, no hay que tener NADA 
+		header("location: ../negocio/perfil.php"); // para poner el header, no hay que tener NADA 
 												//  de HTML o ning�n ECHO en el c�digo
 }
 

@@ -1,4 +1,4 @@
-<?php session_start();
+﻿<?php session_start();
 
 $servidor = "localhost";
 // todos los strings con los valores para el conector SQL
@@ -65,14 +65,14 @@ function dameSexo($idSexo)//Jajajajaa recien medi cuenta del nombre que le puse 
 		<meta name="description" content="" />
 		<meta name="author" content="http://bootstraptaste.com" />
 		<!-- css -->
-		<link href="css/bootstrap.min.css" rel="stylesheet" />
-		<link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
-		<link href="css/jcarousel.css" rel="stylesheet" />
-		<link href="css/flexslider.css" rel="stylesheet" />
-		<link href="css/style.css" rel="stylesheet" />
-		<link href="css/form.css" rel="stylesheet" />
+		<link href="../css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+		<link href="../css/jcarousel.css" rel="stylesheet" />
+		<link href="../css/flexslider.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/form.css" rel="stylesheet" />
 		<!-- Theme skin -->
-		<link href="skins/default.css" rel="stylesheet" />
+		<link href="../skins/default.css" rel="stylesheet" />
 
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
@@ -84,7 +84,7 @@ function dameSexo($idSexo)//Jajajajaa recien medi cuenta del nombre que le puse 
 		<div id="wrapper">
 		
 			<!-- start header -->
-		<?php include("include/header.php")?>
+		<?php include("../include/header.php")?>
 			<!-- end header -->
 
 			<section class="callaction">
@@ -100,7 +100,7 @@ function dameSexo($idSexo)//Jajajajaa recien medi cuenta del nombre que le puse 
 						</div>
 					
 						<div class="cform" id="contact-form">
-							<form action="actualizarPerfilPrivado.php" method="post" role="form" class="contactForm">
+							<form action="../datos/actualizarPerfilPrivado.php" method="post" role="form" class="contactForm">
 							<?php
 								echo '<div class="form-group">
 								<label>Email</label>
@@ -187,7 +187,7 @@ function dameSexo($idSexo)//Jajajajaa recien medi cuenta del nombre que le puse 
 			</section>
 
 			<!-- start footer -->
-		<?php include("include/footer.php")?>
+		<?php include("../include/footer.php")?>
 	<!-- end footer -->
 		</div>
 		<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
@@ -195,16 +195,16 @@ function dameSexo($idSexo)//Jajajajaa recien medi cuenta del nombre que le puse 
 		<!-- javascript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="js/jquery.js"></script>
-		<script src="js/jquery.easing.1.3.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.fancybox.pack.js"></script>
-		<script src="js/jquery.fancybox-media.js"></script>
-		<script src="js/google-code-prettify/prettify.js"></script>
-		<script src="js/portfolio/jquery.quicksand.js"></script>
-		<script src="js/portfolio/setting.js"></script>
-		<script src="js/jquery.flexslider.js"></script>
-		<script src="js/animate.js"></script>
-		<script src="js/custom.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script src="../js/jquery.easing.1.3.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/jquery.fancybox.pack.js"></script>
+		<script src="../js/jquery.fancybox-media.js"></script>
+		<script src="../js/google-code-prettify/prettify.js"></script>
+		<script src="../js/portfolio/jquery.quicksand.js"></script>
+		<script src="../js/portfolio/setting.js"></script>
+		<script src="../js/jquery.flexslider.js"></script>
+		<script src="../js/animate.js"></script>
+		<script src="../js/custom.js"></script>
 	</body>
 </html>

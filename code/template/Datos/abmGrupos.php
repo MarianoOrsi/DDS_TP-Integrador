@@ -6,7 +6,7 @@
     $dbname = "diseniosistemas";
     $con = mysql_connect($servidor,$user,$pass);
 
-    include("capaNegocio.php");
+    include("../negocio/capaNegocio.php");
 
     if(isset($_GET['Usuario'])){
         $result = mysql_query("call sp_BuscarUsuario_PorNombre('%".$_GET['Usuario']."%'");  
@@ -35,7 +35,7 @@
             modifyGroup($parameterIdGrupo,$parameterName);
          }
 
-         header("Location: gestionGrupos.php");
+         header("Location: ../interfaz/gestionGrupos.php");
     }
 
 //TODO PARA ALTA Y BAJA DE INVITADOS AL GRUPO
@@ -52,7 +52,7 @@
              deleteFromGroup($parameterIdGroup, $parameterIdUser);
          }
 
-         header("Location: gestionGrupos.php?IdGrupo=".$parameterIdGroup."");
+         header("Location: ../interfaz/gestionGrupos.php?IdGrupo=".$parameterIdGroup."");
     }
 
     function createGroup($idUsuario, $name){

@@ -6,18 +6,18 @@
 		<title>TP Integrador - Grupo 81</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- css -->
-		<link href="css/bootstrap.min.css" rel="stylesheet" />
-		<link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
-		<link href="css/jcarousel.css" rel="stylesheet" />
-		<link href="css/flexslider.css" rel="stylesheet" />
-		<link href="css/style.css" rel="stylesheet" />
-		<link href="css/grupos.css" rel="stylesheet" />
+		<link href="../css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+		<link href="../css/jcarousel.css" rel="stylesheet" />
+		<link href="../css/flexslider.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/grupos.css" rel="stylesheet" />
 		<!-- Theme skin -->
-		<link href="skins/default.css" rel="stylesheet" />
+		<link href="../skins/default.css" rel="stylesheet" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.min.css" />
-		<script src="js/jquery-1.10.2.min.js"></script>	
-		<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+		<link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.min.css" />
+		<script src="../js/jquery-1.10.2.min.js"></script>	
+		<script src="../js/jquery-ui-1.10.3.custom.min.js"></script>
 		
 		<script type = "text/javascript">
 
@@ -48,7 +48,7 @@
 					alert("Debe Ingresar un Nombre para el grupo a crear");
 				}
 				else{
-					window.location.href = "abmGrupos.php?method=A&IdUser=" + idUsuario + "&IdGroup=0&Name=" + nombre;
+					window.location.href = "../datos/abmGrupos.php?method=A&IdUser=" + idUsuario + "&IdGroup=0&Name=" + nombre;
 				}
 			}
 
@@ -59,7 +59,7 @@
 					alert("Debe seleccionar un grupo para poder borrarlo");
 				}
 				else{
-					window.location.href = "abmGrupos.php?method=B&IdGroup=" + id + "&IdUser=0&Name=_";	
+					window.location.href = "../datos/abmGrupos.php?method=B&IdGroup=" + id + "&IdUser=0&Name=_";	
 				}
 			}
 
@@ -75,7 +75,7 @@
 						alert("El nombre del grupo no puede estar vacio");	
 					}
 					else{
-						window.location.href = "abmGrupos.php?method=M&IdGroup=" + id + "&Name=" + name + "&IdUser=0";
+						window.location.href = "../datos/abmGrupos.php?method=M&IdGroup=" + id + "&Name=" + name + "&IdUser=0";
 					}
 				}
 			}
@@ -97,7 +97,7 @@
 				var usuario = document.getElementById("usuarioAmigo").value;
 
 				if(usuario != ""){
-					window.location.href = "abmGrupos.php?method=ADD&User=" + usuario + "&IdGrupo=" + idGrupo;
+					window.location.href = "../datos/abmGrupos.php?method=ADD&User=" + usuario + "&IdGrupo=" + idGrupo;
 				}
 				else{
 					alert("Debe seleccionar un amigo");
@@ -107,7 +107,7 @@
 			function eliminarAmigo(idGrupo, idUsuario){
 
 				if(idUsuario != "" && idGrupo != ""){
-					window.location.href = "abmGrupos.php?method=DEL&User=" + idUsuario + "&IdGrupo=" + idGrupo;
+					window.location.href = "../datos/abmGrupos.php?method=DEL&User=" + idUsuario + "&IdGrupo=" + idGrupo;
 				}
 				else{
 					alert("Debe seleccionar un amigo");
@@ -125,7 +125,7 @@
 	<body>
 		<div id="wrapper">
 				<!-- start header -->
-					<?php include("include/header.php");?>
+					<?php include("../include/header.php");?>
 			<!-- end header -->
 
 			<section id="content">
@@ -141,7 +141,7 @@
 							</tr>
 
 							<?php
-							include("capaNegocio.php");
+							include("../Negocio/capaNegocio.php");
 							/*include("clases/Grupo.php");*/
 
 							$logica = new logicaDeNegocio();
@@ -241,7 +241,7 @@
 			</section>
 
 			<!-- start footer -->
-				<?php include("include/footer.php");?>
+				<?php include("../include/footer.php");?>
 			<!-- end footer -->
 		</div>
 		<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
@@ -249,17 +249,17 @@
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
 
-		<script src="js/jquery.js"></script>
-		<script src="js/jquery.easing.1.3.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.fancybox.pack.js"></script>
-		<script src="js/jquery.fancybox-media.js"></script>
-		<script src="js/google-code-prettify/prettify.js"></script>
-		<script src="js/portfolio/jquery.quicksand.js"></script>
-		<script src="js/portfolio/setting.js"></script>
-		<script src="js/jquery.flexslider.js"></script>
-		<script src="js/animate.js"></script>
-		<script src="js/custom.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script src="../js/jquery.easing.1.3.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/jquery.fancybox.pack.js"></script>
+		<script src="../js/jquery.fancybox-media.js"></script>
+		<script src="../js/google-code-prettify/prettify.js"></script>
+		<script src="../js/portfolio/jquery.quicksand.js"></script>
+		<script src="../js/portfolio/setting.js"></script>
+		<script src="../js/jquery.flexslider.js"></script>
+		<script src="../js/animate.js"></script>
+		<script src="../js/custom.js"></script>
 
 	</body>
 

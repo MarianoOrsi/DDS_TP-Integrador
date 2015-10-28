@@ -1,7 +1,7 @@
 <?php
 
 	/*include("clases/Grupo.php");*/
-    include("capaDatos.php");	
+    include("../datos/capaDatos.php");	
 	
 	class logicaDeNegocio{
 

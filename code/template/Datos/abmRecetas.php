@@ -9,7 +9,7 @@
             puntuarReceta($parameterId,$parameterPuntos);   
          }
 
-         header("Location: gestionRecetas.php");
+         header("Location: ../interfaz/gestionRecetas.php");
     }
 
    function puntuarReceta($id,$puntos)

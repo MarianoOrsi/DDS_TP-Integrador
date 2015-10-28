@@ -1,7 +1,7 @@
 <?php
 
-	include("clases/Grupo.php");
-	include("clases/Usuario.php");
+	include("../clases/Grupo.php");
+	include("../clases/Usuario.php");
 	
 	class accesoDatos{
 
@@ -12,7 +12,7 @@
 		private $connectionDB;
 
 		public function __construct(){
-			include("configuracion.php");
+			include("../configuracion.php");
 			$this->servidorDB = $servidor;
 			$this->userDB = $user;
 			$this->passDB = $pass;

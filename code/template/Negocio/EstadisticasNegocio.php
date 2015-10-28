@@ -1,6 +1,6 @@
 <?php
 
-    include("EstadisticasDatos.php");	
+    include("../datos/EstadisticasDatos.php");	
 
 if(isset($_GET["method"]))
 {

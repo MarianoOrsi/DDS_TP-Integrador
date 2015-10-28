@@ -1,4 +1,4 @@
-<?php session_start();?>
+﻿<?php session_start();?>
 
 
 
@@ -43,7 +43,7 @@
 					<p>Las mejores entradas para quedar con todo un chef</p>
 					<p><font size="1">Aunque no sepas ni hervir agua</font></p>
                     
-					<?php if(!isset($_SESSION["idUsuario"])){ echo'<a href="registrarme.html" class="btn btn-theme">Registrate ya!</a>';} ?>
+					<?php if(!isset($_SESSION["idUsuario"])){ echo'<a href="interfaz/registrarme.html" class="btn btn-theme">Registrate ya!</a>';} ?>
                 </div>
               </li>
               <li>
@@ -52,7 +52,7 @@
                     <h3>Conservas</h3> 
 					<p>Huevos en salmuiera?<br>
 						Si Moe puede porque vos no?</p> 
-					<?php if(!isset($_SESSION["idUsuario"])){ echo'<a href="registrarme.html" class="btn btn-theme">Registrate ya!</a>';} ?>
+					<?php if(!isset($_SESSION["idUsuario"])){ echo'<a href="interfaz/registrarme.html" class="btn btn-theme">Registrate ya!</a>';} ?>
                 </div>
               </li>
               <li>
@@ -60,7 +60,7 @@
                 <div class="flex-caption">
                     <h3>No sabemos que es esto</h3> 
 					<p>Pero si te salió bien subí la receta y ponele el nombre que quieras!</p> 
-					<?php if(!isset($_SESSION["idUsuario"])){ echo'<a href="iniciarSesion.html" class="btn btn-theme">Iniciar Sesión</a>';} ?>
+					<?php if(!isset($_SESSION["idUsuario"])){ echo'<a href="interfaz/iniciarSesion.html" class="btn btn-theme">Iniciar Sesión</a>';} ?>
                 </div>
               </li>
             </ul>

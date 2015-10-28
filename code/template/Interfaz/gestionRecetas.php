@@ -1,4 +1,4 @@
-<?php session_start();?>
+﻿<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -6,13 +6,13 @@
 		<title>TP Integrador - Grupo 81</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- css -->
-		<link href="css/bootstrap.min.css" rel="stylesheet" />
-		<link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
-		<link href="css/jcarousel.css" rel="stylesheet" />
-		<link href="css/flexslider.css" rel="stylesheet" />
-		<link href="css/style.css" rel="stylesheet" />
+		<link href="../css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+		<link href="../css/jcarousel.css" rel="stylesheet" />
+		<link href="../css/flexslider.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
 		<!-- Theme skin -->
-		<link href="skins/default.css" rel="stylesheet" />
+		<link href="../skins/default.css" rel="stylesheet" />
 
 		<script type = "text/javascript">
 			function readValuesGroup(x) {
@@ -36,7 +36,7 @@
 				var id = document.getElementById("idReceta").value;
 				var puntos = document.getElementById("puntos").value;
 
-				window.location.href = "abmRecetas.php?method=P&Id=" + id + "&Puntos=" + puntos;
+				window.location.href = "../datos/abmRecetas.php?method=P&Id=" + id + "&Puntos=" + puntos;
 			}
 
 		</script>
@@ -50,7 +50,7 @@
 	<body>
 		<div id="wrapper">
 				<!-- start header -->
-					<?php include("include/header.php")?>
+					<?php include("../include/header.php")?>
 			<!-- end header -->
 
 			<section id="content">
@@ -105,7 +105,7 @@
 			</section>
 
 			<!-- start footer -->
-				<?php include("include/footer.php")?>
+				<?php include("../include/footer.php")?>
 			<!-- end footer -->
 		</div>
 		<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
@@ -113,17 +113,17 @@
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
 
-		<script src="js/jquery.js"></script>
-		<script src="js/jquery.easing.1.3.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.fancybox.pack.js"></script>
-		<script src="js/jquery.fancybox-media.js"></script>
-		<script src="js/google-code-prettify/prettify.js"></script>
-		<script src="js/portfolio/jquery.quicksand.js"></script>
-		<script src="js/portfolio/setting.js"></script>
-		<script src="js/jquery.flexslider.js"></script>
-		<script src="js/animate.js"></script>
-		<script src="js/custom.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script src="../js/jquery.easing.1.3.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/jquery.fancybox.pack.js"></script>
+		<script src="../js/jquery.fancybox-media.js"></script>
+		<script src="../js/google-code-prettify/prettify.js"></script>
+		<script src="../js/portfolio/jquery.quicksand.js"></script>
+		<script src="../js/portfolio/setting.js"></script>
+		<script src="../js/jquery.flexslider.js"></script>
+		<script src="../js/animate.js"></script>
+		<script src="../js/custom.js"></script>
 
 	</body>
 
