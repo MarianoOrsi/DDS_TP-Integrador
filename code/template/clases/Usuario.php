@@ -91,5 +91,12 @@ class Usuario{
 		{
 			return $this->email;
 		}
+
+        public function buscar($visitor)
+        {
+             return $visitor->buscar($this->preferenciasAlimentarias);
+        }
+
+
 	}
 ?>
