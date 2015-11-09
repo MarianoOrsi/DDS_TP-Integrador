@@ -80,26 +80,12 @@
 					<div class="col-lg-3">
 						<div>
 							<div class="box-gray aligncenter">
-								<h4>Receta 1</h4>
+								<h4>Tip 1</h4>
 								<div class="icon">
 								<i class="fa fa-desktop fa-3x" style= ></i>
 								</div>
 								<p>
-								 Elegí el menú que más te guste y sorprendé a tus amigos!
-								</p>
-									<br>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-3">
-						<div>
-							<div class="box-gray aligncenter">
-								<h4>Receta 2</h4>
-								<div class="icon">
-								<i class="fa fa-pagelines fa-3x"></i>
-								</div>
-								<p>
-								 Voluptatem accusantium doloremque laudantium sprea totam rem aperiam.
+								 ¡Elegí el menú que más te guste y sorprendé a tus amigos!
 								</p>
 									
 							</div>
@@ -108,12 +94,27 @@
 					<div class="col-lg-3">
 						<div>
 							<div class="box-gray aligncenter">
-								<h4>Receta 3</h4>
+								<h4>Tip 2</h4>								
 								<div class="icon">
-								<i class="fa fa-edit fa-3x"></i>
+								<i class="fa fa-star fa-3x"></i>
 								</div>
 								<p>
-								 Voluptatem accusantium doloremque laudantium sprea totam rem aperiam.
+								¡Lucite como chef!<br><br>
+								</p>
+								
+									
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3">
+						<div>
+							<div class="box-gray aligncenter">
+								<h4>Tip 3</h4>
+								<div class="icon">
+								<i class="fa fa-thumbs-up fa-3x"></i>
+								</div>
+								<p>
+								¿Necesitás bajar de peso? ¡Nosotros te ayudamos!<br>
 								</p>
 									
 							</div>
@@ -122,12 +123,12 @@
 					<div class="col-lg-3">
 						<div>
 							<div class="box-gray aligncenter">
-								<h4>Receta 5</h4>
+								<h4>Tip 4</h4>
 								<div class="icon">
-								<i class="fa fa-code fa-3x"></i>
+								<i class="fa fa-clock-o fa-3x"></i>
 								</div>
 								<p>
-								 Voluptatem accusantium doloremque laudantium sprea totam rem aperiam.
+								 Recetas rápidas: ¡Todo en 20'!<br><br>
 								</p>
 									
 							</div>
@@ -154,7 +155,7 @@
 					<section id="projects">
 					<ul id="thumbs" class="portfolio">
 						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 design" data-id="id-0" data-type="web">
+						<li class="col-lg-3 overflow: hidden; ">
 						<div class="item">
 						
 						<!-- Thumb Image and Description -->
@@ -162,107 +163,135 @@
 						</div>
 						</li>
 						<!-- End Item Project -->
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs col-lg-3 design" data-id="id-1" data-type="icon">
-						
-						<!-- Thumb Image and Description -->
-						<img src="img/asd/2.jpg" alt="imagen">
-						</li>
-						<!-- End Item Project -->
 						
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs col-lg-3 photography" data-id="id-2" data-type="illustrator">
+						<li class="col-lg-3 overflow: hidden;">
+						<div class="item">
 						
 						<!-- Thumb Image and Description -->
-						<img src="img/asd/3.jpg"alt="imagen">
-						</li>
-						<!-- End Item Project -->
-						
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs col-lg-3 photography" data-id="id-2" data-type="illustrator">
-						
-						<!-- Thumb Image and Description -->
-						<img src="img/asd/4.jpg" alt="imagen">
-						</li>
-						<!-- End Item Project -->
-						
-					</ul>
-					</section>
-				</div>
-					
-					<div class="row">
-					<section id="projects">
-					<ul id="thumbs" class="portfolio">
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 design" data-id="id-0" data-type="web">
-						<div class="item-thumbs">
-					
-						<!-- Thumb Image and Description -->
-						<img src="img/asd/5.jpg" alt="imagen">
+							<img src="img/asd/2.jpg" alt="imagen">
 						</div>
 						</li>
 						<!-- End Item Project -->
 						
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs col-lg-3 design" data-id="id-1" data-type="icon">
+						<li class="col-lg-3 overflow: hidden;">
+						<div class="item">
 						
 						<!-- Thumb Image and Description -->
-						<img src="img/asd/6.jpg"alt="imagen">
+							<img src="img/asd/3.jpg" alt="imagen">
+						</div>
 						</li>
 						<!-- End Item Project -->
+						
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs col-lg-3 photography" data-id="id-2" data-type="illustrator">
+						<li class="col-lg-3 overflow: hidden;">
+						<div class="item">
 						
 						<!-- Thumb Image and Description -->
-						<img src="img/asd/7.jpg"alt="imagen">
+							<img src="img/asd/4.jpg" alt="imagen">
+						</div>
 						</li>
 						<!-- End Item Project -->
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs col-lg-3 photography" data-id="id-2" data-type="illustrator">
 						
-						<!-- Thumb Image and Description -->
-						<img src="img/asd/8.jpg" alt="imagen">
-						</li>
-						<!-- End Item Project -->
 					</ul>
 					</section>
-				</div>
 					
+				</div>
 					<div class="row">
 					<section id="projects">
 					<ul id="thumbs" class="portfolio">
 						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 design" data-id="id-0" data-type="web">
-						<div class="item-thumbs">
+						<li class="col-lg-3 overflow: hidden; ">
+						<div class="item">
+						
 						<!-- Thumb Image and Description -->
-						<img src="img/asd/9.jpg" alt="imagen">
+							<img src="img/asd/5.jpg" alt="imagen">
 						</div>
 						</li>
 						<!-- End Item Project -->
+						
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs col-lg-3 design" data-id="id-1" data-type="icon">
+						<li class="col-lg-3 overflow: hidden;">
+						<div class="item">
 						
 						<!-- Thumb Image and Description -->
-						<img src="img/asd/10.jpg" alt="imagen">
+							<img src="img/asd/6.jpg" alt="imagen">
+						</div>
 						</li>
 						<!-- End Item Project -->
+						
 						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs col-lg-3 photography" data-id="id-2" data-type="illustrator">
-					
-						<!-- Thumb Image and Description -->
-						<img src="img/asd/11.jpg" alt="imagen">
-						</li>
-						<!-- End Item Project -->
-						<!-- Item Project and Filter Name -->
-						<li class="item-thumbs col-lg-3 photography" data-id="id-2" data-type="illustrator">
+						<li class="col-lg-3 overflow: hidden;">
+						<div class="item">
 						
 						<!-- Thumb Image and Description -->
-						<img src="img/asd/12.jpg" alt="imagen">
+							<img src="img/asd/7.jpg" alt="imagen">
+						</div>
 						</li>
 						<!-- End Item Project -->
+						
+						<!-- Item Project and Filter Name -->
+						<li class="col-lg-3 overflow: hidden;">
+						<div class="item">
+						
+						<!-- Thumb Image and Description -->
+							<img src="img/asd/8.jpg" alt="imagen">
+						</div>
+						</li>
+						<!-- End Item Project -->
+						
 					</ul>
 					</section>
 				</div>
+				
+					<div class="row">
+					<section id="projects">
+					<ul id="thumbs" class="portfolio">
+						<!-- Item Project and Filter Name -->
+						<li class="col-lg-3 overflow: hidden; ">
+						<div class="item">
+						
+						<!-- Thumb Image and Description -->
+							<img src="img/asd/9.jpg" alt="imagen">
+						</div>
+						</li>
+						<!-- End Item Project -->
+						
+						<!-- Item Project and Filter Name -->
+						<li class="col-lg-3 overflow: hidden;">
+						<div class="item">
+						
+						<!-- Thumb Image and Description -->
+							<img src="img/asd/10.jpg" alt="imagen">
+						</div>
+						</li>
+						<!-- End Item Project -->
+						
+						<!-- Item Project and Filter Name -->
+						<li class="col-lg-3 overflow: hidden;">
+						<div class="item">
+						
+						<!-- Thumb Image and Description -->
+							<img src="img/asd/11.jpg" alt="imagen">
+						</div>
+						</li>
+						<!-- End Item Project -->
+						
+						<!-- Item Project and Filter Name -->
+						<li class="col-lg-3 overflow: hidden;">
+						<div class="item">
+						
+						<!-- Thumb Image and Description -->
+							<img src="img/asd/12.jpg" alt="imagen">
+						</div>
+						</li>
+						<!-- End Item Project -->
+						
+					</ul>
+					</section>
+				</div>	
+					
 			</div>
 		</div>
 
