@@ -63,16 +63,16 @@
 			// 1st Query
 			$result = $db->query("call UsuariosDeGrupo(".$idGrupo.")");
 			if($result){
-			     // Cycle through results
-			    while ($row = $result->fetch_object()){
-			        //$user_arr[] = $row;
-			        $usuario = new Usuario($row->IdUsuario,$row->Usuario,$row->Contrase,$row->Sexo,$row->Altura,$row->IdDieta,1,$row->IdRutina,$row->IdContextura,$row->IdPreexistente,$row->Email,$row->Edad);
-			        //$usuario = new Usuario($row["IdUsuario"],$row["Usuario"],$row["Contrase"],$row["Sexo"],$row["Altura"],$row["IdDieta"],1,$row["IdRutina"],$row["IdContextura"],$row["IdPreexistente"],$row["Email"],$row["Edad"]);
-			        array_push($Usuarios, $usuario);
-			    }
-			    // Free result set
-			    $result->close();
-			    $db->next_result();
+				 // Cycle through results
+				while ($row = $result->fetch_object()){
+					//$user_arr[] = $row;
+					$usuario = new Usuario($row->IdUsuario,$row->Usuario,$row->Contrase,$row->Sexo,$row->Altura,$row->IdDieta,1,$row->IdRutina,$row->IdContextura,$row->IdPreexistente,$row->Email,$row->Edad);
+					//$usuario = new Usuario($row["IdUsuario"],$row["Usuario"],$row["Contrase"],$row["Sexo"],$row["Altura"],$row["IdDieta"],1,$row["IdRutina"],$row["IdContextura"],$row["IdPreexistente"],$row["Email"],$row["Edad"]);
+					array_push($Usuarios, $usuario);
+				}
+				// Free result set
+				$result->close();
+				$db->next_result();
 			}
 
 			//mysql_select_db($this->nameDB, $this->connectionDB);

@@ -4,6 +4,7 @@
 include("../datos/capaDatos.php");
 
 if(isset($_POST["submit"])){
+
 		
 		$userObj = new Usuario(0,$_POST["usuario"], $_POST["contrasenia"], $_POST["genero"], $_POST["altura"], $_POST["dieta"],1, $_POST["rutina"], $_POST["complexion"], $_POST["condPre"], $_POST["email"], $_POST["edad"]);
 		$datosObj = new accesoDatos();
@@ -24,10 +25,10 @@ if(isset($_POST["submit"])){
 	 $Qid=mysql_query($sacarID) or die (mysql_error());
 	 $id= mysql_fetch_array($Qid);*/
 	 
-	 session_start();
-	 $_SESSION["idUsuario"]= $id['0']; // ya que me devuelve un array, elijo la primera posición
+	 //session_start();
+	 //$_SESSION["idUsuario"]= $id['0']; // ya que me devuelve un array, elijo la primera posición
 	
-		header("location: index.php"); // para poner el header, no hay que tener NADA 
+		header("location: ../index.php"); // para poner el header, no hay que tener NADA 
 												//  de HTML o ningún ECHO en el código
 }
 
