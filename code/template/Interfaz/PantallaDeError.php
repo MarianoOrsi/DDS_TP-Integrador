@@ -18,15 +18,15 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 		<meta name="description" content="" />
 		<meta name="author" content="http://bootstraptaste.com" />
 		<!-- css -->
-		<link href="css/bootstrap.min.css" rel="stylesheet" />
-		<link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
-		<link href="css/jcarousel.css" rel="stylesheet" />
-		<link href="css/flexslider.css" rel="stylesheet" />
-		<link href="css/style.css" rel="stylesheet" />
-		<link href="css/form.css" rel="stylesheet" />
-		<link href="css/error.css" rel="stylesheet" />
+		<link href="../css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../css/fancybox/jquery.fancybox.css" rel="stylesheet">
+		<link href="../css/jcarousel.css" rel="stylesheet" />
+		<link href="../css/flexslider.css" rel="stylesheet" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<link href="../css/form.css" rel="stylesheet" />
+		<link href="../css/error.css" rel="stylesheet" />
 		<!-- Theme skin -->
-		<link href="skins/default.css" rel="stylesheet" />
+		<link href="../skins/default.css" rel="stylesheet" />
 
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
@@ -37,7 +37,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 	<body>
 		<div id="wrapper">
 				<!-- start header -->
-		<?php include("include/header.php")?>
+		<?php include("../include/header.php")?>
 			<!-- end header -->
 
 
@@ -54,10 +54,10 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 									Estamos trabajando para solucionarlo ;)
 								</div>
 								
-								<img src="img/EstamosTrabajandoPAraUsted.jpg" title="Tecnicos Trabajando" />
+								<img src="../img/EstamosTrabajandoPAraUsted.jpg" title="Tecnicos Trabajando" />
 																
 								<div class="error-actions">
-									<a href="index.php" class="btn btn-primary btn-lg"> Llevame al Inicio </a>
+									<a href="../index.php" class="btn btn-primary btn-lg"> Llevame al Inicio </a>
 								</div>
 							</div>
 						</div>
@@ -67,21 +67,21 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 			</section>
 
 			<!-- start footer -->
-				<?php include("include/footer.php")?>
+				<?php include("../include/footer.php")?>
 			<!-- end footer -->
 		<!-- javascript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="js/jquery.js"></script>
-		<script src="js/jquery.easing.1.3.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/jquery.fancybox.pack.js"></script>
-		<script src="js/jquery.fancybox-media.js"></script>
-		<script src="js/google-code-prettify/prettify.js"></script>
-		<script src="js/portfolio/jquery.quicksand.js"></script>
-		<script src="js/portfolio/setting.js"></script>
-		<script src="js/jquery.flexslider.js"></script>
-		<script src="js/animate.js"></script>
-		<script src="js/custom.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script src="../js/jquery.easing.1.3.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/jquery.fancybox.pack.js"></script>
+		<script src="../js/jquery.fancybox-media.js"></script>
+		<script src="../js/google-code-prettify/prettify.js"></script>
+		<script src="../js/portfolio/jquery.quicksand.js"></script>
+		<script src="../js/portfolio/setting.js"></script>
+		<script src="../js/jquery.flexslider.js"></script>
+		<script src="../js/animate.js"></script>
+		<script src="../js/custom.js"></script>
 	</body>
 </html>
