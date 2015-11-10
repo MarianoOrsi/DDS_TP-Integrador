@@ -120,7 +120,7 @@
 
 			mysql_select_db($this->nameDB, $this->connectionDB);
 
-			$consulta = "call sp_Recetacalificadasxsexocontexturacalificacion(".$sexo.",".$idContextura",".$puntuacion")";
+			$consulta = "call sp_Recetacalificadasxsexocontexturacalificacion(".$sexo.",".$idContextura.",".$puntuacion.")";
 			
 			$result = mysql_query($consulta) or die (mysql_error());
 
