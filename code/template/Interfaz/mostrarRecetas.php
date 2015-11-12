@@ -84,7 +84,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 													</tbody>
 													</table>
 													<div class="container aligncenter">
-													<a href="agregarReceta.php" class="btn btn-theme" align="center">Agregar nueva receta</a>
+													<a href="gestionRecetas.php" class="btn btn-theme" align="center">Agregar nueva receta</a>
 									
 								</div>
 								</div>

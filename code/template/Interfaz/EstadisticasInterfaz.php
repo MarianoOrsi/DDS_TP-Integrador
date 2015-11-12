@@ -106,7 +106,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
                       <select class="combo" id="dificultad" onChange="selectRecetas()">
                    		<option value="">Dificultad</option>
                    		  <?php
-							include("negocio/EstadisticasNegocio.php");
+							include("../negocio/EstadisticasNegocio.php");
 							$logica = new logicaDeNegocio();
 							$arrayDificultades = $logica->getDificultades();
 							foreach($arrayDificultades as $dificultad) {

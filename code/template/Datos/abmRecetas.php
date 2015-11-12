@@ -21,6 +21,7 @@
         $con = mysql_connect($servidor,$user,$pass);
         mysql_select_db($dbname,$con);
         $return = mysql_query("INSERT INTO puntuaciones(IdReceta,IdUsuario,Fecha,Puntuacion) VALUES ('".$id."', 1, now(),".$puntos.")",$con) or die (mysql_error());
+        //LUCAS - PUNTUACIONES DUPLICADAS, 1 HARCODEADO
    }
 
 ?>
