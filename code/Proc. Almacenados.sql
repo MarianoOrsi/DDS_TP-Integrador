@@ -115,6 +115,7 @@ where idusuario=IdUsu$$
 
 /*--------------------------------------------------------------------------------------------------------*/
 
+delimiter $$
 CREATE PROCEDURE `sp_EsCreadorDeGrupo`(IN idGrupoParam INT, IN idUsuarioParam INT)
 begin
 
@@ -136,5 +137,19 @@ end if;
 select esCreador;
 
 end$$
+delimiter;
 
 /*--------------------------------------------------------------------------------------------------------*/
+
+delimiter $$
+CREATE PROCEDURE `sp_puntuar`(IN idrec INT, IN idUsu INT, IN puntos int)
+begin
+SELECT @idUsuario_var:=idusuario FROM `puntuaciones` WHERE `puntuaciones`.`IdReceta` = idrec and puntuaciones.IdUsuario=idusu;
+
+if @idUsuario_var = idUsu then
+	update puntuaciones set Puntuacion=puntos where puntuaciones.IdReceta=idrec and IdUsuario=idusu;
+else
+	INSERT INTO `puntuaciones`(`IdReceta`, `IdUsuario`, `Fecha`, `Puntuacion`) VALUES (idRec,IdUsu,now(),puntos);
+end if;
+end$$
+delimiter;
