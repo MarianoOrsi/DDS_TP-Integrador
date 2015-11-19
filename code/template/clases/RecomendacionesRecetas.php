@@ -16,7 +16,7 @@ class Recomendaciones extends Visitor{
 
 	public function buscar($Preferencia)
 	{
-		return $this->accessData->getRecomendacionesXPreferencia($Preferencia->IdPreferencia);	
+		return $this->accessData->getRecomendacionesXPreferencia($Preferencia->getIdPreferencia);	
 	}
 
 }
@@ -26,7 +26,7 @@ class Recetas extends Visitor{
 
 	public function buscar($Preferencia)
 	{
-		return $this->accessData->getRecetasXPreferencia($Preferencia->IdPreferencia);	
+		return $this->accessData->getRecetasXPreferencia($Preferencia->getIdPreferencia);	
 	}
 
 }
