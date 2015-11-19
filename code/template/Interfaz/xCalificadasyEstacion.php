@@ -46,7 +46,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 
 						var dificultades = document.getElementById("dificultad");
 						var sexos       = document.getElementById("sexo");
-						var ruta = "EstadisticasInterfaz.php?&Dificultad="
+						var ruta = "RecetasConsultadas.php?&Dificultad="
 						            + dificultades.options[dificultades.selectedIndex].value 
 						            + "&Sexo=" 
 						            + sexos.options[sexos.selectedIndex].value;
@@ -94,13 +94,70 @@ mysql_select_db($dbname, $con) or die(mysql_error());
                   
 					<div class="container">
 					
-					  <a href="../interfaz/recetasconsultadas.php"><h1>Recetas Consultadas</h1></a>
-					  <a href="../interfaz/xDieta.php"><h1>Recetas por dieta</h1></a>
-					  <a href="../interfaz/xPreferencias.php"><h1>Recetas por preferencias</h1></a>
-					  <a href="../interfaz/xCondimentos.php"><h1>Recetas por condimentos</h1></a>
-					  <a href="../interfaz/xPiramide.php"><h1>Recetas por pirámide</h1></a>
-					  <a href="../interfaz/xCalificadasyEstacion.php"><h1>Recetas por Calificación y Estación</h1></a>
-					  <a href="../interfaz/xSexoyContexturayCalificacion.php"><h1>Recetas por Sexo, Contextura y Calificación</h1></a>              		  
+					  <h1>Recetas Consultadas</h1>
+
+              		  <select class="combo" id="sexo" onChange="selectRecetas()">
+                   	     <option value="">Sexo</option>
+                	     <option value="M">Masculino</option>
+                         <option value="F">Femenino</option>
+                      </select>
+
+
+                      <select class="combo" id="dificultad" onChange="selectRecetas()">
+                   		<option value="">Dificultad</option>
+                   		  <?php
+							include("../negocio/EstadisticasNegocio.php");
+							$logica = new logicaDeNegocio();
+							$arrayDificultades = $logica->getDificultades();
+							foreach($arrayDificultades as $dificultad) {
+								echo "<option value=" . $dificultad->getId() . ">" . $dificultad->getDescripcion() . "</option>";
+							}
+
+							?>
+                      </select>
+
+						<div class="row">
+							
+									<table class="table table-hover">
+									<thead>
+									<tr>													
+										<th>N° Consultas</th>
+										<th>Receta</th>
+									</tr>
+									</thead>
+									<tbody>
+						             <?php
+                                        $dificultad='';
+                                        $sexo = '';
+								        
+								        if(isset($_GET["Dificultad"]))
+								        {
+ 										  $dificultad = $_GET["Dificultad"];
+								        }
+
+								        if(isset($_GET["Sexo"]))
+								        {
+								          $sexo = $_GET["Sexo"];
+								        }
+
+										$logica = new logicaDeNegocio();
+
+										$arrayRecetasConsultadas = $logica->selectRecetas($dificultad,$sexo);
+
+										foreach($arrayRecetasConsultadas as $receta) {
+										    echo "<TR>";
+											echo "<TD>" . $receta->getCantConsultas() . "</TD>";
+											echo "<TD>" . $receta->getReceta() . "</TD>";
+											echo "</TR>";
+									}
+								?>
+									
+									</tbody>
+									</table>
+									<div class="container aligncenter">
+									
+								</div>
+								</div>
 							</div>
 						
 					
