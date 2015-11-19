@@ -235,5 +235,30 @@
 
 			return $arrayRecetas;
 		}
+
+		public function EsCreadorDeGrupo($IdGrupo,$IdUsuario){
+
+			$db = new mysqli('localhost','root','','diseniosistemas');
+
+			
+			if(mysqli_connect_errno()){
+			 echo mysqli_connect_error();
+			}
+			
+			$result = $db->query("call sp_EsCreadorDeGrupo(".$IdGrupo.",".$IdUsuario.")");
+			
+			$esCreador = null;
+
+			if($result){
+				while ($row = $result->fetch_row()){
+					
+					$esCreador = $row[0];
+					
+				}
+				$result->close();
+				$db->next_result();
+			}
+			return $esCreador;
+		}
 	}
 ?>

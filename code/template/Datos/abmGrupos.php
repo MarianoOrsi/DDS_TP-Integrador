@@ -8,15 +8,6 @@
 
     include("../negocio/capaNegocio.php");
 
-    if(isset($_GET['Usuario'])){
-        $result = mysql_query("call sp_BuscarUsuario_PorNombre('%".$_GET['Usuario']."%'");  
-        $data = array();
-        while ($row = mysql_fetch_array($result)) {
-            array_push($data, $row['Usuario']);    
-        }   
-        echo json_encode($data);
-    }
-
 //TODO PARA ABM DE GRUPOS
     if(isset($_GET["method"]) && isset($_GET["IdUser"]) && isset($_GET["Name"]) && isset($_GET["IdGroup"])){
      
@@ -75,7 +66,8 @@
         $con = mysql_connect($servidor,$user,$pass);
      
         mysql_select_db($dbname,$con);
-        $return = mysql_query("DELETE FROM grupos WHERE IdGrupo = ".$idGrupo."",$con) or die (mysql_error());
+        $return2 = mysql_query("DELETE FROM `usuario-grupos` WHERE IdGrupo = ".$idGrupo."",$con) or die (mysql_error());
+        $return1 = mysql_query("DELETE FROM grupos WHERE IdGrupo = ".$idGrupo."",$con) or die (mysql_error());
     }
 
     function modifyGroup($idGroup,$newName){

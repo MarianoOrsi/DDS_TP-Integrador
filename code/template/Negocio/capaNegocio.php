@@ -33,5 +33,12 @@
 
 			return $arrayDeUsuarios;
 		}
+
+		public function esCreadorDeGrupo($IdGrupo,$IdUsuario){
+		
+			$esCreador = $this->accessData->EsCreadorDeGrupo($IdGrupo,$IdUsuario);
+
+			return $esCreador;
+		}
 	}
 ?>

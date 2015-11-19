@@ -83,35 +83,14 @@
 			function habilitarInvitaciones(){
 				
 				var idGrupo = document.getElementById("idGrupo").value;
-				
+				var nombreGrupo = document.getElementById("Nombre").value;
+
 				if(idGrupo != ""){
-					window.location.href = "gestionGrupos.php?IdGrupo=" + idGrupo;
+					window.location.href = "Interfaz_AgregarAmigo.php?IdGrupo=" + idGrupo + "&NombreGrupo=" + nombreGrupo;
 				}
 				else{
-					alert("Debe seleccionar el grupo para gestionar amigos");
+					alert("Debe seleccionar el grupo para agregar amigos");
 				}					
-			}
-
-			function agregarAmigo(idGrupo){
-				
-				var usuario = document.getElementById("usuarioAmigo").value;
-
-				if(usuario != ""){
-					window.location.href = "../datos/abmGrupos.php?method=ADD&User=" + usuario + "&IdGrupo=" + idGrupo;
-				}
-				else{
-					alert("Debe seleccionar un amigo");
-				}	
-			}
-
-			function eliminarAmigo(idGrupo, idUsuario){
-
-				if(idUsuario != "" && idGrupo != ""){
-					window.location.href = "../datos/abmGrupos.php?method=DEL&User=" + idUsuario + "&IdGrupo=" + idGrupo;
-				}
-				else{
-					alert("Debe seleccionar un amigo");
-				}	
 			}
 
 		</script>
@@ -153,7 +132,10 @@
 								echo "<TD>" . $grupo->getIdGrupo() . "</TD>";
 								echo "<TD>" . $grupo->getNombreGrupo() . "</TD>";
 								echo "<TD>" . $grupo->getFecha() . "</TD>";
-								echo "<TD><input type=\"button\" name=\"Invitar\" onclick=\"habilitarInvitaciones()\" value=\"Invitar Amigos\" class=\"btn btn-lg\"> </TD>";
+								if($logica->esCreadorDeGrupo($grupo->getIdGrupo(),$_SESSION["idUsuario"]) == $_SESSION["idUsuario"])
+									echo "<TD><input type=\"button\" name=\"Invitar\" onclick=\"habilitarInvitaciones()\" value=\"Invitar Amigos\" class=\"btn btn-lg\"> </TD>";
+								else
+									echo "<TD></TD>";
 								echo "</TR>";
 							}
 
@@ -176,74 +158,17 @@
 							<input type="button" name="Guardar" onclick="modifyGroup()" value="Guardar" class="btn btn-lg" />
 							<input type="button" name="Delete" onclick="deleteGroup()" value="Borrar" class="btn btn-lg" />
 						</div>
-					<!--</div>-->
 						<br />
 
-						<?php
-
-						if(isset($_GET["IdGrupo"]))
-							echo "<div id=\"invitarAmigos\" style=\"visibility: visible\">";
-						else
-							echo "<div id=\"invitarAmigos\">";
-						?>
-							<h4>Integrantes del grupo</h4>
-							<table border="1" cellspacing="3" style="width:70%">
-								<tr>
-									<TD><b>&nbsp;ID Usuario&nbsp;</b></TD>
-									<TD><b>&nbsp;Nombre&nbsp;</b></TD>
-									<TD></TD>
-								</tr>
-
-								<?php
-
-									if(isset($_GET["IdGrupo"])){
-
-										$logica = new logicaDeNegocio();
-
-										$arrayUsuariosDeGrupo = $logica->getUsuariosDeGrupo($_GET["IdGrupo"]);
-
-										foreach($arrayUsuariosDeGrupo as $usuario) {
-										    echo "<TR>";
-											echo "<TD>" . $usuario->getIdUsuario() . "</TD>";
-											echo "<TD>" . $usuario->getUsuario() . "</TD>";
-											echo "<TD>
-												  <input type=\"button\" name=\"Invitar\" onclick=\"eliminarAmigo(".$_GET["IdGrupo"].",".$usuario->getIdUsuario().")\" value=\"Eliminar\" class=\"btn btn-lg\">  
-												  </TD>";
-											echo "</TR>";
-										}
-									}
-								?>
-							</table>
-							<br />
-							<br />
-							<br />
-							<br />
-							<br />
-							<?php
-								if(isset($_GET["IdGrupo"])){
-									echo "Agrega a un amigo:";
-									echo "<br />"; 
-									echo "<input id=\"usuarioAmigo\" type=\"text\" placeholder=\"Buscar\" / >";
-									echo "<br />";
-									echo "<br />";
-									echo "     <input type=\"button\" name=\"AgregarAmigo\" onclick=\"agregarAmigo(".$_GET["IdGrupo"].")\" value=\"agregar\" class=\"btn btn-lg\" />";
-									echo "<br />";
-								}
-							?>
-						</div>
-					<!--</div>-->
-						</div>
+				</div>
+		</div>
 	
-						
-					
-			
 
 			</section>
 
 			<!-- start footer -->
 				<?php include("../include/footer.php");?>
 			<!-- end footer -->
-		</div>
 		<a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 		<!-- javascript
 		================================================== -->
