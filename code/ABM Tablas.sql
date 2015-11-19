@@ -345,15 +345,15 @@ INSERT INTO `receta-estaciones` (`IdReceta`, `IdEstacion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `receta-preexistente`
+-- Estructura de tabla para la tabla `ingrediente-preexistente`
 --
 
-CREATE TABLE IF NOT EXISTS `receta-preexistentes` (
-  `IdRecetaPreexistentes` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `IdReceta` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ingrediente-preexistentes` (
+  `IdIngredientePreexistentes` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `IdIngrediente` int(11) NOT NULL,
   `IdPreexistente` int(11) NOT NULL,
-  CONSTRAINT `RPreexistente` FOREIGN KEY (`IdPreexistente`) REFERENCES `Preexistentes` (`IdPreexistente`),
-  CONSTRAINT `RecetaPreexistentes` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`IdReceta`)
+  CONSTRAINT `IPreexistente` FOREIGN KEY (`IdPreexistente`) REFERENCES `Preexistentes` (`IdPreexistente`),
+  CONSTRAINT `IngredientePreexistentes` FOREIGN KEY (`IdIngrediente`) REFERENCES `Ingredientes` (`IdIngrediente`)
 );
 
 -- --------------------------------------------------------
