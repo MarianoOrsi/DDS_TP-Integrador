@@ -114,3 +114,27 @@ SELECT IdPreferencia, preferencias.IdIngrediente, IdUsuario, ingredientes.Ingred
 where idusuario=IdUsu$$
 
 /*--------------------------------------------------------------------------------------------------------*/
+
+CREATE PROCEDURE `sp_EsCreadorDeGrupo`(IN idGrupoParam INT, IN idUsuarioParam INT)
+begin
+
+declare esCreador int;
+
+SELECT 
+    @idUsuario_var:=IdUsuarioCreador
+FROM
+    grupos
+WHERE
+    IdGrupo = idGrupoParam;
+
+if @idUsuario_var = idUsuarioParam then
+	set esCreador = 1;
+else
+	set esCreador = 0;
+end if;
+
+select esCreador;
+
+end$$
+
+/*--------------------------------------------------------------------------------------------------------*/
