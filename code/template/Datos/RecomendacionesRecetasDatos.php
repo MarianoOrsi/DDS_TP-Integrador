@@ -1,6 +1,8 @@
+
+
 <?php
     include("../clases/Usuario.php");
- include("../clases/RecetaConsultada.php");
+    include("../clases/Receta.php");
 class accesoDatos{
 
 		private $servidorDB;
@@ -22,39 +24,16 @@ class accesoDatos{
 
 			mysql_select_db($this->nameDB, $this->connectionDB);
 
-			$consulta = "SELECT IdUsuario,
-								Usuario,
-								Contrase,
-								fechaCreacion,
-								IdContextura,
-								Sexo,
-								Trabajo,
-								IdRutina,
-								Edad,
-								Altura,
-								IdPreexistente,
-								IdDieta,
-								Email,
-								IdPesos-Ideales
+			$consulta = "SELECT IdPreexistente
 			                FROM usuarios
 			                WHERE IdUsuario = " . $IdUsuario;
-			
+
 	     	$result = mysql_query($consulta) or die (mysql_error());
 
 			while ($row = mysql_fetch_array($result)){
 
-				$usuario= new Usuario($row["IdUsuario"],
-					                  $row["Usuario"],
-					                  $row["Contrase"]
-					                  $row["Sexo"],
-					                  $row["Altura"],
-					                  $row["IdDieta"],
-					                  "",
-					                  $row["IdRutina"],
-					                  $row["IdContextura"],
-					                  "",
-					                  $row["Email"],
-					                  $row["fechaCreacion"]);
+				$usuario= new Usuario("","","","","","","","","",
+					                  $row["IdPreexistente"],"","");
 
 				return $usuario;
 			}
@@ -88,22 +67,30 @@ class accesoDatos{
 
 	        mysql_select_db($this->nameDB, $this->connectionDB);
 
-			$consulta = "SELECT IdReceta, Receta FROM recetas WHERE IdDieta = " . $IdPreferencia;
-			
+			$consulta = "SELECT recetas.Receta FROM recetas
+						WHERE recetas.IdReceta NOT IN (
+						    
+						SELECT recetas.IdReceta
+						FROM recetas
+						INNER JOIN `receta-ingredientes`
+						ON recetas.IdReceta = `receta-ingredientes`.IdReceta
+						INNER JOIN `ingrediente-preexistentes`
+						ON `receta-ingredientes`.IdIngrediente = `ingrediente-preexistentes`.IdIngrediente
+						WHERE `ingrediente-preexistentes`.IdPreexistente = " . $IdPreferencia . " )" ;
+     
 			$result = mysql_query($consulta) or die (mysql_error());
 
 			$arrayRecetas = array();
 
 			while ($row = mysql_fetch_array($result)){
-
-				$Receta = new Receta($row["IdReceta"],$row["Receta"]);
+            
+				$Receta = new Receta("","","","",$row["Receta"]);
 
 				array_push($arrayRecetas, $Receta);
 			}
 
 			return $arrayRecetas;
 		}
-
 
 	}
 ?>

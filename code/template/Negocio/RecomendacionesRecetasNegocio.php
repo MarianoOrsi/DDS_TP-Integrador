@@ -1,8 +1,6 @@
 <?php
-    include("../clases/Usuario.php");
-    include("../clases/RecomendacionesRecetas.php");
     include("../Datos/RecomendacionesRecetasDatos.php");	
-
+    include("../clases/RecomendacionesRecetas.php");
 if(isset($_GET["method"]))
 {
 	$method = $_GET["method"];
@@ -28,7 +26,6 @@ if(isset($_GET["method"]))
 		
 	   public function selectRecetasXPreferencia(){
 
-            
 	       	$usuario = $this->accessData->getUsuario($_SESSION["idUsuario"]);
 			
             $visitor = new Recetas();  

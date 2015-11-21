@@ -1,6 +1,6 @@
+
 <?php 
 
-include "../Datos/RecomendacionesRecetasDatos.php"
 
 class Visitor{
       	private $accessData;
@@ -10,28 +10,40 @@ class Visitor{
 			$this->accessData = new accesoDatos();
 
 		}
+
+
 }
 
-class Recomendaciones extends Visitor{
+class Recomendaciones extends  Visitor{
 
-	public function buscar($Preferencia)
-	{
-		return $this->accessData->getRecomendacionesXPreferencia($Preferencia->getIdPreferencia);	
+     public function __construct(){
+
+        $this->accessData = new accesoDatos();
+
+	}
+
+	public function buscar($Preferencia){
+
+		return $this->accessData->getRecomendacionesXPreferencia($Preferencia);
 	}
 
 }
+
 
 
 class Recetas extends Visitor{
 
+     public function __construct(){
+
+        $this->accessData = new accesoDatos();
+
+	}
+	
 	public function buscar($Preferencia)
 	{
-		return $this->accessData->getRecetasXPreferencia($Preferencia->getIdPreferencia);	
+		return $this->accessData->getRecetasXPreferencia($Preferencia);
 	}
 
 }
-
-
-
 
 ?>

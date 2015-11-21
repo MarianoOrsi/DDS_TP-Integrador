@@ -94,7 +94,7 @@ class Usuario{
 
         public function buscar($visitor)
         {
-             return $visitor->buscar($this->preferenciasAlimentarias);
+             return $visitor->buscar($this->getCondicionesPreexistentes());
         }
 
 
