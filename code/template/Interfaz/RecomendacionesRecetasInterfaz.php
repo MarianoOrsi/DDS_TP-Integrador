@@ -45,7 +45,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 
                   
 				<div class="container">
-			    <p> RECETAS RECOMENDADAS POR CONDICION PREEXISTENTE	
+			    <h1> RECETAS RECOMENDADAS POR CONDICION PREEXISTENTE</h1>
 				<table class="table table-hover">
 				<thead>
 				<tr>													
