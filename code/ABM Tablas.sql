@@ -304,6 +304,23 @@ INSERT INTO `rutinas` (`Nombre`, `Descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `receta-condimentos`
+--
+
+CREATE TABLE IF NOT EXISTS `receta-condimentos` (
+  `IdRecetaCondimento` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `IdReceta` int(11) NOT NULL,
+  
+  `IdCondimento` int(11) NOT NULL,
+  CONSTRAINT `Receta` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`Idreceta`),
+  CONSTRAINT `Condimentos` FOREIGN KEY (`IdCondimento`) REFERENCES `condimentos` (`IdCondimento`)
+);
+
+
+-- --------------------------------------------------------
+
+
+--
 -- Estructura de tabla para la tabla `recetas`
 --
 

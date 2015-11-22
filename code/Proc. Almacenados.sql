@@ -34,8 +34,8 @@ where puntuaciones.Puntuacion=nota and `receta-estaciones`.IdEstacion=idestacion
 CREATE PROCEDURE `sp_recetaxcond`(IN `idcond` INT)
 SELECT recetas.IdReceta,recetas.Receta
 from recetas inner join 
-`receta-ingredientes` on `receta-ingredientes`.`IdReceta`=recetas.IdReceta
-WHERE `receta-ingredientes`.`Tipo`=2 and `receta-ingredientes`.`IdIngrediente`=idcond
+`receta-condimentos` on `receta-condimentos`.`IdReceta`=recetas.IdReceta
+WHERE `receta-condimentos`.`Idcondimento`=idcond
 LIMIT 5$$
 
 /*--------------------------------------------------------------------------------------------------------*/
