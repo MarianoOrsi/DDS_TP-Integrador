@@ -156,38 +156,40 @@ function MostrarDietas($id)
 								<label>Paso 1</label>
 								
 								<input type="textarea" name="paso1" rows="4" class="form-control"  name="preferencias" />
-							<input type="button" value="Agregar imagen" onClick="alert('Seleccionar imagen');" class="btn btn-lg"/>
+							<input type="button" style="margin-top: 7px;" value="Agregar imagen" onClick="alert('Seleccionar imagen');" class="btn btn-lg"/>
                                     <br /><br />
 								
 								<label>Paso 2</label>
 								
 								<input type="textarea" name="paso2"rows="4" class="form-control"  name="preferencias" />
-								<input type="button" style="text-center" value="Agregar imagen" onClick="alert('Seleccionar imagen');" class="btn btn-lg"/
+								<input type="button" style="margin-top: 7px;" value="Agregar imagen" onClick="alert('Seleccionar imagen');" class="btn btn-lg"/
                                     ><br /><br />
 
                                 <label>Paso 3</label>
 								
 								<input type="textarea" name="paso3" rows="4" class="form-control"  name="preferencias" />
-								<input type="button" value="Agregar imagen" onClick="alert('Seleccionar imagen');" class="btn btn-lg"/>
+								<input type="button" style="margin-top: 7px;" value="Agregar imagen" onClick="alert('Seleccionar imagen');" class="btn btn-lg"/>
                                     <br /><br />
 
                                 <label>Paso 4</label>
 								
 								<input type="textarea" name="paso4" rows="4" class="form-control"  name="preferencias" />
-								<input type="button" value="Agregar imagen" onClick="alert('Seleccionar imagen');" class="btn btn-lg"/>
+								<input type="button" style="margin-top: 7px;" value="Agregar imagen" onClick="alert('Seleccionar imagen');" class="btn btn-lg"/>
                                     <br /><br />
 
                                 <label>Paso 5</label>
 								
 								<input type="textarea" name="paso5" rows="4" class="form-control"  name="preferencias" />
-								<input type="button" value="Agregar imagen" onClick="alert('Seleccionar imagen');" class="btn btn-lg"/>
+								<input type="button" style="margin-top: 7px;" value="Agregar imagen" onClick="alert('Seleccionar imagen');" class="btn btn-lg"/>
                                     <br /><br />
 								</div>
 								</div>
 								</div>
-								
+                                <div class="text-center">
 								<button type="submit" name="submit"  class="btn btn-theme aligncenter">Crear Receta</button>
-							</form> <!-- cambiar el type a submit, el cambio es para mostrar el alert -->
+                                    </div>
+
+                            </form> <!-- cambiar el type a submit, el cambio es para mostrar el alert -->
 
 						</div>
 					</div>
