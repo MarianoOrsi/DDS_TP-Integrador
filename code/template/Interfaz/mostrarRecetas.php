@@ -7,6 +7,55 @@ $pass = "";
 $dbname = "diseniosistemas";
 $con = mysql_connect($servidor, $user, $pass);
 mysql_select_db($dbname, $con) or die(mysql_error());
+
+$consulta="SELECT Receta,IdDificultad,Calorias FROM recetas WHERE idUsuario=".$_SESSION["idUsuario"].";";
+$Qid=mysql_query($consulta) or die (mysql_error());
+$id= mysql_fetch_array($Qid);
+
+function DemeNombreDificultad($id)
+{
+
+	$consulta="SELECT Dificultad FROM dificultades WHERE IdDificultad='".$id."'";
+	$Qid=mysql_query($consulta) or die (mysql_error());
+	$id= mysql_fetch_array($Qid);
+	
+	
+    return $id['0'];
+}
+
+function DameRecetasResumida($recetaSql	)
+{
+	$recetaHtml='
+	<tr>
+		<td>'.$recetaSql['0'].'</td>
+		<td>'.DemeNombreDificultad($recetaSql['1']).'</td>
+		<td>'.$recetaSql['2'].'</td>
+		<td><input type="button" value="Editar" class="btn btn-lg"/></td>
+		<td><a href="../index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
+	</tr>';
+	
+    return $recetaHtml;
+}
+
+function MostarRecetasResumidas($id)
+{
+		echo count($id);
+		
+	for ($i = 0; $i < (count($id)/3) ; $i++) 
+	{
+		$pos=$i*3;
+		$receta['0']=$id[$pos];
+		$pos=$i*3+1;
+		$receta['1']=$id[$pos];
+		$pos=$i*3+2;
+		$receta['2']=$id[$pos];
+
+    	echo DameRecetasResumida($receta);
+	}
+
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -52,39 +101,22 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 													<thead>
 													<tr>													
 														<th>Nombre</th>
-														<th>Horarios</th>
+														<th>Dificultad</th>
 														<th>Calor&iacute;as</th>
 														<th></th>
 														<th></th>
 													</tr>
 													</thead>
 													<tbody>
-													<tr>
-														<td>John</td>
-														<td>Doe</td>
-														<td>john@example.com</td>
-														<td><input type="button" value="Editar" class="btn btn-lg"/></td>
-														<td><a href="../index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
-														</tr>
-													<tr>
-														<td>Mary</td>
-														<td>Moe</td>
-														<td>mary@example.com</td>
-														<td><input type="button" value="Editar" class="btn btn-lg"/></td>
-														<td><a href="../index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
-													</tr>
-													<tr>
-													<td>July</td>
-													<td>Dooley</td>
-													<td>july@example.com</td>
-													<td><input type="button" value="Editar" class="btn btn-lg"/></td>
-													<td><a href="../index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
-													</tr>
+
+													<?php
+														MostarRecetasResumidas($id);
+													?>
 													
 													</tbody>
 													</table>
 													<div class="container aligncenter">
-													<a href="gestionRecetas.php" class="btn btn-theme" align="center">Agregar nueva receta</a>
+													<a href="gestionRecetas.php" class="btn btn-theme" align="center">Puntuar</a>
 									
 								</div>
 								</div>
