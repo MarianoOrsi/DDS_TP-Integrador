@@ -38,6 +38,24 @@
 			return $arrayDificultades;
 		}
 
+		public function getDietas(){
+			mysql_select_db($this->nameDB, $this->connectionDB);
+			$consulta = "SELECT * FROM dietas";
+
+			$result = mysql_query($consulta) or die (mysql_error());
+
+			$arrayDietas = array();
+
+			while ($row = mysql_fetch_array($result)){
+
+				$dieta = new Dieta($row['IdDieta'],$row['Nombre']);
+
+				array_push($arrayDietas, $dieta);
+			}
+
+			return $arrayDietas;
+		}
+
 		public function getRecetasCalificadas($sexo,$idContextura,$puntuacion){
 
 			mysql_select_db($this->nameDB, $this->connectionDB);

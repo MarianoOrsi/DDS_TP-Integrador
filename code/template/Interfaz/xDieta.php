@@ -42,38 +42,25 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 						});
 				      	return vars;
 					}
-					function selectRecetas() {
+					function selectRecetasDieta() {
 
-						var dificultades = document.getElementById("dificultad");
-						var sexos       = document.getElementById("sexo");
-						var ruta = "RecetasConsultadas.php?&Dificultad="
-						            + dificultades.options[dificultades.selectedIndex].value 
-						            + "&Sexo=" 
-						            + sexos.options[sexos.selectedIndex].value;
+						var dietas = document.getElementById("dietas");
+						var ruta = "xDieta.php?&Dieta="
+						            + dietas.options[dietas.selectedIndex].value ;
 						
 		                window.location.href = ruta;
 					}
 					 function preloadFunc()
 					    {  
-					       var dificultades = document.getElementById("dificultad");
-						   var sexos       = document.getElementById("sexo");
-					       var dif = getUrlVars()["Dificultad"];
-						   var sex = getUrlVars()["Sexo"];
+					       var dietas = document.getElementById("dieta");
+					       var die = getUrlVars()["Dieta"];
 
 						   if(typeof dif != "undefined")
 						   {
-						   	dificultades.value = dif;
+						   	dietas.value = dif;
 						   }else
 						   {
-						   	dificultades.value = "";
-						   }
-
-						 if(typeof sex != "undefined")
-						   {
-						   	sexos.value = sex;
-						   }else
-						   {
-						   	sexos.value = "";
+						   	dietas.value = "";
 						   }
 
 						     
@@ -94,23 +81,17 @@ mysql_select_db($dbname, $con) or die(mysql_error());
                   
 					<div class="container">
 					
-					  <h1>Recetas Consultadas</h1>
-
-              		  <select class="combo" id="sexo" onChange="selectRecetas()">
-                   	     <option value="">Sexo</option>
-                	     <option value="M">Masculino</option>
-                         <option value="F">Femenino</option>
-                      </select>
+					  <h1>Busqueda por Dietas</h1>
 
 
-                      <select class="combo" id="dificultad" onChange="selectRecetas()">
-                   		<option value="">Dificultad</option>
+                      <select class="combo" id="dieta" onChange="selectRecetas()">
+                   		<option value="">Dieta</option>
                    		  <?php
 							include("../negocio/EstadisticasNegocio.php");
 							$logica = new logicaDeNegocio();
-							$arrayDificultades = $logica->getDificultades();
-							foreach($arrayDificultades as $dificultad) {
-								echo "<option value=" . $dificultad->getId() . ">" . $dificultad->getDescripcion() . "</option>";
+							$arrayDietas = $logica->getDietas();
+							foreach($arrayDietas as $dieta) {
+								echo "<option value=" . $dieta->getId() . ">" . $dieta->getDescripcion() . "</option>";
 							}
 
 							?>
@@ -120,33 +101,25 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 							
 									<table class="table table-hover">
 									<thead>
-									<tr>													
-										<th>N° Consultas</th>
+									<tr>
 										<th>Receta</th>
 									</tr>
 									</thead>
 									<tbody>
 						             <?php
-                                        $dificultad='';
-                                        $sexo = '';
+                                        $dieta='';
 								        
-								        if(isset($_GET["Dificultad"]))
+								        if(isset($_GET["Dieta"]))
 								        {
- 										  $dificultad = $_GET["Dificultad"];
-								        }
-
-								        if(isset($_GET["Sexo"]))
-								        {
-								          $sexo = $_GET["Sexo"];
+ 										  $dieta = $_GET["Dieta"];
 								        }
 
 										$logica = new logicaDeNegocio();
 
-										$arrayRecetasConsultadas = $logica->selectRecetas($dificultad,$sexo);
+										$arrayRecetas = $logica->selectRecetasDieta($dieta);
 
-										foreach($arrayRecetasConsultadas as $receta) {
+										foreach($arrayRecetas as $receta) {
 										    echo "<TR>";
-											echo "<TD>" . $receta->getCantConsultas() . "</TD>";
 											echo "<TD>" . $receta->getReceta() . "</TD>";
 											echo "</TR>";
 									}

@@ -12,6 +12,8 @@ if(isset($_GET["method"]))
 	   $dificultad = $_GET["dificultad"];
 	   $sexo       = $_GET["sexo"];
 	   $logica->selectRecetas($dificultad,$sexo);
+	   $dieta= $_GET["dieta"];
+	   $logica->selectRecetasDieta($dieta);
     }
 }
 
@@ -32,10 +34,24 @@ if(isset($_GET["method"]))
 
 			return $arrayDificultades;
 		}
+
+		public function getDietas(){
+			
+			$arrayDietas =  $this->accessData->getDietas();
+
+			return $arrayDietas;
+		}
 		
 	   public function selectRecetas($dificultad,$sexo){
 			
 			$arrayRecetas =  $this->accessData->selectRecetas($dificultad,$sexo);
+
+			return $arrayRecetas;
+		}
+
+	  public function selectRecetasDieta($dieta){
+			
+			$arrayRecetas =  $this->accessData->getRecetasxDieta($iddieta);
 
 			return $arrayRecetas;
 		}
