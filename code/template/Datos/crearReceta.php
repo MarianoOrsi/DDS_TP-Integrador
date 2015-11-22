@@ -27,16 +27,19 @@ function calcularCalorias($ingredientes)
 
 if(isset($_POST["submit"])) {
 
-
- $recetaObj = new Receta($_POST["nombreReceta"],$_POST["dificultad"],$_SESSION["idUsuario"],$_POST["estacion"],$_POST["ingredientesSeleccionados"],$_POST["condimentosSeleccionados"],[$_POST["paso1"],$_POST["paso2"],$_POST["paso3"],$_POST["paso4"],$_POST["paso5"]],calcularCalorias($_POST["ingredientesSeleccionados"]),$_POST["piramide"],$_POST["dieta"]);
-
-
-    $datosObj = new accesoDatos();
-    $datosObj->GuardarReceta($recetaObj);
-
-  header("location: ../Interfaz/mostrarRecetas.php");
+$pasosReceta=[$_POST["paso1"],$_POST["paso2"],$_POST["paso3"],$_POST["paso4"],$_POST["paso5"]];
 
 
+ $recetaObj = new Receta($_POST["nombreReceta"],$_POST["dificultad"],$_SESSION["idUsuario"],$_POST["estacion"],$_POST["ingredientesSeleccionados"],$_POST["condimentosSeleccionados"],$pasosReceta,calcularCalorias($_POST["ingredientesSeleccionados"]),$_POST["piramide"],$_POST["dieta"]);
+   $datosObj = new accesoDatos();
+   $datosObj->GuardarReceta($recetaObj);
+
+    $datosObj->GuardarPasos($recetaObj->getPasos());
+
+    $datosObj->GuardarIngredientes($recetaObj->getIngredientes());
+    $datosObj->GuardarCondimentos($recetaObj->getCondimentos());
+
+    header("location: ../Interfaz/mostrarRecetas.php");
 }
 
 ?>

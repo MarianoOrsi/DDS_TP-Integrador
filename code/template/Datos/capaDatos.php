@@ -37,6 +37,49 @@
          $consulta= "INSERT INTO `diseniosistemas`.`recetas` (`IdReceta`, `Receta`, `IdDificultad`, `IdUsuario`, `IdPiramide`, `IdDieta`, `Calorias`) VALUES (NULL, '".$receta->getDesc()."', '".$receta->getDificultad()."', '".$receta->getUsuarioCreador()."', '".$receta->getPiramide()."', '".$receta->getDieta()."','".$receta->getCalorias()."')";
 
           mysql_query($consulta) or die (mysql_error());
+
+        }
+
+
+        public function GuardarPasos($pasos){
+
+            mysql_select_db($this->nameDB, $this->connectionDB);
+            function idRecetaRecien(){
+                $QultimaReceta="SELECT  IdReceta FROM recetas ORDER BY IdReceta DESC LIMIT 1";
+                $pepe=mysql_query($QultimaReceta) or die (mysql_error());
+                $p=mysql_fetch_row($pepe);
+                return $p['0'];
+            }
+
+            for($i=0;$i<5;$i++)
+            {
+                $consulta = "INSERT INTO `diseniosistemas`.`pasos` (`IdPasos`, `IdReceta`, `Paso`, `Descripcion`, `Foto`) VALUES (NULL, '" . idRecetaRecien() . "','".($i+1). "', '" . $pasos[$i] . "', 'imagen.jpg');";
+                mysql_query($consulta) or die (mysql_error());
+            }
+
+       }
+
+
+        public function GuardarCondimentos($condimentos){
+            mysql_select_db($this->nameDB, $this->connectionDB);
+             for($i=0;$i<count($condimentos);$i++){
+                $consulta="INSERT INTO `diseniosistemas`.`receta-condimentos` (`IdRecetaCondimento`, `IdReceta`, `IdCondimento`) VALUES (NULL, '" . idRecetaRecien() . "', '".$condimentos[$i]."')";
+
+
+                mysql_query($consulta) or die (mysql_error());
+            }
+
+        }
+
+
+        public function GuardarIngredientes($ingredientes){
+            mysql_select_db($this->nameDB, $this->connectionDB);
+
+            for($i=0;$i<count($ingredientes);$i++){
+                $consulta= "INSERT INTO `diseniosistemas`.`receta-ingredientes` (`IdRecetaIngrediente`, `IdReceta`, `IdIngrediente`) VALUES (NULL, '" . idRecetaRecien() . "', '".$ingredientes[$i]."');";
+                mysql_query($consulta) or die (mysql_error());
+            }
+
         }
 
 		public function getGruposDeUsuario($idUsuario){

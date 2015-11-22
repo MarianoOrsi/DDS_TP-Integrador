@@ -17,9 +17,9 @@
             $this->Dificultad = $dificultad_in;
 			$this->UsuarioCreador = $usuarioCreador_in;
 			$this->Temporada = $temporada_in;
-			$this->Ingredientes = array();
-			$this->Condimentos = array();
-			$this->Pasos = array();
+			$this->Ingredientes = $ingredientes_in;
+			$this->Condimentos = $condimentos_in;
+			$this->Pasos = $pasos_in;
             $this->Calorias=$calorias_in;
             $this->Piramide=$piramide_in;
             $this->Dieta=$dieta_in;
