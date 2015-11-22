@@ -2,6 +2,7 @@
 
 	include("../clases/Grupo.php");
 	include("../clases/Usuario.php");
+    include("../clases/Receta.php");
 	
 	class accesoDatos{
 
@@ -28,6 +29,19 @@
 			
 			$exec_sp = mysql_query($consulta) or die (mysql_error());
 		}
+
+        public function GuardarReceta($receta){
+
+            mysql_select_db($this->nameDB, $this->connectionDB);
+
+           $consulta= "INSERT INTO `diseniosistemas`.`recetas` (`IdReceta`, `Receta`, `IdDificultad`, `IdUsuario`, `IdPiramide`, `IdDieta`, `Calorias`)
+VALUES (NULL, '', '', '', '', '', '".calcularCalorias($_POST["ingredientesSeleccionados"].")";
+
+
+            $consulta = "call sp_RegistrarUsuario('".$usuario->getUsuario()."','".$usuario->getContrasenia()."','".$usuario->getSexo()."','".$usuario->getDieta()."','".$usuario->getRutina()."','".$usuario->getComplexion()."','".$usuario->getCondicionesPreexistentes()."',".$usuario->getAltura().",".$usuario->getEdad().",'".$usuario->getEmail()."')";
+
+           mysql_query($consulta) or die (mysql_error());
+        }
 
 		public function getGruposDeUsuario($idUsuario){
 

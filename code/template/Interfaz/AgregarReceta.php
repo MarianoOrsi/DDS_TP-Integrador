@@ -17,8 +17,9 @@ $QCondimentos=mysql_query($consulta) or die (mysql_error());
 $consulta="SELECT * FROM dificultades;";
 $QDificultades=mysql_query($consulta) or die (mysql_error());
 
-$consulta="SELECT * FROM dietas;";
-$QDietas=mysql_query($consulta) or die (mysql_error());
+
+$consulta="SELECT * FROM estaciones;";
+$QEstacion=mysql_query($consulta) or die (mysql_error());
 
 function MostrarIngredientes($id)
 {
@@ -26,7 +27,7 @@ function MostrarIngredientes($id)
     {
     	echo '
 		<div class="checkbox-inline">
-			<label><input type="checkbox" value="">'.$ingrediente['1'].'</label>
+			<label><input type="checkbox" name="ingredientesSeleccionados[]" value="'.$ingrediente['3'].'">'.$ingrediente['1'].'</label>
 		</div>';
 	}
 }
@@ -37,7 +38,7 @@ function MostrarCondimentos($id)
     {
     	echo '
 		<div class="checkbox-inline">
-			<label><input type="checkbox" value="">'.$Condimento['1'].'</label>
+			<label><input type="checkbox" name="condimentosSeleccionados[]" value="'.$Condimento['0'].'">'.$Condimento['1'].'</label>
 		</div>';
 	}
 }
@@ -50,14 +51,14 @@ function MostrarDificultades($id)
 	}
 }
 
-function MostrarDietas($id)
-{
-    while ($Dieta = mysql_fetch_array($id, MYSQL_NUM)) 
-    {
-    	echo '<option value="'.$Dieta['1'].'">'.$Dieta['1'].'</option>';
-	}
-}
 
+function MostrarEstacion($id)
+{
+    while ($Estacion = mysql_fetch_array($id, MYSQL_NUM))
+    {
+        echo '<option value="'.$Estacion['0'].'">'.$Estacion['1'].'</option>';
+    }
+}
 
 ?>
 
@@ -101,7 +102,7 @@ function MostrarDietas($id)
 						</div>
 					
 						<div class="cform" id="contact-form">
-							<form action="../datos/actualizarPerfilPrivado.php" method="post" role="form" class="contactForm">
+							<form action="../datos/crearReceta.php" method="post" role="form" class="contactForm">
 							
 							<div class="form-group">
 								<label>Nombre de la Receta</label>
@@ -119,16 +120,19 @@ function MostrarDietas($id)
 
 								</select>
 							
-							</div><div class="form-group">
-								<label>Tipo de dieta</label>
-								<select  class="form-control"  name="dieta">
+							</div>
+                                <div class="form-group">
+                                    <label>Estacion</label>
+                                    <select  class="form-control"  name="estacion">
 
-								<?php
-									MostrarDietas($QDietas);
-								?>
+                                        <?php
+                                        MostrarEstacion($QEstacion);
+                                        ?>
 
-								</select>
-								</div>
+
+                                    </select>
+
+                                </div>
 								<div class="form-group">
 								<label>Ingredientes</label><br /><br />
 

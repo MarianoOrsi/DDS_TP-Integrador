@@ -9,7 +9,7 @@
 		private $Condimentos;
 		private $Pasos;
 
-		public function __construct($usuarioCreador_in, $temporada_in, $clasificacion_in, $dificultad_in,$desc_in){
+		public function __construct($desc_in, $dificultad_in,$usuarioCreador_in, $temporada_in, $clasificacion_in){
 			$this->UsuarioCreador = $usuarioCreador_in;
 			$this->Desc = $desc_in;
 			$this->Dificultad = $dificultad_in;
