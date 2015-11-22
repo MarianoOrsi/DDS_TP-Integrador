@@ -96,7 +96,7 @@ function MostarRecetasResumidas($id)
 													</table>
 													<div class="container aligncenter">
 													<a href="gestionRecetas.php" class="btn btn-theme" align="center">Puntuar</a>
-													<a href="UI-agregarReceta.php" class="btn btn-theme" align="center">Nueva Receta</a>
+													<a href="../interfaz/AgregarReceta.php" class="btn btn-theme" align="center">Nueva Receta</a>
 									
 								</div>
 								</div>
