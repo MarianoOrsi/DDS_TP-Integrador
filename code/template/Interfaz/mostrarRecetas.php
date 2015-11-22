@@ -8,7 +8,7 @@ $dbname = "diseniosistemas";
 $con = mysql_connect($servidor, $user, $pass);
 mysql_select_db($dbname, $con) or die(mysql_error());
 
-$consulta="SELECT R.Receta, D.Dificultad, R.Calorias FROM dificultades D, recetas R WHERE D.IdDificultad=R.IdDificultad AND R.IdUsuario=".$_SESSION["idUsuario"].";";
+$consulta="SELECT R.Receta, D.Dificultad, R.Calorias, R.IdReceta FROM dificultades D, recetas R WHERE D.IdDificultad=R.IdDificultad AND R.IdUsuario=".$_SESSION["idUsuario"].";";
 $Qid=mysql_query($consulta) or die (mysql_error());
 
 
@@ -19,7 +19,7 @@ function DameRecetasResumida($recetaSql)
 		<td>'.$recetaSql['0'].'</td>
 		<td>'.$recetaSql['1'].'</td>
 		<td>'.$recetaSql['2'].'</td>
-		<td><input type="button" value="Editar" class="btn btn-lg"/></td>
+		<td><a href="../interfaz/AgregarReceta.php?id='.$recetaSql['3'].'" class="btn btn-theme aligncenter">Editar</a></td>
 		<td><a href="../index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
 	</tr>';
 	
