@@ -62,7 +62,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 
 					foreach($arrayRecetasRecomendadas as $receta) {
 					    echo "<TR>";
-						echo "<TD>" . $receta->getReceta() . "</TD>";
+						echo "<TD>" . $receta->getDesc() . "</TD>";
 						echo "</TR>";
 				}
 			    ?>

@@ -84,7 +84,7 @@ class accesoDatos{
 
 			while ($row = mysql_fetch_array($result)){
             
-				$Receta = new Receta("","","","",$row["Receta"]);
+				$Receta = new Receta($row["Receta"],"","","","","","","","","");
 
 				array_push($arrayRecetas, $Receta);
 			}
