@@ -21,13 +21,19 @@ $QDificultades=mysql_query($consulta) or die (mysql_error());
 $consulta="SELECT * FROM estaciones;";
 $QEstacion=mysql_query($consulta) or die (mysql_error());
 
+$consulta="SELECT * FROM piramides;";
+$QPiramide=mysql_query($consulta) or die (mysql_error());
+
+$consulta="SELECT * FROM dietas;";
+$QDieta=mysql_query($consulta) or die (mysql_error());
+
 function MostrarIngredientes($id)
 {
     while ($ingrediente = mysql_fetch_array($id, MYSQL_NUM)) 
     {
     	echo '
 		<div class="checkbox-inline">
-			<label><input type="checkbox" name="ingredientesSeleccionados[]" value="'.$ingrediente['3'].'">'.$ingrediente['1'].'</label>
+			<label><input type="checkbox" name="ingredientesSeleccionados[]" value="'.$ingrediente['0'].'">'.$ingrediente['1'].'</label>
 		</div>';
 	}
 }
@@ -47,7 +53,7 @@ function MostrarDificultades($id)
 {
     while ($Dificultad = mysql_fetch_array($id, MYSQL_NUM)) 
     {
-    	echo '<option value="'.$Dificultad['1'].'">'.$Dificultad['1'].'</option>';
+    	echo '<option value="'.$Dificultad['0'].'">'.$Dificultad['1'].'</option>';
 	}
 }
 
@@ -57,6 +63,20 @@ function MostrarEstacion($id)
     while ($Estacion = mysql_fetch_array($id, MYSQL_NUM))
     {
         echo '<option value="'.$Estacion['0'].'">'.$Estacion['1'].'</option>';
+    }
+}
+function MostrarPiramide($id)
+{
+    while ($Piramide = mysql_fetch_array($id, MYSQL_NUM))
+    {
+        echo '<option value="'.$Piramide['0'].'">'.$Piramide['1'].'</option>';
+    }
+}
+function MostrarDieta($id)
+{
+    while ($Dieta = mysql_fetch_array($id, MYSQL_NUM))
+    {
+        echo '<option value="'.$Dieta['0'].'">'.$Dieta['1'].'</option>';
     }
 }
 
@@ -127,6 +147,30 @@ function MostrarEstacion($id)
 
                                         <?php
                                         MostrarEstacion($QEstacion);
+                                        ?>
+
+
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Pirámide</label>
+                                    <select  class="form-control"  name="piramide">
+
+                                        <?php
+                                        MostrarEstacion($QPiramide);
+                                        ?>
+
+
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Tipo de Dieta</label>
+                                    <select  class="form-control"  name="dieta">
+
+                                        <?php
+                                        MostrarEstacion($QDieta);
                                         ?>
 
 
