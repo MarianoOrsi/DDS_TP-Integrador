@@ -8,27 +8,16 @@ $dbname = "diseniosistemas";
 $con = mysql_connect($servidor, $user, $pass);
 mysql_select_db($dbname, $con) or die(mysql_error());
 
-$consulta="SELECT Receta,IdDificultad,Calorias FROM recetas WHERE idUsuario=".$_SESSION["idUsuario"].";";
+$consulta="SELECT R.Receta, D.Dificultad, R.Calorias FROM dificultades D, recetas R WHERE D.IdDificultad=R.IdDificultad AND R.IdUsuario=".$_SESSION["idUsuario"].";";
 $Qid=mysql_query($consulta) or die (mysql_error());
-$id= mysql_fetch_array($Qid);
 
-function DemeNombreDificultad($id)
-{
 
-	$consulta="SELECT Dificultad FROM dificultades WHERE IdDificultad='".$id."'";
-	$Qid=mysql_query($consulta) or die (mysql_error());
-	$id= mysql_fetch_array($Qid);
-	
-	
-    return $id['0'];
-}
-
-function DameRecetasResumida($recetaSql	)
+function DameRecetasResumida($recetaSql)
 {
 	$recetaHtml='
 	<tr>
 		<td>'.$recetaSql['0'].'</td>
-		<td>'.DemeNombreDificultad($recetaSql['1']).'</td>
+		<td>'.$recetaSql['1'].'</td>
 		<td>'.$recetaSql['2'].'</td>
 		<td><input type="button" value="Editar" class="btn btn-lg"/></td>
 		<td><a href="../index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
@@ -39,20 +28,10 @@ function DameRecetasResumida($recetaSql	)
 
 function MostarRecetasResumidas($id)
 {
-		echo count($id);
-		
-	for ($i = 0; $i < (count($id)/3) ; $i++) 
-	{
-		$pos=$i*3;
-		$receta['0']=$id[$pos];
-		$pos=$i*3+1;
-		$receta['1']=$id[$pos];
-		$pos=$i*3+2;
-		$receta['2']=$id[$pos];
-
-    	echo DameRecetasResumida($receta);
+    while ($arrayDeResultados = mysql_fetch_array($id, MYSQL_NUM)) 
+    {
+		echo DameRecetasResumida($arrayDeResultados);
 	}
-
 
 }
 
@@ -110,7 +89,7 @@ function MostarRecetasResumidas($id)
 													<tbody>
 
 													<?php
-														MostarRecetasResumidas($id);
+														MostarRecetasResumidas($Qid);
 													?>
 													
 													</tbody>
