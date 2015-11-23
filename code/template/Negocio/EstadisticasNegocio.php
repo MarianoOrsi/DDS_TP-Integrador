@@ -10,6 +10,8 @@ if(isset($_GET["method"]))
 	if(strcmp($method, "SEL") == 0){
 
 	   $dificultad = $_GET["dificultad"];
+	   $estacion = $_GET["estacion"];
+	   $condimento = $_GET["condimento"];
 	   $piramide = $_GET["piramide"];
 	   $sexo       = $_GET["sexo"];
 	   $logica->selectRecetas($dificultad,$sexo);
@@ -17,6 +19,8 @@ if(isset($_GET["method"]))
 	   $logica->selectRecetasDieta($dieta);
 	   $logica->selectRecetaspreferencia($preferencia);
 	   $logica->selectRecetaspiramide($piramide);
+	   $logica->selectRecetascondimento($condimento);
+	   $logica->selectRecetasCalificadaEstacion($califica,$estacion);
     }
 }
 
@@ -51,6 +55,20 @@ if(isset($_GET["method"]))
 
 			return $arraypiramides;
 		}
+
+	   public function getestaciones(){
+			
+			$arrayestaciones =  $this->accessData->getestaciones();
+
+			return $arrayestaciones;
+		}
+
+	   public function getcondimentos(){
+			
+			$arraycondimentos =  $this->accessData->getcondimentos();
+
+			return $arraycondimentos;
+		}
 		
 	   public function selectRecetas($dificultad,$sexo){
 			
@@ -72,6 +90,13 @@ if(isset($_GET["method"]))
 
 			return $arrayRecetas;
 		}
+
+	  public function selectRecetascondimento($condimento){
+			
+			$arrayRecetas =  $this->accessData->getRecetasxcondimento($condimento);
+
+			return $arrayRecetas;
+		}
 		
 	  public function selectRecetaspreferencia($preferencia){
 			
@@ -80,6 +105,12 @@ if(isset($_GET["method"]))
 			return $arrayRecetas;
 		}
 
+	  public function selectRecetasCalificadaEstacion($calificada,$estacion){
+			
+			$arrayRecetas =  $this->accessData->getRecetasxPuntuacionyEstacion($estacion,$calificada);
 
+			return $arrayRecetas;
+		}
+	
 	}
 ?>

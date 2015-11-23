@@ -1,6 +1,9 @@
 <?php
 
 	include("../clases/Dificultad.php");
+	include("../clases/RecetaPuntaje.php");
+	include("../clases/Estacion.php");
+	include("../clases/condimento.php");
 	include("../clases/piramide.php");
 	include("../clases/Dieta.php");
 	include("../clases/RecetaConsultada.php");
@@ -59,6 +62,24 @@
 			return $arrayDietas;
 		}
 
+		public function getEstaciones(){
+			mysql_select_db($this->nameDB, $this->connectionDB);
+			$consulta = "SELECT * FROM estaciones";
+
+			$result = mysql_query($consulta) or die (mysql_error());
+
+			$arrayEstaciones = array();
+
+			while ($row = mysql_fetch_array($result)){
+
+				$estacion = new Estacion($row['IdEstacion'],$row['Estacion']);
+
+				array_push($arrayEstaciones, $estacion);
+			}
+
+			return $arrayEstaciones;
+		}
+
 		public function getpiramides(){
 			mysql_select_db($this->nameDB, $this->connectionDB);
 			$consulta = "SELECT * FROM piramides";
@@ -75,6 +96,24 @@
 			}
 
 			return $arraypiramides;
+		}
+
+		public function getcondimentos(){
+			mysql_select_db($this->nameDB, $this->connectionDB);
+			$consulta = "SELECT * FROM condimentos";
+
+			$result = mysql_query($consulta) or die (mysql_error());
+
+			$arraycondimentos = array();
+
+			while ($row = mysql_fetch_array($result)){
+
+				$condimento = new condimento($row['IdCondimento'],$row['Condimento']);
+
+				array_push($arraycondimentos, $condimento);
+			}
+
+			return $arraycondimentos;
 		}
 
 		public function getRecetasCalificadas($sexo,$idContextura,$puntuacion){
@@ -120,8 +159,7 @@
 		public function getRecetasxPuntuacionyEstacion($idestacion,$puntuacion){
 
 			mysql_select_db($this->nameDB, $this->connectionDB);
-
-			$consulta = "call sp_Recetaxcalificacionyestacion(".$puntuacion.",".$idestacion.")";
+			$consulta = " call sp_Recetaxcalificacionyestacion('.$puntuacion.','.$idestacion.')";
 			
 			$result = mysql_query($consulta) or die (mysql_error());
 
@@ -129,7 +167,7 @@
 
 			while ($row = mysql_fetch_array($result)){
 
-				$Receta = new Receta($row["IdReceta"],$row["Receta"]);
+				$Receta = new RecetaPuntaje($row["IdReceta"],$row["Receta"],$row["Puntaje"],$row["Estacion"]);
 
 				array_push($arrayRecetas, $Receta);
 			}
@@ -141,7 +179,7 @@
 
 			mysql_select_db($this->nameDB, $this->connectionDB);
 
-			$consulta = "call sp_recetaxcond(".$idcondimento.")";
+			$consulta = "call sp_recetaxcond(".$idCondimento.")";
 			
 			$result = mysql_query($consulta) or die (mysql_error());
 
@@ -149,7 +187,7 @@
 
 			while ($row = mysql_fetch_array($result)){
 
-				$Receta = new Receta($row["IdReceta"],$row["Receta"]);
+				$Receta = new RecetaBuscada($row["IdReceta"],$row["Receta"]);
 
 				array_push($arrayRecetas, $Receta);
 			}

@@ -26,9 +26,18 @@ where recetas.IdDieta>=iddiet$$
 /*--------------------------------------------------------------------------------------------------------*/
 
 CREATE PROCEDURE `sp_Recetaxcalificacionyestacion`(IN `nota` INT, IN `idestacion` INT)
-select recetas.IdReceta, recetas.Receta FROM recetas inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta inner JOIN puntuaciones on puntuaciones.IdReceta=recetas.IdReceta
-where puntuaciones.Puntuacion=nota and `receta-estaciones`.IdEstacion=idestacion$$
-
+if nota>0 and idestacion>0 then
+select recetas.IdReceta, recetas.Receta, puntos.Puntaje FROM recetas inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta inner JOIN puntos on puntos.IdReceta=recetas.IdReceta
+where puntos.Puntaje BETWEEN nota and nota+0.99 and `receta-estaciones`.IdEstacion=idestacion;
+ELSEIF nota<1 and idestacion>0 then
+select recetas.IdReceta, recetas.Receta, puntos.Puntaje FROM recetas inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta inner JOIN puntos on puntos.IdReceta=recetas.IdReceta
+where `receta-estaciones`.IdEstacion=idestacion;
+ELSEIF  nota>0 and idestacion<1 then
+select recetas.IdReceta, recetas.Receta, puntos.Puntaje FROM recetas  inner JOIN puntos on puntos.IdReceta=recetas.IdReceta
+where puntos.Puntaje BETWEEN nota and nota+0.99;
+ELSE
+select recetas.IdReceta, recetas.Receta, puntos.Puntaje, estaciones.Estacion FROM recetas inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta inner JOIN puntos on puntos.IdReceta=recetas.IdReceta;
+end if;
 /*--------------------------------------------------------------------------------------------------------*/
 
 CREATE PROCEDURE `sp_recetaxcond`(IN `idcond` INT)

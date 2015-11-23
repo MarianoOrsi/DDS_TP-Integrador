@@ -44,40 +44,53 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 					}
 					function selectRecetas() {
 
-						var dificultades = document.getElementById("dificultad");
-						var sexos       = document.getElementById("sexo");
-						var ruta = "RecetasConsultadas.php?&Dificultad="
-						            + dificultades.options[dificultades.selectedIndex].value 
-						            + "&Sexo=" 
-						            + sexos.options[sexos.selectedIndex].value;
+						var calificadas = document.getElementById("calificada");
+						var estaciones = document.getElementById("estacion");
+						if (calificadas.options[calificadas.selectedIndex].value!=0 && estaciones.options[estaciones.selectedIndex].value!=0)
+						{
+							var ruta = "xCalificadasyEstacion.php?&Calificada="
+								+ calificadas.options[calificadas.selectedIndex].value
+						            + "&Estacion="
+							    + estaciones.options[estaciones.selectedIndex].value;
+						}
+						else if (calificadas.options[calificadas.selectedIndex].value!=0)
+						{	
+							var ruta = "xCalificadasyEstacion.php?&Calificada="
+								+ calificadas.options[calificadas.selectedIndex].value
+						            + "&Estacion=0";
+						}
+						else
+						{
+							var ruta = "xCalificadasyEstacion.php?&Calificada=0"
+						            + "&Estacion="
+								+ estaciones.options[estaciones.selectedIndex].value;
+						}
 						
 		                window.location.href = ruta;
 					}
 					 function preloadFunc()
 					    {  
-					       var dificultades = document.getElementById("dificultad");
-						   var sexos       = document.getElementById("sexo");
-					       var dif = getUrlVars()["Dificultad"];
-						   var sex = getUrlVars()["Sexo"];
-
-						   if(typeof dif != "undefined")
+					       var calificadas = document.getElementById("calificada");
+					       var cal = getUrlVars()["Calificada"];
+						var estaciones = document.getElementById("estacion");
+					       var est = getUrlVars()["Estacion"];
+							
+						   if(typeof cal != "undefined")
 						   {
-						   	dificultades.value = dif;
+						   	calificadas.value = cal;
 						   }else
 						   {
-						   	dificultades.value = "";
+						   	calificadas.value = 0;
 						   }
 
-						 if(typeof sex != "undefined")
+						 if(typeof est != "undefined")
 						   {
-						   	sexos.value = sex;
+						   	estaciones.value = est;
 						   }else
 						   {
-						   	sexos.value = "";
+						   	estaciones.value = 0;
 						   }
-
-						     
-					    }
+						   }
 
 		</script>
 
@@ -94,23 +107,26 @@ mysql_select_db($dbname, $con) or die(mysql_error());
                   
 					<div class="container">
 					
-					  <h1>Recetas Consultadas</h1>
+					  <h1>Busqueda por Calificacion y Estacion</h1>
 
-              		  <select class="combo" id="sexo" onChange="selectRecetas()">
-                   	     <option value="">Sexo</option>
-                	     <option value="M">Masculino</option>
-                         <option value="F">Femenino</option>
-                      </select>
+              		<select class="combo" id="calificada" onChange="selectRecetas()">
+                   	     	<option value="0">Calificacion</option>
+                	     	<option value="1">1 Estrella</option>
+                         	<option value="2">2 Estrella</option>
+				<option value="3">3 Estrella</option>
+				<option value="4">4 Estrella</option>
+				<option value="5">5 Estrella</option>
+                      </select> 
 
 
-                      <select class="combo" id="dificultad" onChange="selectRecetas()">
-                   		<option value="">Dificultad</option>
+                      <select class="combo" id="estacion" onChange="selectRecetas()">
+                   		<option value="0">Estacion</option>
                    		  <?php
 							include("../negocio/EstadisticasNegocio.php");
 							$logica = new logicaDeNegocio();
-							$arrayDificultades = $logica->getDificultades();
-							foreach($arrayDificultades as $dificultad) {
-								echo "<option value=" . $dificultad->getId() . ">" . $dificultad->getDescripcion() . "</option>";
+							$arrayEstaciones = $logica->getEstaciones();
+							foreach($arrayEstaciones as $estacion) {
+								echo "<option value=" . $estacion->getId() . ">" . $estacion->getestacion() . "</option>";
 							}
 
 							?>
@@ -121,33 +137,34 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 									<table class="table table-hover">
 									<thead>
 									<tr>													
-										<th>N° Consultas</th>
+										
 										<th>Receta</th>
+										<th>Puntaje</th>
 									</tr>
 									</thead>
 									<tbody>
 						             <?php
-                                        $dificultad='';
-                                        $sexo = '';
+                                        $calificada='';
+                                        $estacion = '';
 								        
-								        if(isset($_GET["Dificultad"]))
+								        if(isset($_GET["Calificada"]))
 								        {
- 										  $dificultad = $_GET["Dificultad"];
+ 										  $calificada = $_GET["Calificada"];
 								        }
 
-								        if(isset($_GET["Sexo"]))
+								        if(isset($_GET["Estacion"]))
 								        {
-								          $sexo = $_GET["Sexo"];
+								          $estacion = $_GET["Estacion"];
 								        }
 
 										$logica = new logicaDeNegocio();
 
-										$arrayRecetasConsultadas = $logica->selectRecetas($dificultad,$sexo);
+										$arrayRecetas = $logica->selectRecetasCalificadaEstacion($calificada,$estacion);
 
-										foreach($arrayRecetasConsultadas as $receta) {
+										foreach($arrayRecetas as $receta) {
 										    echo "<TR>";
-											echo "<TD>" . $receta->getCantConsultas() . "</TD>";
 											echo "<TD>" . $receta->getReceta() . "</TD>";
+											echo "<TD>" . $receta->getPuntaje() . "</TD>";
 											echo "</TR>";
 									}
 								?>
