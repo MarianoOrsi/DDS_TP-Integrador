@@ -27,16 +27,16 @@ where recetas.IdDieta>=iddiet$$
 
 CREATE PROCEDURE `sp_Recetaxcalificacionyestacion`(IN `nota` INT, IN `idestacion` INT)
 if nota>0 and idestacion>0 then
-select recetas.IdReceta, recetas.Receta, puntos.Puntaje FROM recetas inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta inner JOIN puntos on puntos.IdReceta=recetas.IdReceta
+select recetas.IdReceta, recetas.Receta, puntos.Puntaje,estaciones.Estacion FROM recetas inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta inner join `estaciones` on estaciones.IdEstacion= `receta-estaciones`.`IdEstacion` inner JOIN puntos on puntos.IdReceta=recetas.IdReceta
 where puntos.Puntaje BETWEEN nota and nota+0.99 and `receta-estaciones`.IdEstacion=idestacion;
 ELSEIF nota<1 and idestacion>0 then
-select recetas.IdReceta, recetas.Receta, puntos.Puntaje FROM recetas inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta inner JOIN puntos on puntos.IdReceta=recetas.IdReceta
+select recetas.IdReceta, recetas.Receta, puntos.Puntaje,estaciones.Estacion FROM recetas inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta inner join `estaciones` on estaciones.IdEstacion= `receta-estaciones`.`IdEstacion` inner JOIN puntos on puntos.IdReceta=recetas.IdReceta
 where `receta-estaciones`.IdEstacion=idestacion;
 ELSEIF  nota>0 and idestacion<1 then
-select recetas.IdReceta, recetas.Receta, puntos.Puntaje FROM recetas  inner JOIN puntos on puntos.IdReceta=recetas.IdReceta
+select recetas.IdReceta, recetas.Receta, puntos.Puntaje,estaciones.Estacion FROM recetas  inner JOIN puntos on puntos.IdReceta=recetas.IdReceta inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta  inner join `estaciones` on estaciones.IdEstacion= `receta-estaciones`.`IdEstacion`
 where puntos.Puntaje BETWEEN nota and nota+0.99;
 ELSE
-select recetas.IdReceta, recetas.Receta, puntos.Puntaje, estaciones.Estacion FROM recetas inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta inner JOIN puntos on puntos.IdReceta=recetas.IdReceta;
+select recetas.IdReceta, recetas.Receta, puntos.Puntaje,estaciones.Estacion FROM recetas inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta inner join `estaciones` on estaciones.IdEstacion= `receta-estaciones`.`IdEstacion` inner JOIN puntos on puntos.IdReceta=recetas.IdReceta;
 end if;
 /*--------------------------------------------------------------------------------------------------------*/
 
@@ -120,7 +120,7 @@ select * from usuarios usu inner join `usuario-grupos` ug on usu.IdUsuario = ug.
 
 CREATE PROCEDURE `VerPreferencias`(IN `IdUsu` INT)
 SELECT IdPreferencia, preferencias.IdIngrediente, IdUsuario, ingredientes.Ingrediente FROM preferencias inner join ingredientes on preferencias.IdIngrediente=ingredientes.IdIngrediente
-where idusuario=IdUsu$$
+where idusuario=IdUsu
 
 /*--------------------------------------------------------------------------------------------------------*/
 

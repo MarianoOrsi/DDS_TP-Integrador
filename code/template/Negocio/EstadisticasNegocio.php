@@ -98,9 +98,9 @@ if(isset($_GET["method"]))
 			return $arrayRecetas;
 		}
 		
-	  public function selectRecetaspreferencia($preferencia){
+	  public function selectRecetaspreferencia(){
 			
-			$arrayRecetas =  $this->accessData->getRecetasxpreferencias($preferencia);
+			$arrayRecetas =  $this->accessData->getRecetasxpreferencias($_SESSION["idUsuario"]);
 
 			return $arrayRecetas;
 		}

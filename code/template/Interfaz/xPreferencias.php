@@ -33,43 +33,10 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 		
-		<script type = "text/javascript">
-
-					function getUrlVars() {
-						var vars = {};
-						var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-						vars[key] = value;
-						});
-				      	return vars;
-					}
-					function selectRecetas() {
-
-						var preferencias = document.getElementById("preferencia");
-						var ruta = "xpreferencias.php?&preferencia="
-						            + preferencias.options[preferencias.selectedIndex].value;
-						
-		                window.location.href = ruta;
-					}
-					 function preloadFunc()
-					    {  
-					       var preferencias = document.getElementById("preferencia");
-					       var pref = getUrlVars()["preferencia"];
-
-						   if(typeof pref != "undefined")
-						   {
-						   	dificultades.value = pref;
-						   }else
-						   {
-						   	dificultades.value = pref;
-						   }
-
-						     
-					    }
-
-		</script>
+		
 
 	</head>
-	<body onload="preloadFunc()">
+	<body>
 		<div id="wrapper">
 				<!-- start header -->
 		<?php include("../include/header.php")?>
@@ -82,6 +49,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 					<div class="container">
 					
 					  <h1>Busqueda por Preferencias</h1>
+					
 					  <?php include("../negocio/EstadisticasNegocio.php")?>
 
 
@@ -95,16 +63,10 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 									</thead>
 									<tbody>
 						             <?php
-                                        $preferencia='';
-								        
-								        if(isset($_GET["preferencia"]))
-								        {
- 										  $preferencia = $_GET["preferencia"];
-								        }
-
+                                        
 										$logica = new logicaDeNegocio();
 
-										$arrayRecetas = $logica->selectRecetaspreferencia(".$_SESSION["idUsuario"].");
+										$arrayRecetas = $logica->selectRecetaspreferencia();
 
 										foreach($arrayRecetas as $receta) {
 										    echo "<TR>";
