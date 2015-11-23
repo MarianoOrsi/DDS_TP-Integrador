@@ -60,7 +60,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 						   	dietas.value = die;
 						   }else
 						   {
-						   	dietas.value = "";
+						   	dietas.value = die;
 						   }
 
 						     
@@ -85,7 +85,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 
 
                       <select class="combo" id="dieta" onChange="selectRecetasDieta()">
-                   		<option value="">Dieta</option>
+                   		<option value="0">Dieta</option>
                    		  <?php
 							include("../negocio/EstadisticasNegocio.php");
 							$logica = new logicaDeNegocio();

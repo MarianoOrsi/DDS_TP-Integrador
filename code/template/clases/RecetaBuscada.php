@@ -11,7 +11,7 @@ class RecetaBuscada{
 			$this->nombreGrupo=$nombreGrupo_in;
 		}*/
 
-		public function __construct($Receta, $idReceta)
+		public function __construct($idReceta, $Receta)
 		{
 			$this->Receta=$Receta;
 			$this->idReceta=$idReceta;
