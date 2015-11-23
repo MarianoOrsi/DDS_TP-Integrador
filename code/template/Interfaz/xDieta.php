@@ -115,9 +115,15 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 								        }
 
 										$logica = new logicaDeNegocio();
-
+										
+									if($dieta==null)
+								        {
+ 										  $arrayRecetas = $logica->selectRecetasDieta(0);
+								        }
+									else
+									{
 										$arrayRecetas = $logica->selectRecetasDieta($dieta);
-
+									}
 										foreach($arrayRecetas as $receta) {
 										    echo "<TR>";
 											echo "<TD>" . $receta->getReceta() . "</TD>";

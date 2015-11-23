@@ -44,36 +44,23 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 					}
 					function selectRecetas() {
 
-						var dificultades = document.getElementById("dificultad");
-						var sexos       = document.getElementById("sexo");
-						var ruta = "RecetasConsultadas.php?&Dificultad="
-						            + dificultades.options[dificultades.selectedIndex].value 
-						            + "&Sexo=" 
-						            + sexos.options[sexos.selectedIndex].value;
+						var preferencias = document.getElementById("preferencia");
+						var ruta = "xpreferencias.php?&preferencia="
+						            + preferencias.options[preferencias.selectedIndex].value;
 						
 		                window.location.href = ruta;
 					}
 					 function preloadFunc()
 					    {  
-					       var dificultades = document.getElementById("dificultad");
-						   var sexos       = document.getElementById("sexo");
-					       var dif = getUrlVars()["Dificultad"];
-						   var sex = getUrlVars()["Sexo"];
+					       var preferencias = document.getElementById("preferencia");
+					       var pref = getUrlVars()["preferencia"];
 
-						   if(typeof dif != "undefined")
+						   if(typeof pref != "undefined")
 						   {
-						   	dificultades.value = dif;
+						   	dificultades.value = pref;
 						   }else
 						   {
-						   	dificultades.value = "";
-						   }
-
-						 if(typeof sex != "undefined")
-						   {
-						   	sexos.value = sex;
-						   }else
-						   {
-						   	sexos.value = "";
+						   	dificultades.value = pref;
 						   }
 
 						     
@@ -94,59 +81,33 @@ mysql_select_db($dbname, $con) or die(mysql_error());
                   
 					<div class="container">
 					
-					  <h1>Recetas Consultadas</h1>
+					  <h1>Busqueda por Preferencias</h1>
+					  <?php include("../negocio/EstadisticasNegocio.php")?>
 
-              		  <select class="combo" id="sexo" onChange="selectRecetas()">
-                   	     <option value="">Sexo</option>
-                	     <option value="M">Masculino</option>
-                         <option value="F">Femenino</option>
-                      </select>
-
-
-                      <select class="combo" id="dificultad" onChange="selectRecetas()">
-                   		<option value="">Dificultad</option>
-                   		  <?php
-							include("../negocio/EstadisticasNegocio.php");
-							$logica = new logicaDeNegocio();
-							$arrayDificultades = $logica->getDificultades();
-							foreach($arrayDificultades as $dificultad) {
-								echo "<option value=" . $dificultad->getId() . ">" . $dificultad->getDescripcion() . "</option>";
-							}
-
-							?>
-                      </select>
 
 						<div class="row">
 							
 									<table class="table table-hover">
 									<thead>
-									<tr>													
-										<th>N° Consultas</th>
+									<tr>
 										<th>Receta</th>
 									</tr>
 									</thead>
 									<tbody>
 						             <?php
-                                        $dificultad='';
-                                        $sexo = '';
+                                        $preferencia='';
 								        
-								        if(isset($_GET["Dificultad"]))
+								        if(isset($_GET["preferencia"]))
 								        {
- 										  $dificultad = $_GET["Dificultad"];
-								        }
-
-								        if(isset($_GET["Sexo"]))
-								        {
-								          $sexo = $_GET["Sexo"];
+ 										  $preferencia = $_GET["preferencia"];
 								        }
 
 										$logica = new logicaDeNegocio();
 
-										$arrayRecetasConsultadas = $logica->selectRecetas($dificultad,$sexo);
+										$arrayRecetas = $logica->selectRecetaspreferencia(".$_SESSION["idUsuario"].");
 
-										foreach($arrayRecetasConsultadas as $receta) {
+										foreach($arrayRecetas as $receta) {
 										    echo "<TR>";
-											echo "<TD>" . $receta->getCantConsultas() . "</TD>";
 											echo "<TD>" . $receta->getReceta() . "</TD>";
 											echo "</TR>";
 									}

@@ -100,7 +100,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 					  <a href="../interfaz/xCondimentos.php"><h1>Recetas por condimentos</h1></a>
 					  <a href="../interfaz/xPiramide.php"><h1>Recetas por pirámide</h1></a>
 					  <a href="../interfaz/xCalificadasyEstacion.php"><h1>Recetas por Calificación y Estación</h1></a>
-					  <a href="../interfaz/xSexoyContexturayCalificacion.php"><h1>Recetas por Sexo, Contextura y Calificación</h1></a>              		  
+					  <!-- <a href="../interfaz/xSexoyContexturayCalificacion.php"><h1>Recetas por Sexo, Contextura y Calificación</h1></a>  -->            		  
 							</div>
 						
 					

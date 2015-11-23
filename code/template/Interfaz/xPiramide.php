@@ -44,38 +44,17 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 					}
 					function selectRecetas() {
 
-						var dificultades = document.getElementById("dificultad");
-						var sexos       = document.getElementById("sexo");
-						var ruta = "RecetasConsultadas.php?&Dificultad="
-						            + dificultades.options[dificultades.selectedIndex].value 
-						            + "&Sexo=" 
-						            + sexos.options[sexos.selectedIndex].value;
+						var piramides = document.getElementById("piramide");
+						var ruta = "xPiramide.php?&piramide="
+						            + piramides.options[piramides.selectedIndex].value;
 						
 		                window.location.href = ruta;
 					}
 					 function preloadFunc()
 					    {  
-					       var dificultades = document.getElementById("dificultad");
-						   var sexos       = document.getElementById("sexo");
-					       var dif = getUrlVars()["Dificultad"];
-						   var sex = getUrlVars()["Sexo"];
-
-						   if(typeof dif != "undefined")
-						   {
-						   	dificultades.value = dif;
-						   }else
-						   {
-						   	dificultades.value = "";
-						   }
-
-						 if(typeof sex != "undefined")
-						   {
-						   	sexos.value = sex;
-						   }else
-						   {
-						   	sexos.value = "";
-						   }
-
+					       var piramides = document.getElementById("piramide");
+					       var pir = getUrlVars()["piramide"];
+					       piramides.value=pir;
 						     
 					    }
 
@@ -94,23 +73,16 @@ mysql_select_db($dbname, $con) or die(mysql_error());
                   
 					<div class="container">
 					
-					  <h1>Recetas Consultadas</h1>
+					  <h1>Busqueda por Piramide</h1>
 
-              		  <select class="combo" id="sexo" onChange="selectRecetas()">
-                   	     <option value="">Sexo</option>
-                	     <option value="M">Masculino</option>
-                         <option value="F">Femenino</option>
-                      </select>
-
-
-                      <select class="combo" id="dificultad" onChange="selectRecetas()">
-                   		<option value="">Dificultad</option>
+                      <select class="combo" id="piramide" onChange="selectRecetas()">
+                   		<option value="0">piramide</option>
                    		  <?php
 							include("../negocio/EstadisticasNegocio.php");
 							$logica = new logicaDeNegocio();
-							$arrayDificultades = $logica->getDificultades();
-							foreach($arrayDificultades as $dificultad) {
-								echo "<option value=" . $dificultad->getId() . ">" . $dificultad->getDescripcion() . "</option>";
+							$arraypiramides = $logica->getpiramides();
+							foreach($arraypiramides as $piramide) {
+								echo "<option value=" . $piramide->getId() . ">" . $piramide->getsector() . "</option>";
 							}
 
 							?>
@@ -120,33 +92,31 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 							
 									<table class="table table-hover">
 									<thead>
-									<tr>													
-										<th>N° Consultas</th>
+									<tr>	
 										<th>Receta</th>
 									</tr>
 									</thead>
 									<tbody>
 						             <?php
-                                        $dificultad='';
-                                        $sexo = '';
+                                        $piramide='';
 								        
-								        if(isset($_GET["Dificultad"]))
+								        if(isset($_GET["piramide"]))
 								        {
- 										  $dificultad = $_GET["Dificultad"];
-								        }
-
-								        if(isset($_GET["Sexo"]))
-								        {
-								          $sexo = $_GET["Sexo"];
+ 										  $piramide = $_GET["piramide"];
 								        }
 
 										$logica = new logicaDeNegocio();
+										if($piramide==null)
+								        	{
+ 										  $arrayRecetas = $logica->selectRecetaspiramide(0);
+								        	}
+										else
+										{
+										$arrayRecetas = $logica->selectRecetaspiramide($piramide);
+										}
 
-										$arrayRecetasConsultadas = $logica->selectRecetas($dificultad,$sexo);
-
-										foreach($arrayRecetasConsultadas as $receta) {
+										foreach($arrayRecetas as $receta) {
 										    echo "<TR>";
-											echo "<TD>" . $receta->getCantConsultas() . "</TD>";
 											echo "<TD>" . $receta->getReceta() . "</TD>";
 											echo "</TR>";
 									}

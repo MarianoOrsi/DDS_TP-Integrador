@@ -1,6 +1,7 @@
 <?php
 
 	include("../clases/Dificultad.php");
+	include("../clases/piramide.php");
 	include("../clases/Dieta.php");
 	include("../clases/RecetaConsultada.php");
 	include("../clases/RecetaBuscada.php");	
@@ -56,6 +57,24 @@
 			}
 
 			return $arrayDietas;
+		}
+
+		public function getpiramides(){
+			mysql_select_db($this->nameDB, $this->connectionDB);
+			$consulta = "SELECT * FROM piramides";
+
+			$result = mysql_query($consulta) or die (mysql_error());
+
+			$arraypiramides = array();
+
+			while ($row = mysql_fetch_array($result)){
+
+				$piramide = new piramide($row['IdPiramide'],$row['Sector']);
+
+				array_push($arraypiramides, $piramide);
+			}
+
+			return $arraypiramides;
 		}
 
 		public function getRecetasCalificadas($sexo,$idContextura,$puntuacion){
@@ -150,7 +169,7 @@
 
 			while ($row = mysql_fetch_array($result)){
 
-				$Receta = new Receta($row["IdReceta"],$row["Receta"]);
+				$Receta = new RecetaBuscada($row["IdReceta"],$row["Receta"]);
 
 				array_push($arrayRecetas, $Receta);
 			}
@@ -170,7 +189,7 @@
 
 			while ($row = mysql_fetch_array($result)){
 
-				$Receta = new Receta($row["IdReceta"],$row["Receta"]);
+				$Receta = new RecetaBuscada($row["IdReceta"],$row["Receta"]);
 
 				array_push($arrayRecetas, $Receta);
 			}

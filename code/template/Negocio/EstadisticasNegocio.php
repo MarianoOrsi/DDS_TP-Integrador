@@ -10,10 +10,13 @@ if(isset($_GET["method"]))
 	if(strcmp($method, "SEL") == 0){
 
 	   $dificultad = $_GET["dificultad"];
+	   $piramide = $_GET["piramide"];
 	   $sexo       = $_GET["sexo"];
 	   $logica->selectRecetas($dificultad,$sexo);
 	   $dieta= $_GET["dieta"];
 	   $logica->selectRecetasDieta($dieta);
+	   $logica->selectRecetaspreferencia($preferencia);
+	   $logica->selectRecetaspiramide($piramide);
     }
 }
 
@@ -41,6 +44,13 @@ if(isset($_GET["method"]))
 
 			return $arrayDietas;
 		}
+
+	   public function getpiramides(){
+			
+			$arraypiramides =  $this->accessData->getpiramides();
+
+			return $arraypiramides;
+		}
 		
 	   public function selectRecetas($dificultad,$sexo){
 			
@@ -55,7 +65,20 @@ if(isset($_GET["method"]))
 
 			return $arrayRecetas;
 		}
+
+	  public function selectRecetaspiramide($piramide){
+			
+			$arrayRecetas =  $this->accessData->getRecetasxPiramide($piramide);
+
+			return $arrayRecetas;
+		}
 		
+	  public function selectRecetaspreferencia($preferencia){
+			
+			$arrayRecetas =  $this->accessData->getRecetasxpreferencias($preferencia);
+
+			return $arrayRecetas;
+		}
 
 
 	}
