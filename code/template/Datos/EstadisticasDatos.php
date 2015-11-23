@@ -90,7 +90,7 @@
 
 			while ($row = mysql_fetch_array($result)){
 
-				$Receta = new Receta($row["IdReceta"],$row["Receta"]);
+				$Receta = new RecetaBuscada($row["IdReceta"],$row["Receta"]);
 
 				array_push($arrayRecetas, $Receta);
 			}

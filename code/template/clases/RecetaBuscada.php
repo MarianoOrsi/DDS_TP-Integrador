@@ -3,6 +3,7 @@
 class RecetaBuscada{
 
 		private $Receta;
+		private $idReceta;
 
 		/*public function __construct($idUsuarioCreador_in, $nombreGrupo_in)
 		{
@@ -10,14 +11,20 @@ class RecetaBuscada{
 			$this->nombreGrupo=$nombreGrupo_in;
 		}*/
 
-		public function __construct($Receta)
+		public function __construct($Receta, $idReceta)
 		{
 			$this->Receta=$Receta;
+			$this->idReceta=$idReceta;
 		}
 
 		public function getReceta()
 		{
 			return $this->Receta;
+		}
+
+		public function getIdReceta()
+		{
+			return $this->idReceta;
 		}
 
 	}

@@ -44,7 +44,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 					}
 					function selectRecetasDieta() {
 
-						var dietas = document.getElementById("dietas");
+						var dietas = document.getElementById("dieta");
 						var ruta = "xDieta.php?&Dieta="
 						            + dietas.options[dietas.selectedIndex].value ;
 						
@@ -57,7 +57,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 
 						   if(typeof dif != "undefined")
 						   {
-						   	dietas.value = dif;
+						   	dietas.value = die;
 						   }else
 						   {
 						   	dietas.value = "";
