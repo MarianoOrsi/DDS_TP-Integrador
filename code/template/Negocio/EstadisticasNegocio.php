@@ -51,7 +51,7 @@ if(isset($_GET["method"]))
 
 	  public function selectRecetasDieta($dieta){
 			
-			$arrayRecetas =  $this->accessData->getRecetasxDieta($iddieta);
+			$arrayRecetas =  $this->accessData->getRecetasxDieta($dieta);
 
 			return $arrayRecetas;
 		}

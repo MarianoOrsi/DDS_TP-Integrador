@@ -84,14 +84,14 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 					  <h1>Busqueda por Dietas</h1>
 
 
-                      <select class="combo" id="dieta" onChange="selectRecetas()">
+                      <select class="combo" id="dieta" onChange="selectRecetasDieta()">
                    		<option value="">Dieta</option>
                    		  <?php
 							include("../negocio/EstadisticasNegocio.php");
 							$logica = new logicaDeNegocio();
 							$arrayDietas = $logica->getDietas();
 							foreach($arrayDietas as $dieta) {
-								echo "<option value=" . $dieta->getId() . ">" . $dieta->getDescripcion() . "</option>";
+								echo "<option value=" . $dieta->getId() . ">" . $dieta->getNombre() . "</option>";
 							}
 
 							?>

@@ -1,8 +1,10 @@
 <?php
 
 	include("../clases/Dificultad.php");
+	include("../clases/Dieta.php");
 	include("../clases/RecetaConsultada.php");
-	
+	include("../clases/RecetaBuscada.php");	
+
 	class accesoDatos{
 
 		private $servidorDB;
@@ -76,11 +78,11 @@
 			return $arrayRecetas;
 		}
 
-		public function getRecetasxDieta($iddieta){
+		public function getRecetasxDieta($dieta){
 
 			mysql_select_db($this->nameDB, $this->connectionDB);
 
-			$consulta = "call sp_recetasxdieta(".$idideta.")";
+			$consulta = "call sp_recetasxdieta(".$dieta.")";
 			
 			$result = mysql_query($consulta) or die (mysql_error());
 
