@@ -159,4 +159,12 @@ if @idUsuario_var = idUsu then
 else
 	INSERT INTO `puntuaciones`(`IdReceta`, `IdUsuario`, `Fecha`, `Puntuacion`) VALUES (idRec,IdUsu,now(),puntos);
 end if;
-end
+end$$
+
+delimiter $$
+CREATE PROCEDURE `sp_buscarPasosDeReceta`(IN idReceta INT)
+BEGIN
+SELECT Descripcion, Foto FROM pasos
+WHERE IdReceta = idReceta 
+ORDER BY Paso;
+END$$
