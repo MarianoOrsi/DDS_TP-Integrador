@@ -33,9 +33,8 @@
 
 		<script type = "text/javascript">
 
-			function abrirReceta(idUsuario, IdReceta) {
-				
-				
+			function planificarReceta(idUsuario, IdReceta, IdHorario) {
+				window.location.href = "../Negocio/NegocioPlanificarRecetas.php?IdReceta="+IdReceta+"&IdUsuario=" + idUsuario + "&IdHorario=" + IdHorario;
 			}
 		</script>
 
@@ -51,9 +50,11 @@
 				<section class="callaction">
 
 					<div class="container">
+
 						<div class="row">
 							
-								
+								<div style="background-color:#d64131; padding-top:2%;">
+
 									<h1 style="margin:0px; text-align:center;">
 										<?php
 											echo $datosReceta->Receta;
@@ -80,78 +81,80 @@
 									</h3>
 
 									<br />
+								</div>
+								
+								<div id="ingredientes" style="width:35%; float:left; margin-top:2%;">
+									<?php
 
-									<div id="ingredientes" style="width:30%; float:left;">
-										<?php
+										$array = $negocio->getIngredientesReceta($_GET["IdReceta"]);
 
-											$array = $negocio->getIngredientesReceta($_GET["IdReceta"]);
+										$index = 1;
 
-											$index = 1;
-
-											echo "<h4 style=\"margin:0px; float:left;\">Ingredientes</h4>";
-											echo "<br />"; 
+										echo "<h4 style=\"margin:0px; float:left;\">Ingredientes</h4>";
+										echo "<br />"; 
+										
+										foreach($array as $ingredienteReceta) {
 											
-											foreach($array as $ingredienteReceta) {
-												
-												echo $ingredienteReceta->getIngrediente();
-												echo "<br />"; 
-												echo "Porcion:  ".$ingredienteReceta->getPorcion();
-												echo "<br />";
-												echo "Calorias:  ".$ingredienteReceta->getCalorias();
-												echo "<br />";
-												echo "<br />";						
-
-												$index++;
-											}
-
-										?>
-
-									</div>
-									<div id="condimentos" style="float:left; width:30%;">
-										<?php
-
-											echo "<h4 style=\"margin:0px; float:left;\">Condimentos</h4>";
+											echo $ingredienteReceta->getIngrediente();
+											echo "<br />"; 
+											echo "Porcion:  ".$ingredienteReceta->getPorcion();
 											echo "<br />";
-
-											$array = $negocio->getCondimentosReceta($_GET["IdReceta"]);
-
-											$index = 1;
-
-											foreach($array as $condimentoReceta) {
-												echo $condimentoReceta->getcondimento();
-												echo "<br />";										    
-												$index++;
-											}
-
-										?>
-									</div>
-									<div id="pasos" style="float:left; width:35%;">
-										<?php
-											echo "<h4 style=\"margin:0px; float:left;\">Preparacion</h4>";
+											echo "Calorias:  ".$ingredienteReceta->getCalorias();
 											echo "<br />";
+											echo "<br />";						
+
+											$index++;
+										}
+
+									?>
+
+								</div>
+								<div id="condimentos" style="float:left; width:30%; margin-top:2%;">
+									<?php
+
+										echo "<h4 style=\"margin:0px; float:left;\">Condimentos</h4>";
+										echo "<br />";
+
+										$array = $negocio->getCondimentosReceta($_GET["IdReceta"]);
+
+										$index = 1;
+
+										foreach($array as $condimentoReceta) {
+											echo $condimentoReceta->getcondimento();
+											echo "<br />";										    
+											$index++;
+										}
+
+									?>
+								</div>
+								<div id="pasos" style="float:left; width:35%; margin-top:2%;">
+									<?php
+										echo "<h4 style=\"margin:0px; float:left;\">Preparacion</h4>";
+										echo "<br />";
+										echo "<br />";
+
+										$array = $negocio->getPasosReceta($_GET["IdReceta"]);
+
+										$index = 1;
+
+										foreach($array as $pasoReceta) {
+											echo "<h4 style=\"margin:0px;\">Paso".$index."</h4>";
+											echo $pasoReceta->getPaso();
 											echo "<br />";
+											echo "<br />";										    
+											$index++;
+										}
 
-											$array = $negocio->getPasosReceta($_GET["IdReceta"]);
-
-											$index = 1;
-
-											foreach($array as $pasoReceta) {
-												echo "<h4 style=\"margin:0px;\">Paso".$index."</h4>";
-												echo $pasoReceta->getPaso();
-												echo "<br />";
-												echo "<br />";										    
-												$index++;
-											}
-
-										?>
-									</div>
-									<div>
-										<?php
-											//echo "<input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"Planificar\" class=\"btn btn-theme aligncenter\">";
-											//echo "<input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\">";
-											//echo "<input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\">";
-										?>
-									</div>
+									?>
+								</div>
+								<div style="float:left; width:100%; margin-top:2%;">
+									<?php
+										echo "<input style=\"margin-right:3%\" type=\"button\" name=\"Ver\" onclick=\"planificarReceta(".$_SESSION["idUsuario"].",".$_GET["IdReceta"].",1)\" value=\"Planificar Desayuno\" class=\"btn btn-theme aligncenter\">";
+										echo "<input style=\"margin-right:3%\" type=\"button\" name=\"Ver\" onclick=\"planificarReceta(".$_SESSION["idUsuario"].",".$_GET["IdReceta"].",2)\" value=\"Planificar Almuerzo\" class=\"btn btn-theme aligncenter\">";
+										echo "<input style=\"margin-right:3%\" type=\"button\" name=\"Ver\" onclick=\"planificarReceta(".$_SESSION["idUsuario"].",".$_GET["IdReceta"].",3)\" value=\"Planificar Merienda\" class=\"btn btn-theme aligncenter\">";
+										echo "<input style=\"margin-right:3%\" type=\"button\" name=\"Ver\" onclick=\"planificarReceta(".$_SESSION["idUsuario"].",".$_GET["IdReceta"].",4)\" value=\"Planificar Cena\" class=\"btn btn-theme aligncenter\">";
+									?>
+								</div>
 							
 						</div>
 					</div>
