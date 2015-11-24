@@ -1,6 +1,14 @@
 <?php
 	include ("../Datos/DatosPlanificarRecetas.php");
 
+	if(isset($_GET["IdReceta"]) && isset($_GET["IdUsuario"]) && isset($_GET["IdHorario"])){
+
+		$datos = new capaDatos();
+
+		$datos->planificarReceta($_GET["IdReceta"],$_GET["IdUsuario"], $_GET["IdHorario"]);
+
+	}
+
 	class LogicaNegocio{
 
 		private $capaDatos;
@@ -46,7 +54,6 @@
 			return $this->capaDatos->guardarRecetaConsultada($idUsuario, $idReceta);
 
 		}
-
 
 	}
 

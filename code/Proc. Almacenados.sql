@@ -203,4 +203,43 @@ INSERT INTO historiales
 (IdAccion, IdUsuario, IdReceta, `Fecha de Accion`, `Fecha de Utilizacion`)
 VALUES
 (3,usuarioId,recetaId, NOW(), NOW());
-end
+end$$
+
+DELIMITER $$
+create procedure sp_planificarReceta(IN horarioId INT, IN recetaId INT, IN usuarioId INT)
+BEGIN
+
+DECLARE idHistoria_var INT DEFAULT 0;
+
+SELECT hist.IdHistoria INTO idHistoria_var FROM historiales hist 
+INNER JOIN `historial-horarios` histhor
+on (hist.IdHistoria = histhor.IdHistorial)
+WHERE 
+hist.IdUsuario = usuarioId AND
+DATE(hist.`Fecha de Accion`) = DATE(NOW()) AND
+hist.IdAccion = 1 AND
+histhor.IdHorario = horarioId;
+
+IF idHistoria_var <> 0 THEN
+
+	UPDATE historiales
+    SET IdReceta = recetaId
+    WHERE IdHistoria = @idHistoria_var;
+    
+ELSE
+	
+    INSERT INTO historiales
+    (IdAccion,IdUsuario,IdReceta,`Fecha de Accion`,`Fecha de Utilizacion`)
+    VALUES
+    (1,usuarioId,recetaId,NOW(),DATE(NOW()));
+    
+    SET @idHistoria_var = (SELECT IdHistoria FROM historiales ORDER BY IdHistoria DESC LIMIT 1);
+    
+    INSERT INTO `historial-horarios`
+    (IdHistorial,IdHorario)
+    VALUES
+    (@idHistoria_var,horarioId);
+    
+END IF;
+
+END
