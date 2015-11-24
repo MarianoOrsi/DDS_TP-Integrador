@@ -1,14 +1,14 @@
 DELIMITER $$
 
 /*--------------------------------------------------------------------------------------------------------*/
-
+delimiter $$
 CREATE PROCEDURE `sp_BuscarGruposDeUsuario`(IN usuarioid INT)
 begin
 SELECT * FROM grupos WHERE IdGrupo IN (SELECT IdGrupo FROM `usuario-grupos` WHERE IdUsuario = usuarioId);
 END$$
 
 /*--------------------------------------------------------------------------------------------------------*/
-
+delimiter $$
 CREATE PROCEDURE `sp_Recetacalificadasxsexocontexturacalificacion`(IN `sexo` VARCHAR(1), IN `idcont` INT, IN `calif` INT)
 SELECT recetas.IdReceta, recetas.Receta
 from recetas inner join 
@@ -18,13 +18,13 @@ where puntuaciones.Puntuacion=calif and usuarios.IdContextura=idcont and usuario
 limit 10$$
 
 /*--------------------------------------------------------------------------------------------------------*/
-
+delimiter $$
 CREATE PROCEDURE `sp_recetasxdieta`(IN `iddiet` INT)
 SELECT recetas.IdReceta, recetas.Receta FROM recetas
 where recetas.IdDieta>=iddiet$$
 
 /*--------------------------------------------------------------------------------------------------------*/
-
+delimiter $$
 CREATE PROCEDURE `sp_Recetaxcalificacionyestacion`(IN `nota` INT, IN `idestacion` INT)
 if nota>0 and idestacion>0 then
 select recetas.IdReceta, recetas.Receta, puntos.Puntaje,estaciones.Estacion FROM recetas inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta inner join `estaciones` on estaciones.IdEstacion= `receta-estaciones`.`IdEstacion` inner JOIN puntos on puntos.IdReceta=recetas.IdReceta
@@ -37,9 +37,9 @@ select recetas.IdReceta, recetas.Receta, puntos.Puntaje,estaciones.Estacion FROM
 where puntos.Puntaje BETWEEN nota and nota+0.99;
 ELSE
 select recetas.IdReceta, recetas.Receta, puntos.Puntaje,estaciones.Estacion FROM recetas inner join `receta-estaciones` on recetas.IdReceta= `receta-estaciones`.IdReceta inner join `estaciones` on estaciones.IdEstacion= `receta-estaciones`.`IdEstacion` inner JOIN puntos on puntos.IdReceta=recetas.IdReceta;
-end if;
+end if;$$
 /*--------------------------------------------------------------------------------------------------------*/
-
+delimiter $$
 CREATE PROCEDURE `sp_recetaxcond`(IN `idcond` INT)
 SELECT recetas.IdReceta,recetas.Receta
 from recetas inner join 
@@ -48,7 +48,7 @@ WHERE `receta-condimentos`.`Idcondimento`=idcond
 LIMIT 5$$
 
 /*--------------------------------------------------------------------------------------------------------*/
-
+delimiter $$
 CREATE PROCEDURE `sp_RecetaxPiramide`(IN `idPiram` INT)
 select recetas.IdReceta, recetas.Receta
 from recetas
@@ -56,7 +56,7 @@ where recetas.IdPiramide=idpiram
 limit 5$$
 
 /*--------------------------------------------------------------------------------------------------------*/
-
+delimiter $$
 CREATE PROCEDURE `sp_recetaxpreferencias`(IN `idUsu` INT)
 SELECT recetas.IdReceta,recetas.Receta
 from preferencias inner JOIN 
@@ -67,7 +67,7 @@ where preferencias.IdUsuario=idusu
 limit 3$$
 
 /*--------------------------------------------------------------------------------------------------------*/
-
+delimiter $$
 CREATE PROCEDURE `sp_RegistrarUsuario`(
     
 IN usuario_param VARCHAR(50),
@@ -111,16 +111,16 @@ VALUES
 END$$
 
 /*--------------------------------------------------------------------------------------------------------*/
-
+delimiter $$
 CREATE PROCEDURE `UsuariosDeGrupo`(IN `idGrupoParam` INT)
     NO SQL
 select * from usuarios usu inner join `usuario-grupos` ug on usu.IdUsuario = ug.IdUsuario where ug.IdGrupo = idGrupoParam$$
 
 /*--------------------------------------------------------------------------------------------------------*/
-
+delimiter $$
 CREATE PROCEDURE `VerPreferencias`(IN `IdUsu` INT)
 SELECT IdPreferencia, preferencias.IdIngrediente, IdUsuario, ingredientes.Ingrediente FROM preferencias inner join ingredientes on preferencias.IdIngrediente=ingredientes.IdIngrediente
-where idusuario=IdUsu
+where idusuario=IdUsu$$
 
 /*--------------------------------------------------------------------------------------------------------*/
 
@@ -146,7 +146,6 @@ end if;
 select esCreador;
 
 end$$
-delimiter;
 
 /*--------------------------------------------------------------------------------------------------------*/
 
@@ -160,5 +159,4 @@ if @idUsuario_var = idUsu then
 else
 	INSERT INTO `puntuaciones`(`IdReceta`, `IdUsuario`, `Fecha`, `Puntuacion`) VALUES (idRec,IdUsu,now(),puntos);
 end if;
-end$$
-delimiter;
+end
