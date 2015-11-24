@@ -23,6 +23,25 @@
 
 		}
 
+		public function getIngredientesReceta($idReceta){
+
+			return $this->capaDatos->getIngredientesReceta($idReceta);
+
+		}
+
+		public function getCondimentosReceta($idReceta){
+
+			return $this->capaDatos->getCondimentosReceta($idReceta);
+
+		}
+
+		public function getDificultadReceta($idReceta){
+
+			return $this->capaDatos->getDificultadReceta($idReceta);
+
+		}
+
+
 	}
 
 ?>

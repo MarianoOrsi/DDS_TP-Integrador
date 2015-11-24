@@ -43,7 +43,7 @@
 						<div class="row">
 							
 								
-									<h1>
+									<h1 style="margin:0px; text-align:center;">
 										<?php
 											include ("../Negocio/NegocioPlanificarRecetas.php");
 
@@ -55,60 +55,92 @@
 										?>
 									</h1>
 
-									<h3> Pasos </h3>
+									<h3 style="margin:15px 0px 0px 0px; text-align:center;">
+										
+										<?php
+											
+											$dificultad = $negocio->getDificultadReceta($_GET["IdReceta"]);
 
-   										<?php
+											echo "Dificultad: ".$dificultad;
+										?>
+
+									</h3>
+
+									<h3 style="margin:15px 0px 0px 0px; text-align:center;">
+										
+										<?php
+											echo "Calorias Totales: ".$datosReceta->Calorias;
+										?>
+
+									</h3>
+
+									<br />
+
+									<div id="ingredientes" style="width:30%; float:left;">
+										<?php
+
+											$array = $negocio->getIngredientesReceta($_GET["IdReceta"]);
+
+											$index = 1;
+
+											echo "<h4 style=\"margin:0px; float:left;\">Ingredientes</h4>";
+											echo "<br />"; 
+											
+											foreach($array as $ingredienteReceta) {
+												
+												echo $ingredienteReceta->getIngrediente();
+												echo "<br />"; 
+												echo "Porcion:  ".$ingredienteReceta->getPorcion();
+												echo "<br />";
+												echo "Calorias:  ".$ingredienteReceta->getCalorias();
+												echo "<br />";
+												echo "<br />";						
+
+												$index++;
+											}
+
+										?>
+
+									</div>
+									<div id="condimentos" style="float:left; width:30%;">
+										<?php
+
+											echo "<h4 style=\"margin:0px; float:left;\">Condimentos</h4>";
+											echo "<br />";
+
+											$array = $negocio->getCondimentosReceta($_GET["IdReceta"]);
+
+											$index = 1;
+
+											foreach($array as $condimentoReceta) {
+												echo $condimentoReceta->getcondimento();
+												echo "<br />";										    
+												$index++;
+											}
+
+										?>
+									</div>
+									<div id="pasos" style="float:left; width:35%;">
+										<?php
+											echo "<h4 style=\"margin:0px; float:left;\">Preparacion</h4>";
+											echo "<br />";
+											echo "<br />";
 
 											$array = $negocio->getPasosReceta($_GET["IdReceta"]);
-
 
 											$index = 1;
 
 											foreach($array as $pasoReceta) {
+												echo "<h4 style=\"margin:0px;\">Paso".$index."</h4>";
+												echo $pasoReceta->getPaso();
 												echo "<br />";
-												echo "<label>Paso".$index."</label>";
-												echo "<br />";
-												echo $pasoReceta->getPaso();											    
+												echo "<br />";										    
 												$index++;
 											}
-										?>
 
-									<!--<table class="table table-hover">
-										<thead>
-										<tr>													
-											<th>Receta</th>
-											<th>Horarios</th>
-											<th>Dificultad</th>
-											<th>Calor&iacute;as</th>
-											<th></th>
-											<th></th>
-										</tr>
-										</thead>
-										<tbody>
-										<tr>
-											<td>John</td>
-											<td>Doe</td>
-											<td>john@example.com</td>
-											<td>100</td>
-											<td><input type="button" value="Ver" class="btn btn-lg"/></td>
-											</tr>
-										<tr>
-											<td>Mary</td>
-											<td>Moe</td>
-											<td>mary@example.com</td>
-											<td>100</td>
-											<td><input type="button" value="Ver" class="btn btn-lg"/></td>
-										</tr>
-										<tr>
-										<td>July</td>
-										<td>Dooley</td>
-										<td>july@example.com</td>
-										<td>100</td>
-										<td><input type="button" value="Ver" class="btn btn-lg"/></td>
-										</tr>
-										
-										</tbody>
-									</table>-->									
+										?>
+									</div>
+							
 						</div>
 					</div>
 		</div>

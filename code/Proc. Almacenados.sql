@@ -167,4 +167,31 @@ BEGIN
 SELECT Descripcion, Foto FROM pasos
 WHERE pasos.IdReceta = idReceta 
 ORDER BY Paso;
-END
+END$$
+
+delimiter $$
+create procedure sp_BuscarIngredientesDeReceta (IN recetaID INT)
+begin
+select ing.Ingrediente, ing.Porcion, ing.Calorias
+from ingredientes ing inner join `receta-ingredientes` rec
+on (ing.IdIngrediente = REC.IdIngrediente)
+WHERE rec.IdReceta = recetaId;
+end$$
+
+delimiter $$
+create procedure sp_BuscarCondimentosDeReceta (IN recetaId INT)
+begin
+select con.Condimento from condimentos con
+inner join `receta-condimentos` rec
+on (con.IdCondimento = rec.IdCondimento)
+where rec.IdReceta = recetaId;
+end$$
+
+delimiter $$
+create procedure sp_BuscarDificultadDeReceta (IN recetaId INT)
+begin
+select Dificultad from dificultades dif
+inner join recetas rec
+on (dif.IdDificultad = rec.IdDificultad)
+where rec.IdReceta = recetaId;
+end

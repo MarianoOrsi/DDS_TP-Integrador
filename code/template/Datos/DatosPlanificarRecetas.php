@@ -1,5 +1,7 @@
 <?php
 	include ("../clases/Paso.php");
+	include ("../clases/Ingrediente.php");
+	include ("../clases/Condimento.php");
 
 	class capaDatos{
 
@@ -51,7 +53,7 @@
 				echo mysqli_connect_error();
 			}
 
-			$result = $db->query("call sp_buscarPasosDeReceta(".$idReceta.")");
+			$result = $db->query("call sp_buscarPasosDeReceta(".$idReceta.")"); //SELECT Descripcion, Foto FROM pasos WHERE IdReceta = ".$idReceta." ORDER BY Paso");
 
 			$pasosReceta = array();
 
@@ -70,135 +72,82 @@
 			return $pasosReceta;
 		}
 
+		public function getIngredientesReceta($idReceta){
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-		public function TodasLasRecetas($idGrupo){
-
-			$db = new mysqli($servidorDB,$userDB,$passDB,$nameDB);
-
-			if(mysqli_connect_errno()){
-			 echo mysqli_connect_error();
-			}
-
-			$Recetas = array();
-
-			$resultReceta = $db->query("SELECT * FROM Recetas");
-			if($resultReceta){
-				while ($rowReceta = $resultReceta->fetch_object()){
-
-					$dificultad = DificultadDeReceta($rowReceta->IdDificultad);
-
-					$estaciones = EstacionesDeReceta($rowReceta->IdReceta);
-
-
-					$receta = new Receta();
-					array_push($Recetas, $receta);
-
-				}
-				$result->close();
-				$db->next_result();
-			}
-			return $Usuarios;
-		}
-
-		public function DificultadDeReceta($idDificultad){
-
-			$db = new mysqli($servidorDB,$userDB,$passDB,$nameDB);
+			$db = new mysqli('127.0.0.1','root','','diseniosistemas');
 
 			if(mysqli_connect_errno()){
 				echo mysqli_connect_error();
 			}
 
-			$result = $db->query("SELECT * FROM dificultades where IdDificultad = ".$rowReceta->IdDificultad."");
+			$result = $db->query("call sp_BuscarIngredientesDeReceta(".$idReceta.")");
 
-			$dificultad = null;
+			$ingredientesReceta = array();
 
 			if($result){
-				$row = $result->fetch_object())
 
-				//creo el objeto dificultad con el idDificultad de la receta
-				$dificultad = new Dificultad($row->IdDificultad, $row->Dificultad);
+			while ($row = $result->fetch_object()){
+					
+					$ingredienteReceta = new Ingrediente($row->Ingrediente,$row->Porcion,$row->Calorias);
+					
+					array_push($ingredientesReceta, $ingredienteReceta);
+				}
 
 				$result->close();
 				$db->next_result();
 			}
-			return $dificultad;
+			return $ingredientesReceta;
 		}
 
-		public function EstacionDeReceta($idReceta){
+		public function getCondimentosReceta($idReceta){
 
-			$db = new mysqli($servidorDB,$userDB,$passDB,$nameDB);
+			$db = new mysqli('127.0.0.1','root','','diseniosistemas');
 
 			if(mysqli_connect_errno()){
 				echo mysqli_connect_error();
 			}
 
-			$result = $db->query("SELECT * FROM estaciones where IdEstacion in (SELECT IdEstacion from `receta-estaciones` where IdReceta = ".$idReceta.")");
+			$result = $db->query("call sp_BuscarCondimentosDeReceta(".$idReceta.")");
+
+			$condimentosReceta = array();
 
 			if($result){
 
-				$row = $result->fetch_object())
-
-				$estacion = new Estacion($row->IdEstacion,$row->Estacion);
-			}
-			return $estaciones;
-		}
-
-		public function IngredientesDeReceta($idReceta){
-
-			$db = new mysqli($servidorDB,$userDB,$passDB,$nameDB);
-
-			if(mysqli_connect_errno()){
-				echo mysqli_connect_error();
-			}
-
-			$result = $db->query("SELECT * FROM ingredientes where IdIngrediente in (SELECT IdIngrediente from `receta-ingredientes` where IdReceta = ".$idReceta.")");
-
-			$ingredientes = array();
-
-			if($result){
-				while ($row = $result->fetch_object()){
-
-					$ingrediente = new Ingrediente($row->IdIngrediente,$row->Ingrediente,$row->Porcion,$row->Calorias,$row->imagen);
-
-					array_push($ingredientes, $ingrediente);
+			while ($row = $result->fetch_object()){
+					
+					$condimentoReceta = new Condimento(0,$row->Condimento);
+					
+					array_push($condimentosReceta, $condimentoReceta);
 				}
+
+				$result->close();
+				$db->next_result();
 			}
-			return $ingredientes;
-		}*/
+			return $condimentosReceta;
+		}
+
+		public function getDificultadReceta($idReceta){
+
+			$db = new mysqli('127.0.0.1','root','','diseniosistemas');
+
+			if(mysqli_connect_errno()){
+				echo mysqli_connect_error();
+			}
+
+			$result = $db->query("call sp_BuscarDificultadDeReceta(".$idReceta.")");
+
+			$dificultadReceta = null;
+
+			if($result){
+
+				$row = $result->fetch_object();
+					
+				$dificultadReceta = $row->Dificultad;
+					
+				$result->close();
+			}
+			return $dificultadReceta;
+		}
+
 	}
 ?>
