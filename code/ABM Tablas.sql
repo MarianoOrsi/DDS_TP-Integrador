@@ -207,20 +207,6 @@ INSERT INTO `ingredientes` (`Ingrediente`, `Porcion`, `Calorias`, `imagen`) VALU
 
 
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pasos`
---
-
-CREATE TABLE IF NOT EXISTS `pasos` (
-  `IdPasos` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `Paso` varchar(50) NOT NULL,
-  `Descripcion` varchar(50) NOT NULL,
-  `Foto` varchar(50) NOT NULL
-);
-
-
 
 -- --------------------------------------------------------
 
@@ -304,23 +290,6 @@ INSERT INTO `rutinas` (`Nombre`, `Descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `receta-condimentos`
---
-
-CREATE TABLE IF NOT EXISTS `receta-condimentos` (
-  `IdRecetaCondimento` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `IdReceta` int(11) NOT NULL,
-  
-  `IdCondimento` int(11) NOT NULL,
-  CONSTRAINT `Receta` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`Idreceta`),
-  CONSTRAINT `Condimentos` FOREIGN KEY (`IdCondimento`) REFERENCES `condimentos` (`IdCondimento`)
-);
-
-
--- --------------------------------------------------------
-
-
---
 -- Estructura de tabla para la tabla `recetas`
 --
 
@@ -340,6 +309,21 @@ CREATE TABLE IF NOT EXISTS `recetas` (
 INSERT INTO `recetas` (`Receta`, `IdDificultad`, `IdUsuario`, `IdPiramide`, `IdDieta`, `Calorias`) VALUES
 ('carne con arroz', 1, 29, 1, 1, 90);
 
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pasos`
+--
+
+CREATE TABLE IF NOT EXISTS `pasos` (
+`IdPasos` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `IdReceta` int(11) NOT NULL,
+  `Paso` varchar(50) NOT NULL,
+  `Descripcion` varchar(50) NOT NULL,
+  `Foto` varchar(50) NOT NULL,
+   CONSTRAINT `pasos-receta` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`IdReceta`)
+);
 
 -- --------------------------------------------------------
 
@@ -576,3 +560,18 @@ CREATE TABLE IF NOT EXISTS `puntuaciones` (
 
 INSERT INTO `puntuaciones` (`IdReceta`, `IdUsuario`, `Fecha`, `Puntuacion`) VALUES
 (1, 29, '2015-10-06 00:00:00', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `receta-condimentos`
+--
+
+CREATE TABLE IF NOT EXISTS `receta-condimentos` (
+  `IdRecetaCondimento` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `IdReceta` int(11) NOT NULL,
+  
+  `IdCondimento` int(11) NOT NULL,
+  CONSTRAINT `Receta` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`Idreceta`),
+  CONSTRAINT `Condimentos` FOREIGN KEY (`IdCondimento`) REFERENCES `condimentos` (`IdCondimento`)
+);
