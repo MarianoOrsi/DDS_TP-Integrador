@@ -64,47 +64,72 @@ $tale=mysql_query($consultaReceta) or die (mysql_error());
 function MostrarIngredientes($id)
 {
    global $dale;
-   while($resultadoIngredientes= mysql_fetch_array($dale)){
+    $total=array();
+   while($resultadoIngredientes= mysql_fetch_array($dale)){array_push($total,$resultadoIngredientes['0']);}
+
+    $j=0;
+
    while ($ingrediente = mysql_fetch_array($id, MYSQL_NUM))
     {
-         if($resultadoIngredientes['0']==$ingrediente['0'])
+        if($j<count($total)){
+         if($total[$j]==$ingrediente['0'])
          {
             echo '<div class="checkbox-inline">
 			<label><input type="checkbox" name="ingredientesSeleccionados[]" value="' . $ingrediente['0'] . '" checked>' . $ingrediente['1'] . '</label>
 		    </div>';
-             break;
+
+             $j++;
+
+
          }
          else{
             echo '<div class="checkbox-inline">
 			<label><input type="checkbox" name="ingredientesSeleccionados[]" value="' . $ingrediente['0'] . '">' . $ingrediente['1'] . '</label>
 		    </div>';
          }
+
+        } else{
+            echo '<div class="checkbox-inline">
+			<label><input type="checkbox" name="ingredientesSeleccionados[]" value="' . $ingrediente['0'] . '">' . $ingrediente['1'] . '</label>
+		    </div>';
+        }
     }
 
-    }
+
+
 }
 
 function MostrarCondimentos($id)
 {
     global $gale;
-   $resultadoCondimentos = mysql_fetch_array($gale);
-    for($i=0;$i<count($resultadoCondimentos);$i++){echo $resultadoCondimentos[$i];}
+    $tatal=array();
+    while($resultadoIngredientes= mysql_fetch_array($gale)){array_push($tatal,$resultadoIngredientes['0']);}
+
+    $t=0;
+
 
         while ($condimento = mysql_fetch_array($id, MYSQL_NUM)) {
-            if ($resultadoCondimentos['0'] == $condimento['0']) {
+
+            if($t<count($tatal)){
+            if ($tatal[$t] == $condimento['0']) {
                 echo ' <div class="checkbox-inline">
            <label><input type="checkbox" name="condimentosSeleccionados[]" value="' . $condimento['0'] . '" checked>' . $condimento['1'] . '</label>
            </div>';
-                break;
+               $t++;
 
             } else {
                 echo '<div class="checkbox-inline">
             <label><input type="checkbox" name="condimentosSeleccionados[]" value="' . $condimento['0'] . '">' . $condimento['1'] . '</label>
             </div>';
             }
+        } else {
+    echo '<div class="checkbox-inline">
+            <label><input type="checkbox" name="condimentosSeleccionados[]" value="' . $condimento['0'] . '">' . $condimento['1'] . '</label>
+            </div>';
+}
+}
 
 
-    }
 }
 
 function MostrarDificultades($id)
@@ -131,7 +156,7 @@ function MostrarEstacion($id)
     while ($Estacion = mysql_fetch_array($id, MYSQL_NUM))
     {
         if($sacado['0']==$Estacion['0']){
-            echo '<option value="'.$Estacion['0'].'" selected>'.$Estacion['1'].'</option>';
+            echo '<option value="'.$Estacion['0'].'">'.$Estacion['1'].'</option>';
         }
         else{
             echo '<option value="'.$Estacion['0'].'">'.$Estacion['1'].'</option>';
