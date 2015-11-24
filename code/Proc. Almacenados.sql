@@ -165,6 +165,6 @@ delimiter $$
 CREATE PROCEDURE `sp_buscarPasosDeReceta`(IN idReceta INT)
 BEGIN
 SELECT Descripcion, Foto FROM pasos
-WHERE IdReceta = idReceta 
+WHERE pasos.IdReceta = idReceta 
 ORDER BY Paso;
 END
