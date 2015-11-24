@@ -30,7 +30,7 @@ if(isset($_POST["submit"])) {
 $pasosReceta=[$_POST["paso1"],$_POST["paso2"],$_POST["paso3"],$_POST["paso4"],$_POST["paso5"]];
 
 
- $recetaObj = new Receta($_POST["nombreReceta"],$_POST["dificultad"],$_SESSION["idUsuario"],$_POST["estacion"],$_POST["ingredientesSeleccionados"],$_POST["condimentosSeleccionados"],$pasosReceta,calcularCalorias($_POST["ingredientesSeleccionados"]),$_POST["piramide"],$_POST["dieta"]);
+ $recetaObj = new Receta(0,$_POST["nombreReceta"],$_POST["dificultad"],$_SESSION["idUsuario"],$_POST["estacion"],$_POST["ingredientesSeleccionados"],$_POST["condimentosSeleccionados"],$pasosReceta,calcularCalorias($_POST["ingredientesSeleccionados"]),$_POST["piramide"],$_POST["dieta"]);
    $datosObj = new accesoDatos();
    $datosObj->GuardarReceta($recetaObj);
 

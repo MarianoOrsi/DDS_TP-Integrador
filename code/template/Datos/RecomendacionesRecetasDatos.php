@@ -67,7 +67,7 @@ class accesoDatos{
 
 	        mysql_select_db($this->nameDB, $this->connectionDB);
 
-			$consulta = "SELECT recetas.Receta FROM recetas
+			$consulta = "SELECT recetas.IdReceta, recetas.Receta FROM recetas
 						WHERE recetas.IdReceta NOT IN (
 						    
 						SELECT recetas.IdReceta
@@ -84,7 +84,7 @@ class accesoDatos{
 
 			while ($row = mysql_fetch_array($result)){
             
-				$Receta = new Receta($row["Receta"],"","","","","","","","","");
+				$Receta = new Receta($row["IdReceta"],$row["Receta"],"","","","","","","","","");
 
 				array_push($arrayRecetas, $Receta);
 			}

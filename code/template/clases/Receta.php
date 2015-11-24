@@ -1,5 +1,7 @@
 <?php 
 	class Receta{
+
+        private $IdReceta;
 		private $UsuarioCreador;
 		private $Desc;
 		private $Dificultad;
@@ -12,8 +14,9 @@
         private $Dieta;
 
 
-		public function __construct($desc_in, $dificultad_in, $usuarioCreador_in, $temporada_in,$ingredientes_in,$condimentos_in,$pasos_in,$calorias_in,$piramide_in,$dieta_in){
+		public function __construct($idReceta_in,$desc_in, $dificultad_in, $usuarioCreador_in, $temporada_in,$ingredientes_in,$condimentos_in,$pasos_in,$calorias_in,$piramide_in,$dieta_in){
 
+            $this->IdReceta = $idReceta_in;
             $this->Desc = $desc_in;
             $this->Dificultad = $dificultad_in;
 			$this->UsuarioCreador = $usuarioCreador_in;
@@ -26,7 +29,11 @@
             $this->Dieta=$dieta_in;
 
 		}
- 
+        
+        public function getId(){
+            return $this->IdReceta;
+        }
+
         public function getDesc()
 		{
 			return $this->Desc;
