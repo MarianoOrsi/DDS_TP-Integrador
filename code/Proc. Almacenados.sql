@@ -167,4 +167,4 @@ BEGIN
 SELECT Descripcion, Foto FROM pasos
 WHERE IdReceta = idReceta 
 ORDER BY Paso;
-END$$
+END
