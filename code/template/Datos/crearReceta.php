@@ -36,6 +36,8 @@ $pasosReceta=[$_POST["paso1"],$_POST["paso2"],$_POST["paso3"],$_POST["paso4"],$_
 
     $datosObj->GuardarPasos($recetaObj->getPasos());
 
+    $datosObj->GuardarEstacion($recetaObj->getTemporada());
+
     $datosObj->GuardarIngredientes($recetaObj->getIngredientes());
     $datosObj->GuardarCondimentos($recetaObj->getCondimentos());
 

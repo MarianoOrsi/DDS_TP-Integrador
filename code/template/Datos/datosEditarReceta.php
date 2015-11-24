@@ -38,7 +38,6 @@ $resultadoBusqueda = mysql_fetch_array($dale);
 /* busco los condimentos de la receta principal*/
 
 $consultasReceta="SELECT IdCondimento FROM `receta-condimentos` WHERE IdReceta=".$_GET["id"].";";
-echo $consultasReceta;
 $gale=mysql_query($consultasReceta) or die (mysql_error());
 
 
@@ -50,6 +49,10 @@ $dale=mysql_query($consultaReceta) or die (mysql_error());
 /* busco los pasos de una receta */
 $consultaReceta="SELECT Descripcion FROM `pasos` WHERE IdReceta=".$_GET["id"].";";
 $fale=mysql_query($consultaReceta) or die (mysql_error());
+
+/* busco la estacion de la receta */
+$consultaReceta="SELECT IdEstacion FROM `receta-estaciones` WHERE IdReceta=".$_GET["id"].";";
+$tale=mysql_query($consultaReceta) or die (mysql_error());
 
 
 
@@ -84,7 +87,9 @@ function MostrarIngredientes($id)
 function MostrarCondimentos($id)
 {
     global $gale;
-    while ($resultadoCondimentos = mysql_fetch_array($gale)) {
+   $resultadoCondimentos = mysql_fetch_array($gale);
+    for($i=0;$i<count($resultadoCondimentos);$i++){echo $resultadoCondimentos[$i];}
+
         while ($condimento = mysql_fetch_array($id, MYSQL_NUM)) {
             if ($resultadoCondimentos['0'] == $condimento['0']) {
                 echo ' <div class="checkbox-inline">
@@ -97,7 +102,7 @@ function MostrarCondimentos($id)
             <label><input type="checkbox" name="condimentosSeleccionados[]" value="' . $condimento['0'] . '">' . $condimento['1'] . '</label>
             </div>';
             }
-        }
+
 
     }
 }
@@ -120,11 +125,21 @@ function MostrarDificultades($id)
 
 function MostrarEstacion($id)
 {
+    global $tale;
+   $sacado=mysql_fetch_array($tale, MYSQL_NUM);
+
     while ($Estacion = mysql_fetch_array($id, MYSQL_NUM))
     {
-        echo '<option value="'.$Estacion['0'].'">'.$Estacion['1'].'</option>';
+        if($sacado['0']==$Estacion['0']){
+            echo '<option value="'.$Estacion['0'].'" selected>'.$Estacion['1'].'</option>';
+        }
+        else{
+            echo '<option value="'.$Estacion['0'].'">'.$Estacion['1'].'</option>';
+        }
+
     }
 }
+
 function MostrarPiramide($id)
 {
     global $resultadoBusqueda;

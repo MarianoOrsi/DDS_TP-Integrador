@@ -40,6 +40,22 @@
 
         }
 
+        public function GuardarEstacion($estacion){
+
+
+            mysql_select_db($this->nameDB, $this->connectionDB);
+            function idRecetaRecien(){
+                $QultimaReceta="SELECT  IdReceta FROM recetas ORDER BY IdReceta DESC LIMIT 1";
+                $pepe=mysql_query($QultimaReceta) or die (mysql_error());
+                $p=mysql_fetch_row($pepe);
+                return $p['0'];
+            }
+            $consulta="INSERT INTO `diseniosistemas`.`receta-estaciones` (`IdRecetaEstacion`, `IdReceta`, `IdEstacion`) VALUES (NULL, '".idRecetaRecien()."', '".$estacion."');";
+            mysql_query($consulta) or die (mysql_error());
+
+
+        }
+
         public function UpdateReceta($receta){
 
             mysql_select_db($this->nameDB, $this->connectionDB);
@@ -56,7 +72,7 @@
         public function GuardarPasos($pasos){
 
             mysql_select_db($this->nameDB, $this->connectionDB);
-            function idRecetaRecien(){
+            function idRecetasRecien(){
                 $QultimaReceta="SELECT  IdReceta FROM recetas ORDER BY IdReceta DESC LIMIT 1";
                 $pepe=mysql_query($QultimaReceta) or die (mysql_error());
                 $p=mysql_fetch_row($pepe);
@@ -65,7 +81,7 @@
 
             for($i=0;$i<5;$i++)
             {
-                $consulta = "INSERT INTO `diseniosistemas`.`pasos` (`IdPasos`, `IdReceta`, `Paso`, `Descripcion`, `Foto`) VALUES (NULL, '" . idRecetaRecien() . "','".($i+1). "', '" . $pasos[$i] . "', 'imagen.jpg');";
+                $consulta = "INSERT INTO `diseniosistemas`.`pasos` (`IdPasos`, `IdReceta`, `Paso`, `Descripcion`, `Foto`) VALUES (NULL, '" . idRecetasRecien() . "','".($i+1). "', '" . $pasos[$i] . "', 'imagen.jpg');";
                 mysql_query($consulta) or die (mysql_error());
             }
 
