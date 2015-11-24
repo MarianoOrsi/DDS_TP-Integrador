@@ -19,7 +19,7 @@ function DameRecetasResumida($recetaSql)
 		<td>'.$recetaSql['0'].'</td>
 		<td>'.$recetaSql['1'].'</td>
 		<td>'.$recetaSql['2'].'</td>
-		<td><a href="../interfaz/AgregarReceta.php?id='.$recetaSql['3'].'" class="btn btn-theme aligncenter">Editar</a></td>
+		<td><a href="../interfaz/EditarReceta.php?id='.$recetaSql['3'].'" class="btn btn-theme aligncenter">Editar</a></td>
 		<td><a href="../index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
 	</tr>';
 	

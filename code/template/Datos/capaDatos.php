@@ -33,12 +33,24 @@
         public function GuardarReceta($receta){
 
             mysql_select_db($this->nameDB, $this->connectionDB);
+            $consulta= "INSERT INTO `diseniosistemas`.`recetas` (`IdReceta`, `Receta`, `IdDificultad`, `IdUsuario`, `IdPiramide`, `IdDieta`, `Calorias`) VALUES (NULL, '".$receta->getDesc()."', '".$receta->getDificultad()."', '".$receta->getUsuarioCreador()."', '".$receta->getPiramide()."', '".$receta->getDieta()."','".$receta->getCalorias()."')";
 
-         $consulta= "INSERT INTO `diseniosistemas`.`recetas` (`IdReceta`, `Receta`, `IdDificultad`, `IdUsuario`, `IdPiramide`, `IdDieta`, `Calorias`) VALUES (NULL, '".$receta->getDesc()."', '".$receta->getDificultad()."', '".$receta->getUsuarioCreador()."', '".$receta->getPiramide()."', '".$receta->getDieta()."','".$receta->getCalorias()."')";
 
-          mysql_query($consulta) or die (mysql_error());
+            mysql_query($consulta) or die (mysql_error());
 
         }
+
+        public function UpdateReceta($receta){
+
+            mysql_select_db($this->nameDB, $this->connectionDB);
+
+            $consulta=" UPDATE `diseniosistemas`.`recetas` SET `Receta` = '".$receta->getDesc()."', `IdDificultad` = '".$receta->getDificultad()."', `IdUsuario` = '".$receta->getUsuarioCreador()."', `IdPiramide` = '".$receta->getPiramide()."', `IdDieta` = '".$receta->getDieta()."', `Calorias` = '".$receta->getCalorias()."' WHERE `recetas`.`IdReceta` = ".$receta->getId().";";
+            echo $consulta;
+
+            //mysql_query($consulta) or die (mysql_error());
+
+        }
+
 
 
         public function GuardarPasos($pasos){

@@ -11,6 +11,7 @@
         private $Piramide;
         private $Dieta;
 
+
 		public function __construct($desc_in, $dificultad_in, $usuarioCreador_in, $temporada_in,$ingredientes_in,$condimentos_in,$pasos_in,$calorias_in,$piramide_in,$dieta_in){
 
             $this->Desc = $desc_in;
@@ -23,6 +24,7 @@
             $this->Calorias=$calorias_in;
             $this->Piramide=$piramide_in;
             $this->Dieta=$dieta_in;
+
 		}
  
         public function getDesc()
