@@ -45,10 +45,10 @@ include("../datos/datosEditarReceta.php");
 						</div>
 					
 						<div class="cform" id="contact-form">
-							<form action="../datos/editarReceta.php" method="post" role="form" class="contactForm">
+							<form action="../datos/editarReceta.php?id=<?php  echo $_GET["id"] ?>" method="post" role="form" class="contactForm">
 							
 							<div class="form-group">
-								<label name="culo">Nombre de la Receta </label> <label name="idRecetanga"><?php  echo $_GET["id"] ?></label>
+								<label name="culo">Nombre de la Receta </label>
 								<input type="text" class="form-control" name="nombreReceta" value="<?php MostrarNombre();?>"/>
 								<div class="validation"></div>
 							

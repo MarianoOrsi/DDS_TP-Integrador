@@ -56,14 +56,52 @@
 
         }
 
-        public function UpdateReceta($receta){
+        public function UpdateEstacion($estacion,$idReceta){
+
+
+            mysql_select_db($this->nameDB, $this->connectionDB);
+            $consulta="UPDATE `diseniosistemas`.`receta-estaciones` SET `IdEstacion` = '".$estacion."' WHERE `receta-estaciones`.`IdReceta` =".$idReceta.";";
+            mysql_query($consulta) or die (mysql_error());
+
+
+        }
+
+        public function UpdateIngredientes($ingredientes,$idReceta){
+            mysql_select_db($this->nameDB, $this->connectionDB);
+            $consulta="DELETE FROM `diseniosistemas`.`receta-ingredientes` WHERE `receta-ingredientes`.`IdReceta` =".$idReceta.";";
+            mysql_query($consulta) or die (mysql_error());
+
+
+            for($i=0;$i<count($ingredientes);$i++){
+                $consulta= "INSERT INTO `diseniosistemas`.`receta-ingredientes` (`IdRecetaIngrediente`, `IdReceta`, `IdIngrediente`) VALUES (NULL, '" .$idReceta. "', '".$ingredientes[$i]."');";
+                mysql_query($consulta) or die (mysql_error());
+            }
+
+
+        }
+
+        public function UpdateCondimentos($condimentos,$idReceta){
+
+            mysql_select_db($this->nameDB, $this->connectionDB);
+            $consulta="DELETE FROM `diseniosistemas`.`receta-condimentos` WHERE `receta-condimentos`.`IdReceta` =".$idReceta.";";
+            mysql_query($consulta) or die (mysql_error());
+            for($i=0;$i<count($condimentos);$i++){
+                $consulta="INSERT INTO `diseniosistemas`.`receta-condimentos` (`IdRecetaCondimento`, `IdReceta`, `IdCondimento`) VALUES (NULL, '" .$idReceta. "', '".$condimentos[$i]."')";
+                mysql_query($consulta) or die (mysql_error());
+            }
+
+
+        }
+
+
+        public function UpdateReceta($receta,$id){
 
             mysql_select_db($this->nameDB, $this->connectionDB);
 
-            $consulta=" UPDATE `diseniosistemas`.`recetas` SET `Receta` = '".$receta->getDesc()."', `IdDificultad` = '".$receta->getDificultad()."', `IdUsuario` = '".$receta->getUsuarioCreador()."', `IdPiramide` = '".$receta->getPiramide()."', `IdDieta` = '".$receta->getDieta()."', `Calorias` = '".$receta->getCalorias()."' WHERE `recetas`.`IdReceta` = ".$receta->getId().";";
-            echo $consulta;
+            $consulta=" UPDATE `diseniosistemas`.`recetas` SET `Receta` = '".$receta->getDesc()."', `IdDificultad` = '".$receta->getDificultad()."', `IdUsuario` = '".$receta->getUsuarioCreador()."', `IdPiramide` = '".$receta->getPiramide()."', `IdDieta` = '".$receta->getDieta()."', `Calorias` = '".$receta->getCalorias()."' WHERE `recetas`.`IdReceta` = ".$id.";";
 
-            //mysql_query($consulta) or die (mysql_error());
+
+            mysql_query($consulta) or die (mysql_error());
 
         }
 
@@ -87,20 +125,29 @@
 
        }
 
-
-        public function GuardarCondimentos($condimentos){
-            mysql_select_db($this->nameDB, $this->connectionDB);
-             for($i=0;$i<count($condimentos);$i++){
-                $consulta="INSERT INTO `diseniosistemas`.`receta-condimentos` (`IdRecetaCondimento`, `IdReceta`, `IdCondimento`) VALUES (NULL, '" . idRecetaRecien() . "', '".$condimentos[$i]."')";
+        public function UpdatePasos($pasos,$idReceta){
 
 
+            for($i=0;$i<5;$i++)
+            {
+                $consulta="UPDATE `diseniosistemas`.`pasos` SET `Descripcion` = '" . $pasos[$i] . "' WHERE `pasos`.`IdReceta`=".$idReceta." AND `pasos`.`Paso`=".($i +1).";";
                 mysql_query($consulta) or die (mysql_error());
             }
 
         }
 
 
-        public function GuardarIngredientes($ingredientes){
+        public function GuardarCondimentos($condimentos){
+            mysql_select_db($this->nameDB, $this->connectionDB);
+             for($i=0;$i<count($condimentos);$i++){
+                $consulta="INSERT INTO `diseniosistemas`.`receta-condimentos` (`IdRecetaCondimento`, `IdReceta`, `IdCondimento`) VALUES (NULL, '" . idRecetaRecien() . "', '".$condimentos[$i]."')";
+                mysql_query($consulta) or die (mysql_error());
+            }
+
+        }
+
+
+       function GuardarIngredientes($ingredientes){
             mysql_select_db($this->nameDB, $this->connectionDB);
 
             for($i=0;$i<count($ingredientes);$i++){

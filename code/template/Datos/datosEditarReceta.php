@@ -156,7 +156,7 @@ function MostrarEstacion($id)
     while ($Estacion = mysql_fetch_array($id, MYSQL_NUM))
     {
         if($sacado['0']==$Estacion['0']){
-            echo '<option value="'.$Estacion['0'].'">'.$Estacion['1'].'</option>';
+            echo '<option value="'.$Estacion['0'].'" selected>'.$Estacion['1'].'</option>';
         }
         else{
             echo '<option value="'.$Estacion['0'].'">'.$Estacion['1'].'</option>';
