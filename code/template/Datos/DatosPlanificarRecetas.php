@@ -149,5 +149,16 @@
 			return $dificultadReceta;
 		}
 
+		public function guardarRecetaConsultada($idUsuario, $idReceta){
+
+			$db = new mysqli('127.0.0.1','root','','diseniosistemas');
+
+			if(mysqli_connect_errno()){
+				echo mysqli_connect_error();
+			}
+
+			$result = $db->query("call sp_GuardarRecetaVista(".$idUsuario.",".$idReceta.")");
+		}
+
 	}
 ?>

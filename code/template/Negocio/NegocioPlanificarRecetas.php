@@ -41,6 +41,12 @@
 
 		}
 
+		public function guardarRecetaConsultada($idUsuario, $idReceta){
+
+			return $this->capaDatos->guardarRecetaConsultada($idUsuario, $idReceta);
+
+		}
+
 
 	}
 

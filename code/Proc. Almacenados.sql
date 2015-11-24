@@ -194,4 +194,13 @@ select Dificultad from dificultades dif
 inner join recetas rec
 on (dif.IdDificultad = rec.IdDificultad)
 where rec.IdReceta = recetaId;
+end$$
+
+delimiter $$
+create procedure sp_GuardarRecetaVista (IN usuarioId INT, IN recetaId INT)
+begin
+INSERT INTO historiales
+(IdAccion, IdUsuario, IdReceta, `Fecha de Accion`, `Fecha de Utilizacion`)
+VALUES
+(3,usuarioId,recetaId, NOW(), NOW());
 end

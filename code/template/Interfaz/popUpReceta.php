@@ -1,5 +1,16 @@
 <?php session_start();?>
 
+<?php
+	include ("../Negocio/NegocioPlanificarRecetas.php");
+
+	$negocio = new LogicaNegocio();
+
+	$datosReceta = $negocio->getInfoReceta($_GET["IdReceta"]);
+
+	$negocio->guardarRecetaConsultada($_SESSION["idUsuario"], $_GET["IdReceta"]);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -45,12 +56,6 @@
 								
 									<h1 style="margin:0px; text-align:center;">
 										<?php
-											include ("../Negocio/NegocioPlanificarRecetas.php");
-
-											$negocio = new LogicaNegocio();
-
-											$datosReceta = $negocio->getInfoReceta($_GET["IdReceta"]);
-
 											echo $datosReceta->Receta;
 										?>
 									</h1>
@@ -138,6 +143,13 @@
 												$index++;
 											}
 
+										?>
+									</div>
+									<div>
+										<?php
+											//echo "<input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"Planificar\" class=\"btn btn-theme aligncenter\">";
+											//echo "<input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\">";
+											//echo "<input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\">";
 										?>
 									</div>
 							
