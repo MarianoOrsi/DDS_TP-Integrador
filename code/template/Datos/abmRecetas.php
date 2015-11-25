@@ -14,13 +14,14 @@
 
    function puntuarReceta($id,$puntos)
    {
+        session_start();
         $servidor = "localhost";    
         $user = "root";
         $pass = "";
         $dbname = "diseniosistemas";
         $con = mysql_connect($servidor,$user,$pass);
         mysql_select_db($dbname,$con);
-        $return = mysql_query("INSERT INTO puntuaciones(IdReceta,IdUsuario,Fecha,Puntuacion) VALUES ('".$id."', 1, now(),".$puntos.")",$con) or die (mysql_error());
+        $return = mysql_query("INSERT INTO puntuaciones(IdReceta,IdUsuario,Fecha,Puntuacion) VALUES ('".$id."', '".$_SESSION["idUsuario"]."', now(),".$puntos.")",$con) or die (mysql_error());
         //LUCAS - PUNTUACIONES DUPLICADAS, 1 HARCODEADO
    }
 
