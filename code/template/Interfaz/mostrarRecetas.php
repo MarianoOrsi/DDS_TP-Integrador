@@ -133,7 +133,7 @@ function MostarRecetasResumidas($id)
                     if (confirm("¿Está seguro de borrar la receta seleccionada?") == true) {
                         window.location.assign("../datos/borrarReceta.php?id="+id+"");
                     } else {
-                        x = "You pressed Cancel!";
+                       
                     }
 
                 }
