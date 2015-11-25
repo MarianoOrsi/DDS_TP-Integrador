@@ -22,6 +22,7 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
 						
 						<?php if(isset($_SESSION["idUsuario"])){ // SI no esta seteado, muestra lo primero
 								echo '<li><a href="../interfaz/mostrarRecetas.php">Mis Recetas</a></li>';
+                                echo '<li><a href="../interfaz/todasLasRecetas.php">Todas Las Recetas</a></li>';
                                 echo '<li><a href="../interfaz/RecomendacionesRecetasInterfaz.php">Recomendaciones</a></li>';
                                 echo '<li><a href="../interfaz/gestionGrupos.php">Mis Grupos</a></li>';
                                 echo '<li><a href="../interfaz/EstadisticasInterfaz.php">Estadisticas y Reportes</a></li>';
