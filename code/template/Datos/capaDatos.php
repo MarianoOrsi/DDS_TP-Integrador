@@ -66,6 +66,23 @@
 
         }
 
+        public function BorrarReceta($idReceta){
+            mysql_select_db($this->nameDB, $this->connectionDB);
+            $borroIngredientes="DELETE FROM `diseniosistemas`.`receta-ingredientes` WHERE `receta-ingredientes`.`IdReceta` =".$idReceta.";";
+            mysql_query($borroIngredientes) or die (mysql_error());
+            $borroCondimentos="DELETE FROM `diseniosistemas`.`receta-condimentos` WHERE `receta-condimentos`.`IdReceta` =".$idReceta.";";
+            mysql_query($borroCondimentos) or die (mysql_error());
+            $borroEstacion="DELETE FROM `diseniosistemas`.`receta-estaciones` WHERE `receta-estaciones`.`IdRecetaEstacion` = ".$idReceta.";";
+            mysql_query($borroEstacion) or die (mysql_error());
+            $borroPasos="DELETE FROM `diseniosistemas`.`pasos` WHERE `pasos`.`IdReceta` =".$idReceta.";";
+            mysql_query($borroPasos) or die (mysql_error());
+            $borroReceta="DELETE FROM `diseniosistemas`.`recetas` WHERE `recetas`.`IdReceta` =".$idReceta.";";
+            mysql_query($borroReceta) or die (mysql_error());
+
+
+        }
+
+
         public function UpdateIngredientes($ingredientes,$idReceta){
             mysql_select_db($this->nameDB, $this->connectionDB);
             $consulta="DELETE FROM `diseniosistemas`.`receta-ingredientes` WHERE `receta-ingredientes`.`IdReceta` =".$idReceta.";";

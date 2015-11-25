@@ -1,5 +1,7 @@
 <?php session_start();
 
+include("../datos/capaDatos.php");
+
 $servidor = "localhost";
 // todos los strings con los valores para el conector SQL
 $user = "root";
@@ -14,13 +16,14 @@ $Qid=mysql_query($consulta) or die (mysql_error());
 
 function DameRecetasResumida($recetaSql)
 {
+
 	$recetaHtml='
 	<tr>
 		<td>'.$recetaSql['0'].'</td>
 		<td>'.$recetaSql['1'].'</td>
 		<td>'.$recetaSql['2'].'</td>
 		<td><a href="../interfaz/EditarReceta.php?id='.$recetaSql['3'].'" class="btn btn-theme aligncenter">Editar</a></td>
-		<td><a href="../index.php" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
+		<td><a href="javascript:myFunction('.$recetaSql['3'].')" style="text-decoration: none !important" class="fa fa-trash-o fa-3x"></a></td>
 	</tr>';
 	
     return $recetaHtml;
@@ -73,9 +76,14 @@ function MostarRecetasResumidas($id)
 
 					<div class="container">
 						<div class="row">
-							
+                            <div class="container aligncenter">
+                                <a href="gestionRecetas.php" class="btn btn-theme" align="center">Puntuar Receta</a>
+                                <a href="../interfaz/AgregarReceta.php" class="btn btn-theme" align="center">Nueva Receta</a>
+
+                            </div>
 								
 									<h1>Mis Recetas</h1>
+
 									<table class="table table-hover">
 													<thead>
 													<tr>													
@@ -94,11 +102,7 @@ function MostarRecetasResumidas($id)
 													
 													</tbody>
 													</table>
-													<div class="container aligncenter">
-													<a href="gestionRecetas.php" class="btn btn-theme" align="center">Puntuar</a>
-													<a href="../interfaz/AgregarReceta.php" class="btn btn-theme" align="center">Nueva Receta</a>
-									
-								</div>
+
 								</div>
 							</div>
 						
@@ -123,5 +127,16 @@ function MostarRecetasResumidas($id)
 		<script src="../js/jquery.flexslider.js"></script>
 		<script src="../js/animate.js"></script>
 		<script src="../js/custom.js"></script>
+            <script type="text/javascript">
+                function myFunction(id) {
+                    var x;
+                    if (confirm("¿Está seguro de borrar la receta seleccionada?") == true) {
+                        window.location.assign("../datos/borrarReceta.php?id="+id+"");
+                    } else {
+                        x = "You pressed Cancel!";
+                    }
+
+                }
+            </script>
 	</body>
 </html>
