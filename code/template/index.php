@@ -39,28 +39,91 @@
               <li>
                 <img src="img/slides/4.jpg" alt="imagen" />
                 <div class="flex-caption">
-                    <h3>Variedad en Platos</h3> 
-					<p>Las mejores entradas para quedar con todo un chef</p>
-					<p><font size="1">Aunque no sepas ni hervir agua</font></p>
-                    
-					<?php if(!isset($_SESSION["idUsuario"])){ echo'<a href="interfaz/registrarme.html" class="btn btn-theme">Registrate ya!</a>';} ?>
+                    <h3>MIS RECETAS</h3> 
+					<p>Las Mejores Recetas de nuestro sistema</p>
+					<?php 
+					if(!isset($_SESSION["idUsuario"]))
+					{ echo'<a href="interfaz/registrarme.html" class="btn btn-theme">Registrate ya!</a>';}
+					else
+					{
+                     { echo'<a href="interfaz/mostrarRecetas.php" class="btn btn-theme">MIS RECETAS</a>';}	
+					}
+						?>
                 </div>
               </li>
               <li>
                 <img src="img/slides/5.jpg" alt="imagen" />
                 <div class="flex-caption">
-                    <h3>Conservas</h3> 
-					<p>Huevos en salmuiera?<br>
-						Si Moe puede porque vos no?</p> 
-					<?php if(!isset($_SESSION["idUsuario"])){ echo'<a href="interfaz/registrarme.html" class="btn btn-theme">Registrate ya!</a>';} ?>
+                    <h3>TODAS LAS RECETAS</h3> 
+					<p>Las Mejores Recetas de nuestro sistema</p>
+					<?php 
+					if(!isset($_SESSION["idUsuario"]))
+					{ echo'<a href="interfaz/registrarme.html" class="btn btn-theme">Registrate ya!</a>';}
+					else
+					{
+                     { echo'<a href="/interfaz/todasLasRecetas.php" class="btn btn-theme">TODAS LAS RECETAS</a>';}	
+					}
+						?>
                 </div>
               </li>
               <li>
                 <img src="img/slides/6.jpg" alt="imagen" />
                 <div class="flex-caption">
-                    <h3>No sabemos que es esto</h3> 
-					<p>Pero si te salió bien subí la receta y ponele el nombre que quieras!</p> 
-					<?php if(!isset($_SESSION["idUsuario"])){ echo'<a href="interfaz/iniciarSesion.html" class="btn btn-theme">Iniciar Sesión</a>';} ?>
+                    <h3>RECOMENDACIONES</h3> 
+					<p>Las Mejores Recomendaciones de nuestro sistema</p>
+					<?php 
+					if(!isset($_SESSION["idUsuario"]))
+					{ echo'<a href="interfaz/registrarme.html" class="btn btn-theme">Registrate ya!</a>';}
+					else
+					{
+                     { echo'<a href="/interfaz/RecomendacionesRecetasInterfaz.php" class="btn btn-theme">RECOMENDACIONES</a>';}	
+					}
+						?>
+                </div>
+              </li>
+              <li>
+                <img src="img/slides/1.jpg" alt="imagen" />
+                <div class="flex-caption">
+                    <h3>MIS GRUPOS</h3> 
+					<p>Administra tus grupos de usuario</p>
+					<?php 
+					if(!isset($_SESSION["idUsuario"]))
+					{ echo'<a href="interfaz/registrarme.html" class="btn btn-theme">Registrate ya!</a>';}
+					else
+					{
+                     { echo'<a href="/interfaz/gestionGrupos.php" class="btn btn-theme">MIS GRUPOS</a>';}	
+					}
+						?>
+                </div>
+              </li>
+              <li>
+                <img src="img/slides/1.jpg" alt="imagen" />
+                <div class="flex-caption">
+                    <h3>ESTADISTICAS Y REPORTES</h3> 
+					<p>Encontra tus estadisticas y reportes en nuestro sistema</p>
+					<?php 
+					if(!isset($_SESSION["idUsuario"]))
+					{ echo'<a href="interfaz/registrarme.html" class="btn btn-theme">Registrate ya!</a>';}
+					else
+					{
+                     { echo'<a href="/interfaz/EstadisticasInterfaz.php" class="btn btn-theme">ESTADISTICAS Y REPORTES</a>';}	
+					}
+						?>
+                </div>
+              </li>
+                  <li>
+                <img src="img/slides/1.jpg" alt="imagen" />
+                <div class="flex-caption">
+                    <h3>PERFIL</h3> 
+					<p>Perfil</p>
+					<?php 
+					if(!isset($_SESSION["idUsuario"]))
+					{ echo'<a href="interfaz/registrarme.html" class="btn btn-theme">Registrate ya!</a>';}
+					else
+					{
+                     { echo'<a href="/negocio/perfil.php" class="btn btn-theme">PERFIL</a>';}	
+					}
+						?>
                 </div>
               </li>
             </ul>
@@ -70,39 +133,61 @@
 		</div>
 	</div>	
 	</section>
-	
+ <?php
+    include("./Negocio/10MejoresRecetasNegocio.php");
+  ?>      	
 	<section id="content">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="row">
-				
 					<div class="col-lg-3">
 						<div>
 							<div class="box-gray aligncenter">
-								<h4>Tip 1</h4>
+								<h4>Recetas Aceptadas</h4>								
 								<div class="icon">
-								<i class="fa fa-desktop fa-3x" style= ></i>
+								<i class="fa fa-star fa-3x"></i>
 								</div>
-								<p>
-								 ¡Elegí el menú que más te guste y sorprendé a tus amigos!
-								</p>
+								
+			                     <?php
+			                  
+								$logica = new logicaDeNegocio();
+
+								$arrayRecetasAceptadas = $logica->selectRecetasAceptadas();
+
+								foreach($arrayRecetasAceptadas as $receta) {
+								    echo "<TR>";
+									echo "<TD>" . $receta->getDesc() . "</TD>";
+									echo "<TD><input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\"></TD>";
+									echo "</TR>";
+							                   }
+						          ?>
+
+								
 									
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-3">
+				     <div class="col-lg-3">
 						<div>
 							<div class="box-gray aligncenter">
-								<h4>Tip 2</h4>								
+								<h4>Recetas Calificadas</h4>
 								<div class="icon">
-								<i class="fa fa-star fa-3x"></i>
+								<i class="fa fa-desktop fa-3x" style= ></i>
 								</div>
-								<p>
-								¡Lucite como chef!<br><br>
-								</p>
-								
-									
+								<?php
+				                  
+									$logica = new logicaDeNegocio();
+
+									$arrayRecetasCalificadas = $logica->selectRecetasCalificadas();
+
+									foreach($arrayRecetasCalificadas as $receta) {
+									    echo "<TR>";
+										echo "<TD>" . $receta->getDesc() . "</TD>";
+										echo "<TD><input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\"></TD>";
+										echo "</TR>";
+								                   }
+							          ?>
 							</div>
 						</div>
 					</div>
@@ -113,9 +198,20 @@
 								<div class="icon">
 								<i class="fa fa-thumbs-up fa-3x"></i>
 								</div>
-								<p>
-								¿Necesitás bajar de peso? ¡Nosotros te ayudamos!<br>
-								</p>
+									<?php
+                  
+					$logica = new logicaDeNegocio();
+
+					$arrayRecetasConsultadas = $logica->selectRecetasConsultadas();
+
+					foreach($arrayRecetasConsultadas as $receta) {
+					    echo "<TR>";
+						echo "<TD>" . $receta->getDesc() . "</TD>";
+						echo "<TD><input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\"></TD>";
+						echo "</TR>";
+				                   }
+			          ?>
+
 									
 							</div>
 						</div>
