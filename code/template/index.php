@@ -194,7 +194,7 @@
 					<div class="col-lg-3">
 						<div>
 							<div class="box-gray aligncenter">
-								<h4>Tip 3</h4>
+								<h4>Recetas Consultadas</h4>
 								<div class="icon">
 								<i class="fa fa-thumbs-up fa-3x"></i>
 								</div>
