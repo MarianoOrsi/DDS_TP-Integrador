@@ -380,22 +380,6 @@ INSERT INTO `receta-ingredientes` (`IdReceta`, `IdIngrediente`, `Tipo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `procedimiento`
---
-
-CREATE TABLE IF NOT EXISTS `procedimiento` (
-  `IdProcedimiento` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `IdPaso` int(11) NOT NULL,
-  `Paso` int(11) NOT NULL,
-  `IdReceta` int(11) NOT NULL,
-  CONSTRAINT `Pasos` FOREIGN KEY (`IdPaso`) REFERENCES `pasos` (`IdPasos`),
-  CONSTRAINT `RecetaPasos` FOREIGN KEY (`IdReceta`) REFERENCES `recetas` (`IdReceta`)
-);
-
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `usuarios`
 --
 
