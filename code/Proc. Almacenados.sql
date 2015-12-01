@@ -159,6 +159,7 @@ if @idUsuario_var = idUsu then
 else
 	INSERT INTO `puntuaciones`(`IdReceta`, `IdUsuario`, `Fecha`, `Puntuacion`) VALUES (idRec,IdUsu,now(),puntos);
 end if;
+INSERT INTO `historiales`(`IdAccion`, `IdUsuario`, `IdReceta`, `Fecha de Accion`) VALUES (2,IdUsu,idRec,now());
 end$$
 
 delimiter $$
