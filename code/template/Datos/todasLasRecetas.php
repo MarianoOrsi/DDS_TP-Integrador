@@ -7,7 +7,31 @@ $dbname = "diseniosistemas";
 $con = mysql_connect($servidor, $user, $pass);
 mysql_select_db($dbname, $con) or die(mysql_error());
 
+$filtro="SELECT R.Receta, D.Dificultad, R.Calorias, R.IdReceta FROM dificultades D, recetas R WHERE D.IdDificultad=R.IdDificultad";
+$Qid=mysql_query($filtro) or die (mysql_error());
 
+function DameRecetasResumida($recetaSql)
+{
+
+    $recetaHtml='
+    <tr>
+        <td>'.$recetaSql['0'].'</td>
+        <td>'.$recetaSql['1'].'</td>
+        <td>'.$recetaSql['2'].'</td>
+        <TD><input type="button" name="Ver" onclick="abrirReceta('.$recetaSql['3'].')" value="VER" class="btn btn-theme aligncenter"></TD>
+    </tr>';
+    
+    return $recetaHtml;
+}
+
+function MostarRecetasResumidas($id)
+{
+    while ($arrayDeResultados = mysql_fetch_array($id, MYSQL_NUM)) 
+    {
+        echo DameRecetasResumida($arrayDeResultados);
+    }
+
+}
 
 function MostrarDificultades()
 {
@@ -53,6 +77,39 @@ function MostrarTipoDeDieta()
         echo '<option value="'.$Dieta['0'].'">'.$Dieta['1'].'</option>';
     }
 }
+
+function MostrarFiltrado()
+{
+    if(isset($_POST["submit"])) 
+    {
+        if(isset($_GET["Dificultad"]))
+        {
+            $filtro=$filtro." AND IdDificultad='".$_GET["Dificultad"]."'";
+        }
+
+        /*
+        if(isset($_GET["Estacion"]))
+        {
+            $filtro=$filtro." AND ='".$_GET["Estacion"]."'";
+        }*/
+
+        if(isset($_GET["Piramide"]))
+        {
+            $filtro=$filtro." AND IdPiramide='".$_GET["Piramide"]."'";
+        }
+
+        if(isset($_GET["TipoDeDieta"]))
+        {
+           $filtro=$filtro." AND IdDieta='".$_GET["TipoDeDieta"]."'";
+        }
+
+        $filtro=$filtro.';';
+        $Qid=mysql_query($filtro) or die (mysql_error());
+
+        MostarRecetasResumidas($Qid);
+    }
+}
+
 
 
 

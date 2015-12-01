@@ -33,7 +33,7 @@ include("../datos/datosEditarReceta.php");
 		<div id="wrapper">
 		
 			<!-- start header -->
-		<?php include("../include/header.php")?>
+		<?php include("../include/header.php");?>
 			<!-- end header -->
 
 			<section class="callaction">

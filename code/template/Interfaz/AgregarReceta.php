@@ -32,7 +32,7 @@ include("../datos/agregarReceta.php");
 		<div id="wrapper">
 		
 			<!-- start header -->
-		<?php include("../include/header.php")?>
+		<?php include("../include/header.php");?>
 			<!-- end header -->
 
 			<section class="callaction">
@@ -127,7 +127,7 @@ include("../datos/agregarReceta.php");
 								<label>Paso 1</label>
 								
 								<input type="textarea" name="paso1" rows="4" class="form-control" />
-							<input type="button" style="margin-top: 7px;" value="Agregar imagen" onClick="alert('Seleccionar imagen');" class="btn btn-lg"/>
+								<input type="button" style="margin-top: 7px;" value="Agregar imagen" onClick="alert('Seleccionar imagen');" class="btn btn-lg"/>
                                     <br /><br />
 								
 								<label>Paso 2</label>
@@ -156,9 +156,10 @@ include("../datos/agregarReceta.php");
 								</div>
 								</div>
 								</div>
+                                
                                 <div class="text-center">
-								<button type="submit" name="submit"  class="btn btn-theme aligncenter">Crear Receta</button>
-                                    </div>
+									<button type="submit" name="submit"  class="btn btn-theme aligncenter">Crear Receta</button>
+                                </div>
 
                             </form> <!-- cambiar el type a submit, el cambio es para mostrar el alert -->
 
