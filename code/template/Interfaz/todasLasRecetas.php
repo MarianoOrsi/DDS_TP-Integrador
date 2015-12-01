@@ -110,6 +110,11 @@ function MostrarFiltrado()
            $filtro=$filtro." AND R.IdDieta='".$_POST["TipoDeDieta"]."'";
         }
 
+        if($_POST["Buscador"] != "")
+        {
+           $filtro=$filtro." AND R.Receta LIKE '%".$_POST["Buscador"]."%'";
+        }
+
         $filtro=$filtro.';';
 
         $Qid=mysql_query($filtro) or die (mysql_error());
@@ -203,6 +208,9 @@ function MostrarFiltrado()
 				                   	    	MostrarTipoDeDieta();
 				                   	    ?>
 				                    </select>
+
+								    <input type="text" class="form-group" placeholder="Nombre de la receta" name="Buscador" id="Buscador">
+
 
 			<!-- Fin de elementos de Busqueda -->
 
