@@ -25,12 +25,12 @@ class accesoDatos{
 
 			mysql_select_db($this->nameDB, $this->connectionDB);
 
-			$consulta = "SELECT historiales.IdReceta, recetas.Receta 
+			$consulta = "SELECT DISTINCT historiales.IdReceta, recetas.Receta 
 						FROM `historiales`
 						INNER JOIN recetas 
 						ON historiales.IdReceta = recetas.IdReceta
 						WHERE  historiales.IdAccion = " . $IdAccion . " AND
-						       historiales.IdUsuario = " . $IdUsuario;
+						       historiales.IdUsuario = " . $IdUsuario . " ORDER BY 'Fecha de Accion' LIMIT 10 ";
 			
 	     	$result = mysql_query($consulta) or die (mysql_error());
 

@@ -21,7 +21,18 @@
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+<script type = "text/javascript">
 
+			function abrirReceta(IdReceta) {
+				
+				var posicion_x; 
+				var posicion_y; 
+				posicion_x=(screen.width/2)-(800/2); 
+				posicion_y=(screen.height/2)-(600/2); 
+				window.open("./Interfaz/popUpReceta.php?IdReceta="+IdReceta, "popUpReceta", "width=800,height=600,menubar=0,toolbar=0,directories=0,scrollbars=no,resizable=no,left="+posicion_x+",top="+posicion_y+"");
+			}
+
+		</script>
 </head>
 <body>
 <div id="wrapper">
@@ -148,7 +159,7 @@
 								<div class="icon">
 								<i class="fa fa-star fa-3x"></i>
 								</div>
-								
+							
 			                     <?php
 			                  
 								$logica = new logicaDeNegocio();
@@ -156,14 +167,13 @@
 								$arrayRecetasAceptadas = $logica->selectRecetasAceptadas();
 
 								foreach($arrayRecetasAceptadas as $receta) {
-								    echo "<TR>";
-									echo "<TD>" . $receta->getDesc() . "</TD>";
-									echo "<TD><input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\"></TD>";
-									echo "</TR>";
+								
+									echo "<li>" . $receta->getDesc() . "  ";
+									echo "<input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(" . $receta->getId() . ")\" value=\"VER\" class=\"btn btn-theme aligncenter\">";
+									echo "</li>";
 							                   }
 						          ?>
-
-								
+                               
 									
 							</div>
 						</div>
@@ -182,10 +192,10 @@
 									$arrayRecetasCalificadas = $logica->selectRecetasCalificadas();
 
 									foreach($arrayRecetasCalificadas as $receta) {
-									    echo "<TR>";
-										echo "<TD>" . $receta->getDesc() . "</TD>";
-										echo "<TD><input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\"></TD>";
-										echo "</TR>";
+					
+										echo "<li>" . $receta->getDesc() . "  ";
+										echo "<input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\">";
+										echo "</li>";
 								                   }
 							          ?>
 							</div>
@@ -205,10 +215,10 @@
 					$arrayRecetasConsultadas = $logica->selectRecetasConsultadas();
 
 					foreach($arrayRecetasConsultadas as $receta) {
-					    echo "<TR>";
-						echo "<TD>" . $receta->getDesc() . "</TD>";
-						echo "<TD><input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\"></TD>";
-						echo "</TR>";
+					    
+						echo "<li>" . $receta->getDesc() . "  ";
+						echo "<input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\">";
+						echo "</li>";
 				                   }
 			          ?>
 
