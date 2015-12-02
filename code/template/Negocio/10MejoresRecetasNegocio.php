@@ -24,21 +24,27 @@ if(isset($_GET["method"]))
 		}
 		
 	   public function selectRecetasAceptadas(){
-
+            if(isset($_SESSION["idUsuario"]))
+            {
             return $this->accessData->GetRecetasXAccion($_SESSION["idUsuario"],"1");
-
+            }
+            return array();
 		}
 		
 	   public function selectRecetasCalificadas(){
-
+            if(isset($_SESSION["idUsuario"]))
+            {
             return $this->accessData->GetRecetasXAccion($_SESSION["idUsuario"],"2");
-
+            }
+            return array();
 		}
-		
+		 
 	    public function selectRecetasConsultadas(){
-
+			if(isset($_SESSION["idUsuario"]))
+            {
             return $this->accessData->GetRecetasXAccion($_SESSION["idUsuario"],"3");
-
+            }
+            return array();
 		}
 
 		
