@@ -167,10 +167,8 @@
 			if(mysqli_connect_errno()){
 				echo mysqli_connect_error();
 			}
-
+			
 			$result = $db->query("call sp_planificarReceta(".$idHorario.",".$idReceta.",".$idUsuario.")");
-
-			header("Location: ../interfaz/RecomendacionesRecetasInterfaz.php");
 		}
 
 	}

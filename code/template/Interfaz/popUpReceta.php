@@ -35,6 +35,8 @@
 
 			function planificarReceta(idUsuario, IdReceta, IdHorario) {
 				window.location.href = "../Negocio/NegocioPlanificarRecetas.php?IdReceta="+IdReceta+"&IdUsuario=" + idUsuario + "&IdHorario=" + IdHorario;
+				alert("Su receta se ha planificado con exito!");
+				window.close();
 			}
 		</script>
 
