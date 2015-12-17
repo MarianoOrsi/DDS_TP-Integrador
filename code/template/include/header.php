@@ -23,18 +23,9 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
 
 						
 						<?php if(isset($_SESSION["idUsuario"])){ // SI no esta seteado, muestra lo primero
-								//echo '<li><a href="../interfaz/mostrarRecetas.php">Mis Recetas</a></li>';
-                                //echo '<li><a href="../interfaz/todasLasRecetas.php">Todas Las Recetas</a></li>';
-                               // echo '<li><a href="../interfaz/RecomendacionesRecetasInterfaz.php">Recomendaciones</a></li>';
-                                echo '<div class="navbar-header dropdown">
-                                        <button class="dropdown" type="button" id="menu1" data-toggle="dropdown">Recetas
-                                        <span class="caret"></span></button>
-                                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                          <li role="presentation"><a role="menuitem" tabindex="-1" href="../interfaz/mostrarRecetas.php">Mis Recetas</a></li>
-                                          <li role="presentation"><a role="menuitem" tabindex="-1" href="../interfaz/todasLasRecetas.php">Todas Las Recetas</a></li>
-                                          <li role="presentation"><a role="menuitem" tabindex="-1" href="../interfaz/RecomendacionesRecetasInterfaz.php">Recomendaciones</a></li>
-                                        </ul>
-                                      </div>';
+								echo '<li><a href="../interfaz/mostrarRecetas.php">Mis Recetas</a></li>';
+                                echo '<li><a href="../interfaz/todasLasRecetas.php">Todas Las Recetas</a></li>';
+                                echo '<li><a href="../interfaz/RecomendacionesRecetasInterfaz.php">Recomendaciones</a></li>';
                                 echo '<li><a href="../interfaz/gestionGrupos.php">Mis Grupos</a></li>';
                                 echo '<li><a href="../interfaz/EstadisticasInterfaz.php">Estadisticas y Reportes</a></li>';
                                 echo '<li><a href="../negocio/perfil.php">Perfil</a></li>';
@@ -42,7 +33,7 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
                                                                     
 								}
 								else {
-								echo '<li><a href="../interfaz/iniciarSesion.html">Ingresar</a></li>';
+								echo '<li><a href="../interfaz/iniciarSesion.php">Ingresar</a></li>';
                                 echo '<li><a href="../interfaz/registrarme.html">Registrarse</a></li>';
 								}
 								?>

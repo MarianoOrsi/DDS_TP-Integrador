@@ -25,7 +25,7 @@
 <body>
 <div id="wrapper">
 	<!-- start header -->
-	<header>
+<!--	<header>
         <div class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -45,7 +45,9 @@
                 </div>
             </div>
         </div>
-	</header>
+	</header>-->
+
+	<?php include("../include/header.php");?>
 	<!-- end header -->
 
 	<section class="callaction">
@@ -54,6 +56,17 @@
 			
 					<h2><span>Iniciar</span> Sesión</h2>
 							<form class="contact_form" action="../Datos/login.php" method="post" name="iniciarSesion">
+
+										<?php
+										if(isset($_GET["first"]))
+										{
+											echo'   <div class="alert alert-danger" role="alert">
+													  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+													  <span class="sr-only">Error:</span>
+													  Usuario o Contraseña incorrectos!
+													</div>';
+										};
+										?>
 								
 									    <label>Usuario: </label>
 										<br>
@@ -77,7 +90,7 @@
 	
 	<footer>
 	
-	<div class="container aligncenter">
+<!--	<div class="container aligncenter">
 		<div class="row">
 			<div class="col-lg-">
 				<div class="widget">
@@ -104,19 +117,10 @@
 						</p>
 					</div>
 				</div>
-				<!-- <div class="col-lg-6">
-					<ul class="social-network">
-						<li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-						<li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
-						<li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus"></i></a></li>
-					</ul>
-				</div> -->
 			</div>
 		</div>
-	</div>
-
+	</div>-->
+<?php include("../include/footer.php");?>
 	</footer>
 
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
