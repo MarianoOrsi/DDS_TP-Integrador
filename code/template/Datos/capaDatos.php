@@ -21,13 +21,37 @@
 			$this->connectionDB = mysql_connect($this->servidorDB,$this->userDB,$this->passDB);
 		}
 
-		public function RegistrarUsario($usuario){
+		public function RegistrarUsuario($usuario){
 
-			mysql_select_db($this->nameDB, $this->connectionDB);
+		 mysql_select_db($this->nameDB, $this->connectionDB);
+           
 
-			$consulta = "call sp_RegistrarUsuario('".$usuario->getUsuario()."','".$usuario->getContrasenia()."','".$usuario->getSexo()."','".$usuario->getDieta()."','".$usuario->getRutina()."','".$usuario->getComplexion()."','".$usuario->getCondicionesPreexistentes()."',".$usuario->getAltura().",".$usuario->getEdad().",'".$usuario->getEmail()."')";
 			
-			$exec_sp = mysql_query($consulta) or die (mysql_error());
+			$guardoUsu = "call sp_RegistrarUsuario('".$usuario->getUsuario()."','".$usuario->getContrasenia()."','".$usuario->getSexo()."','".$usuario->getDieta()."','".$usuario->getRutina()."','".$usuario->getComplexion()."','".$usuario->getCondicionesPreexistentes()."',".$usuario->getAltura().",".$usuario->getEdad().",'".$usuario->getEmail()."');";
+			
+			
+			
+			
+			mysql_query($guardoUsu) or die (mysql_error());
+					
+			
+		}
+		
+		
+		public function dameUltimoId()
+		{
+		
+		 mysql_select_db($this->nameDB, $this->connectionDB);
+            $consulta= "SELECT IdUsuario FROM usuarios ORDER BY idUsuario DESC LIMIT 1";
+
+           $pepe=mysql_query($consulta) or die (mysql_error());
+				
+			$p=mysql_fetch_row($pepe);
+			
+			
+               return $p['0'];
+		
+		
 		}
 
         public function GuardarReceta($receta){
@@ -37,6 +61,7 @@
 
 
             mysql_query($consulta) or die (mysql_error());
+		
 
         }
 
