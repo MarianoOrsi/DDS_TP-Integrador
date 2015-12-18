@@ -60,6 +60,7 @@
 							<tr>
 								<TD><b>&nbsp;ID&nbsp;</b></TD>
 								<TD><b>&nbsp;RECETA&nbsp;</b></TD>
+								<TD><b>&nbsp;PUNTUACION&nbsp;</b></TD>
 							</tr>
 
 							<?php
@@ -70,12 +71,13 @@
 							$con = mysql_connect($servidor, $user, $pass);
 
 							mysql_select_db($dbname, $con);
-							$result = mysql_query("SELECT * FROM recetas", $con);
+							$result = mysql_query("SELECT recetas.IdReceta, recetas.Receta, SUM(puntuaciones.Puntuacion) as Puntuacion FROM recetas INNER JOIN puntuaciones ON puntuaciones.IdReceta = recetas.IdReceta GROUP BY recetas.IdReceta", $con);
 
 							while ($row = mysql_fetch_array($result)) {
 								echo "<TR onclick= \"readValuesGroup(this)\">";
 								echo "<TD>" . $row['IdReceta'] . "</TD>";
 								echo "<TD>" . $row['Receta'] . "</TD>";
+                                echo "<TD>" . $row['Puntuacion'] . "</TD>";
 								echo "</TR>";
 							}
 							//liberamos memoria que ocupa la consulta...

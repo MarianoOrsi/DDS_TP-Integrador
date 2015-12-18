@@ -113,8 +113,22 @@
 								?>
 							</table>
 					
-					<input id="nombreAmigo" type="text" placeholder="Ingresar usuario a agregar..." style="width:25%;"/>
+					
+                      <select class="combo" id="nombreAmigo" >
+                   		  <?php
+							
+							$logica = new logicaDeNegocio();
 
+							$array = $logica->getUsuarios();
+							foreach($array as $usuario) {
+								echo "<option value=" . $usuario->getUsuario() . ">" . $usuario->getUsuario() . "</option>";
+							}
+
+							?>
+
+                      </select>
+					
+				
 					<br />
 					<br />
 

@@ -220,6 +220,25 @@
 			return $arrayGrupos;
 		}
 
+	    public function getUsuarios(){
+
+			mysql_select_db($this->nameDB, $this->connectionDB);
+
+			$consulta = "SELECT usuarios.Usuario FROM usuarios ORDER BY usuario";
+			
+			$result = mysql_query($consulta) or die (mysql_error());
+			$arrayUsuarios = array();
+
+			while ($row = mysql_fetch_array($result)){
+
+	           
+			     $usuario = new Usuario("",$row['Usuario'],"","","","","","","","","","","");
+		         array_push($arrayUsuarios, $usuario);
+				}
+				
+			return $arrayUsuarios;
+		}
+
 		public function getUsuariosDeGrupo($idGrupo){
 
 			$db = new mysqli('localhost','root','','diseniosistemas');

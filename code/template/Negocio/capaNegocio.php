@@ -13,6 +13,12 @@
 
 		}
 
+		public function getUsuarios(){
+			
+			$arrayDeUsuarios =  $this->accessData->getUsuarios();
+
+			return $arrayDeUsuarios;
+		}
 		public function getGruposDeUsuario($idUsuario){
 			
 			$arrayDeGrupos =  $this->accessData->getGruposDeUsuario($idUsuario);
