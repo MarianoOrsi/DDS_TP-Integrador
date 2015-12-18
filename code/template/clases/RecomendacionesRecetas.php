@@ -7,7 +7,7 @@ class Visitor{
 
 		public function __construct(){
 
-			$this->accessData = new accesoDatos();
+			$this->accessData = new accesoDatosRecomendaciones();
 
 		}
 
@@ -18,7 +18,7 @@ class Recomendaciones extends  Visitor{
 
      public function __construct(){
 
-        $this->accessData = new accesoDatos();
+        $this->accessData = new accesoDatosRecomendaciones();
 
 	}
 
@@ -35,7 +35,7 @@ class Recetas extends Visitor{
 
      public function __construct(){
 
-        $this->accessData = new accesoDatos();
+        $this->accessData = new accesoDatosRecomendaciones();
 
 	}
 	

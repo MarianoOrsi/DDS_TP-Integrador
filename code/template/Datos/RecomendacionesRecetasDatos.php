@@ -1,9 +1,20 @@
 
 
 <?php
-    include("../clases/Usuario.php");
-    include("../clases/Receta.php");
-class accesoDatos{
+   $file = substr(getcwd(), -8);
+	if($file == "template")
+		{
+		     //include("./clases/Usuario.php");
+			 //include("./clases/Receta.php");
+			 include("./configuracion.php");      
+		}else{
+		     include("../clases/Usuario.php");
+			 include("../clases/Receta.php");
+         	
+		}
+
+
+class accesoDatosRecomendaciones{
 
 		private $servidorDB;
 		private $userDB;
@@ -12,7 +23,11 @@ class accesoDatos{
 		private $connectionDB;
 
 		public function __construct(){
-			include("../configuracion.php");
+		      $file = substr(getcwd(), -8);
+	         if($file == "template")
+		     { include("./configuracion.php"); }
+		     else
+		     {include("../configuracion.php"); }
 			$this->servidorDB = $servidor;
 			$this->userDB = $user;
 			$this->passDB = $pass;

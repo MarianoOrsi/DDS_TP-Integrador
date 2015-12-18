@@ -28,18 +28,6 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 		<!-- Theme skin -->
 		<link href="../skins/default.css" rel="stylesheet" />
 
-		<script type = "text/javascript">
-
-			function abrirReceta(IdReceta) {
-				
-				var posicion_x; 
-				var posicion_y; 
-				posicion_x=(screen.width/2)-(800/2); 
-				posicion_y=(screen.height/2)-(600/2); 
-				window.open("popUpReceta.php?IdReceta="+IdReceta, "popUpReceta", "width=800,height=600,menubar=0,toolbar=0,directories=0,scrollbars=no,resizable=no,left="+posicion_x+",top="+posicion_y+"");
-			}
-
-		</script>
 
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
@@ -53,41 +41,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 		<?php include("../include/header.php")?>
 			<!-- end header -->
 
-
-				<section class="callaction">
-
-                  
-				<div class="container">
-			    <h1> RECETAS RECOMENDADAS POR CONDICION PREEXISTENTE</h1>
-				<table class="table table-hover">
-				<thead>
-				<tr>													
-					<th>Receta</th>
-				</tr>
-				</thead>
-				<tbody>
-	             <?php
-                   	include("../negocio/RecomendacionesRecetasNegocio.php");
-
-					$logica = new logicaDeNegocio();
-
-					$arrayRecetasRecomendadas = $logica->selectRecetasXPreferencia();
-
-					foreach($arrayRecetasRecomendadas as $receta) {
-					    echo "<TR>";
-						echo "<TD>" . $receta->getDesc() . "</TD>";
-						echo "<TD><input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\"></TD>";
-						echo "</TR>";
-				}
-			    ?>
-		  		
-				</tbody>
-				</table>
-				<div class="container aligncenter">
-						
-					
-
-			</section>
+		      <?php include("/RecomendacionesRecetasBody.php")?>
 
 			<!-- start footer -->
 				<?php include("../include/footer.php")?>

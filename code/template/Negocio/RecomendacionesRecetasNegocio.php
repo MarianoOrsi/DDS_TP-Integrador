@@ -1,26 +1,35 @@
 <?php
-    include("../Datos/RecomendacionesRecetasDatos.php");	
-    include("../clases/RecomendacionesRecetas.php");
-if(isset($_GET["method"]))
-{
-	$method = $_GET["method"];
-	$logicaDeNegocio = new logicaDeNegocio();
 
-	if(strcmp($method, "RECETAS") == 0){
-	   $logica->selectRecetasXPreferencia();
-    }elseif(strcmp($method, "RECOM") == 0){
-	   $logica->selectRecomendacionesXPreferencia();
+	$file = substr(getcwd(), -8);
+	if($file == "template")
+		{
+		    include("./Datos/RecomendacionesRecetasDatos.php");	
+		    include("./clases/RecomendacionesRecetas.php");    
+		}else{
+		    include("../Datos/RecomendacionesRecetasDatos.php");	
+		    include("../clases/RecomendacionesRecetas.php");                	
+		}
+
+	if(isset($_GET["method"]))
+	{
+		$method = $_GET["method"];
+		$logicaDeNegocio = new logicaDeNegocioRecomendaciones();
+
+		if(strcmp($method, "RECETAS") == 0){
+		   $logica->selectRecetasXPreferencia();
+	    }elseif(strcmp($method, "RECOM") == 0){
+		   $logica->selectRecomendacionesXPreferencia();
+		}
 	}
-}
 
 	
-	class logicaDeNegocio{
+	class logicaDeNegocioRecomendaciones{
 
 		private $accessData;
 
 		public function __construct(){
 
-			$this->accessData = new accesoDatos();
+			$this->accessData = new accesoDatosRecomendaciones();
 
 		}
 		

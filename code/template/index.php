@@ -44,7 +44,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-	<!-- Slider -->
+
         <div id="main-slider" class="flexslider">
             <ul class="slides">
               <li>
@@ -250,159 +250,23 @@
 				</div>
 			</div>
 		</div>
-		<!-- end divider -->
-		<!-- Portfolio Projects -->
-		<div class="row">
-			<div class="col-lg-12">
 
-				<h4 class="heading">Recomendaciones del día</h4>
 
-				<div class="row">
-					<section id="projects">
-					<ul id="thumbs" class="portfolio">
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 overflow: hidden; ">
-						<div class="item">
-						
-						<!-- Thumb Image and Description -->
-							<img src="img/asd/1.jpg" alt="imagen">
-						</div>
-						</li>
-						<!-- End Item Project -->
-						
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 overflow: hidden;">
-						<div class="item">
-						
-						<!-- Thumb Image and Description -->
-							<img src="img/asd/2.jpg" alt="imagen">
-						</div>
-						</li>
-						<!-- End Item Project -->
-						
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 overflow: hidden;">
-						<div class="item">
-						
-						<!-- Thumb Image and Description -->
-							<img src="img/asd/3.jpg" alt="imagen">
-						</div>
-						</li>
-						<!-- End Item Project -->
-						
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 overflow: hidden;">
-						<div class="item">
-						
-						<!-- Thumb Image and Description -->
-							<img src="img/asd/4.jpg" alt="imagen">
-						</div>
-						</li>
-						<!-- End Item Project -->
-						
-					</ul>
-					</section>
-					
-				</div>
-					<div class="row">
-					<section id="projects">
-					<ul id="thumbs" class="portfolio">
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 overflow: hidden; ">
-						<div class="item">
-						
-						<!-- Thumb Image and Description -->
-							<img src="img/asd/5.jpg" alt="imagen">
-						</div>
-						</li>
-						<!-- End Item Project -->
-						
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 overflow: hidden;">
-						<div class="item">
-						
-						<!-- Thumb Image and Description -->
-							<img src="img/asd/6.jpg" alt="imagen">
-						</div>
-						</li>
-						<!-- End Item Project -->
-						
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 overflow: hidden;">
-						<div class="item">
-						
-						<!-- Thumb Image and Description -->
-							<img src="img/asd/7.jpg" alt="imagen">
-						</div>
-						</li>
-						<!-- End Item Project -->
-						
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 overflow: hidden;">
-						<div class="item">
-						
-						<!-- Thumb Image and Description -->
-							<img src="img/asd/8.jpg" alt="imagen">
-						</div>
-						</li>
-						<!-- End Item Project -->
-						
-					</ul>
-					</section>
-				</div>
-				
-					<div class="row">
-					<section id="projects">
-					<ul id="thumbs" class="portfolio">
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 overflow: hidden; ">
-						<div class="item">
-						
-						<!-- Thumb Image and Description -->
-							<img src="img/asd/9.jpg" alt="imagen">
-						</div>
-						</li>
-						<!-- End Item Project -->
-						
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 overflow: hidden;">
-						<div class="item">
-						
-						<!-- Thumb Image and Description -->
-							<img src="img/asd/10.jpg" alt="imagen">
-						</div>
-						</li>
-						<!-- End Item Project -->
-						
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 overflow: hidden;">
-						<div class="item">
-						
-						<!-- Thumb Image and Description -->
-							<img src="img/asd/11.jpg" alt="imagen">
-						</div>
-						</li>
-						<!-- End Item Project -->
-						
-						<!-- Item Project and Filter Name -->
-						<li class="col-lg-3 overflow: hidden;">
-						<div class="item">
-						
-						<!-- Thumb Image and Description -->
-							<img src="img/asd/12.jpg" alt="imagen">
-						</div>
-						</li>
-						<!-- End Item Project -->
-						
-					</ul>
-					</section>
-				</div>	
-					
-			</div>
-		</div>
+	     <?php 
+			if(!isset($_SESSION["idUsuario"]))
+			{ echo'<h4>Registrate!!</h4>';}
+			else
+			{
+	         {    include("./Interfaz/RecomendacionesRecetasBody.php");}	
+			}
+				?>
 
+	
+	
 	</div>
+
 	</section>
+
 	
 	<!-- start footer -->
 		<?php include("include/footer.php")?>
