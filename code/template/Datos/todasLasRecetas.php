@@ -35,8 +35,8 @@ function MostarRecetasResumidas($id)
 
 function MostrarDificultades()
 {
-	$consulta="SELECT * FROM dificultades;";
-	$QDificultades=mysql_query($consulta) or die (mysql_error());
+    $consulta="SELECT * FROM dificultades;";
+    $QDificultades=mysql_query($consulta) or die (mysql_error());
 
     while ($Dificultad = mysql_fetch_array($QDificultades, MYSQL_NUM))
     {
@@ -46,8 +46,8 @@ function MostrarDificultades()
 
 function MostrarEstacion()
 {
-	$consulta="SELECT * FROM estaciones;";
-	$QEstacioness=mysql_query($consulta) or die (mysql_error());
+    $consulta="SELECT * FROM estaciones;";
+    $QEstacioness=mysql_query($consulta) or die (mysql_error());
 
     while ($Estacion = mysql_fetch_array($QEstacioness, MYSQL_NUM))
     {
@@ -57,9 +57,9 @@ function MostrarEstacion()
 
 function MostrarPiramide()
 {
-	
-	$consulta="SELECT IdPiramide, Sector FROM piramides;";
-	$QPiramide=mysql_query($consulta) or die (mysql_error());
+    
+    $consulta="SELECT IdPiramide, Sector FROM piramides;";
+    $QPiramide=mysql_query($consulta) or die (mysql_error());
 
     while ($Piramide = mysql_fetch_array($QPiramide, MYSQL_NUM))
     {
@@ -69,8 +69,8 @@ function MostrarPiramide()
 
 function MostrarTipoDeDieta()
 {
-	$consulta="SELECT * FROM dietas;";
-	$QDietas=mysql_query($consulta) or die (mysql_error());
+    $consulta="SELECT * FROM dietas;";
+    $QDietas=mysql_query($consulta) or die (mysql_error());
 
     while ($Dieta = mysql_fetch_array($QDietas, MYSQL_NUM))
     {
@@ -80,38 +80,43 @@ function MostrarTipoDeDieta()
 
 function MostrarFiltrado()
 {
+
+    $filtro="SELECT R.Receta, D.Dificultad, R.Calorias, R.IdReceta, E.IdReceta FROM dificultades D, recetas R, `receta-estaciones` E WHERE E.IdReceta=R.IdReceta AND D.IdDificultad=R.IdDificultad";
+
     if(isset($_POST["submit"])) 
     {
-        if(isset($_GET["Dificultad"]))
+        if($_POST["Dificultad"] != "")
         {
-            $filtro=$filtro." AND IdDificultad='".$_GET["Dificultad"]."'";
+            $filtro=$filtro." AND R.IdDificultad='".$_POST["Dificultad"]."'";
         }
 
-        /*
-        if(isset($_GET["Estacion"]))
+        if($_POST["Estacion"] != "")
         {
-            $filtro=$filtro." AND ='".$_GET["Estacion"]."'";
-        }*/
-
-        if(isset($_GET["Piramide"]))
-        {
-            $filtro=$filtro." AND IdPiramide='".$_GET["Piramide"]."'";
+            $filtro=$filtro." AND E.IdReceta=R.IdReceta AND E.IdEstacion='".$_POST["Estacion"]."'";
+            
         }
 
-        if(isset($_GET["TipoDeDieta"]))
+        if($_POST["Piramide"] != "")
         {
-           $filtro=$filtro." AND IdDieta='".$_GET["TipoDeDieta"]."'";
+            $filtro=$filtro." AND R.IdPiramide='".$_POST["Piramide"]."'";
+        }
+
+        if($_POST["TipoDeDieta"] != "")
+        {
+           $filtro=$filtro." AND R.IdDieta='".$_POST["TipoDeDieta"]."'";
+        }
+
+        if($_POST["Buscador"] != "")
+        {
+           $filtro=$filtro." AND R.Receta LIKE '%".$_POST["Buscador"]."%'";
         }
 
         $filtro=$filtro.';';
+
         $Qid=mysql_query($filtro) or die (mysql_error());
 
         MostarRecetasResumidas($Qid);
     }
 }
-
-
-
-
 
 ?>
