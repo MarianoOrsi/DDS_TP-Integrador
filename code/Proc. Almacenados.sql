@@ -68,7 +68,7 @@ limit 3$$
 
 /*--------------------------------------------------------------------------------------------------------*/
 delimiter $$
-CREATE PROCEDURE `sp_RegistrarUsuario`(
+CREATE PROCEDURE `sp_RegistrarUsuariog`(
     
 IN usuario_param VARCHAR(50),
 IN pass_param VARCHAR(25),
@@ -83,25 +83,15 @@ IN email_param VARCHAR(40)
     
 )
 BEGIN
-select @idDieta_var := IdDieta from dietas where Nombre = dieta;
-SELECT 
-    @idRutina_var:=IdRutina
-FROM
-    rutinas
-WHERE
-    Nombre = rutina;
-SELECT 
-    @idComplexion_var:=IdContextura
-FROM
-    contexturas
-WHERE
-    Nombre = complexion;
-SELECT 
-    @idPreexistentes_var:=IdPreexistente
-FROM
-    preexistentes
-WHERE
-    Nombre = preexistentes;
+
+SET @idDieta_var =(SELECT D.IdDieta from dietas D where D.Nombre=dieta);
+
+SET @idRutina_var =(SELECT R.IdRutina from rutinas R where R.Descripcion=rutina);
+
+SET @idComplexion_var=(SELECT C.IdContextura from contexturas C where C.Descripcion=complexion);
+
+SET @idPreexistentes_var=(SELECT P.IdPreexistente from preexistentes P where P.Nombre=preexistentes);
+
 
 insert into usuarios
 (Usuario,Contrase,fechaCreacion,IdContextura,Sexo,IdRutina,Edad,Altura,IdPreexistente,IdDieta,Email,`IdPesos-Ideales`)

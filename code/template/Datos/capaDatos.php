@@ -23,17 +23,16 @@
 
 		public function RegistrarUsuario($usuario){
 
-		 mysql_select_db($this->nameDB, $this->connectionDB);
-           
-
+		$mysqli = new mysqli("localhost", "root", "", "diseniosistemas");
+		if ($mysqli->connect_errno) {
+			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+		}
+		
+		if (!$mysqli->query("CALL sp_RegistrarUsuariog('".$usuario->getUsuario()."','".$usuario->getContrasenia()."','".$usuario->getSexo()."','".$usuario->getDieta()."','".$usuario->getRutina()."','".$usuario->getComplexion()."','".$usuario->getCondicionesPreexistentes()."',".$usuario->getAltura().",".$usuario->getEdad().",'".$usuario->getEmail()."');")) {
+				echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
+		}
 			
-			$guardoUsu = "call sp_RegistrarUsuario('".$usuario->getUsuario()."','".$usuario->getContrasenia()."','".$usuario->getSexo()."','".$usuario->getDieta()."','".$usuario->getRutina()."','".$usuario->getComplexion()."','".$usuario->getCondicionesPreexistentes()."',".$usuario->getAltura().",".$usuario->getEdad().",'".$usuario->getEmail()."');";
 			
-			
-			
-			
-			mysql_query($guardoUsu) or die (mysql_error());
-					
 			
 		}
 		
