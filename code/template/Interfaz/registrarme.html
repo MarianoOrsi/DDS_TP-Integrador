@@ -9,7 +9,7 @@
 <!-- css -->
 <link href="../experiment/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../experiment/css/fancybox/jquery.fancybox.css" rel="stylesheet">
-<link href="../experiment/css/jcarousel.css" rel="stylesheet" />
+<!--<link href="../experiment/css/jcarousel.css" rel="stylesheet" />-->
 <link href="../experiment/css/flexslider.css" rel="stylesheet" />
 <link href="../experiment/css/style.css" rel="stylesheet" />
 <link href="../experiment/css/login.css" rel="stylesheet" />
@@ -28,54 +28,58 @@
     <div class="row">
         <div class="col-md-12">
             
-            <div class="wrap">
+            <div class="wb-frmvld">
                  <p class="form-title">Registrarme</p>
-				 
-                <form class="login" action="../negocio/registrarUsuario.php" method="post" style="background-image:url(../experiment/img/SignUp/SignUp.png)">
-				
-                <input type="text" name="usuario" placeholder="Usuario"/>
-                <input type="password" name="contrasenia" placeholder="Contraseña" />
-                <input type="text" name="email" placeholder="mail@algunServidor.com" />
-                <select class="combo" name="genero">
-                    <option value="">Sexo</option>
-                    <option value="masculino">Masculino</option>
-                    <option value="femenino">Femenino</option>
-                </select>
-                <input type="text" name="edad" placeholder="Edad" />
-                <input type="text" name="altura" placeholder="Altura" />
-                <select class="combo" name="complexion">
-                    <option value="">Complexion</option>
-                    <option value="Peque">Pequeña</option>
-                    <option value="Mediana">Media</option>
-                    <option value="Grande">Grande</option>
-                </select>
-                <!--<label>Condicion Preexistente</label>-->
-                <select class="combo" name="condPre">
-                    <option value="">Condiciones Preexistentes</option>
-                    <option value="Diabetes">Diabetes</option>
-                    <option value="Hipertension">Hipertension</option>
-                    <option value="Celiasis">Celiasis</option>
-                    <option value="Ninguna">Ninguna</option>
-                </select>
-                <select class="combo" name="dieta">
-                    <option value="">Dieta</option>
-                    <option value="Normal">Normal</option>
-                    <option value="Ovolactovegetariano">Ovolactovegetariano</option>
-                    <option value="Vegetariano">Vegetariano</option>
-                    <option value="Vegano">Vegano</option>
-                </select>
-                <select class="combo" name="rutina">
-                    <option value="">Rutina</option>
-                    <option value="Nada">Sedentaria con nada de ejercicio</option>
-                    <option value="Leve">Sedentaria con algo de ejercicio (-30 min.)</option>
-                    <option value="Mediano">Sedentaria con ejercicio (+30 min.)</option>
-                    <option value="Fuerte">Activa sin ejercicio adicional</option>
-					<option value="Intensivo">Activa con ejercicio adicional (+30 min.)</option>
-                </select>
-                <input type="text" name="preferencias" placeholder="Preferencias alimenticias" />
-                
-                <input type="submit" value="Registrarse" name="submit" class="btn btn-success btn-sm" />
-                </form>
+
+                    <form class="login" action="../negocio/registrarUsuario.php" method="post" style="background-image:url(../experiment/img/SignUp/SignUp.png)">
+    				
+                    <input type="text" name="usuario" placeholder="Usuario" data-rule-nowhitespace="true" required="required"/>
+
+                    <input type="password" name="contrasenia" placeholder="Contraseña" data-rule-nowhitespace="true" required="required"/>
+                    <input type="email" name="email" placeholder="mail@algunServidor.com" required="required"  />
+
+                    <select class="combo" name="genero" required="required">
+                        <option value="">Sexo</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                    </select>
+
+                    <input type="number" name="edad" placeholder="Edad" required="required"/>
+                    <input type="number" name="altura" placeholder="Altura" required="required" />
+                    
+                    <select class="combo" name="complexion" required="required">
+                        <option value="">Complexion</option>
+                        <option value="Peque">Pequeña</option>
+                        <option value="Mediana">Media</option>
+                        <option value="Grande">Grande</option>
+                    </select>
+                    <!--<label>Condicion Preexistente</label>-->
+                    <select class="combo" name="condPre" required="required">
+                        <option value="">Condiciones Preexistentes</option>
+                        <option value="Diabetes">Diabetes</option>
+                        <option value="Hipertension">Hipertension</option>
+                        <option value="Celiasis">Celiasis</option>
+                        <option value="Ninguna">Ninguna</option>
+                    </select>
+                    <select class="combo" name="dieta" required="required">
+                        <option value="">Dieta</option>
+                        <option value="Normal">Normal</option>
+                        <option value="Ovolactovegetariano">Ovolactovegetariano</option>
+                        <option value="Vegetariano">Vegetariano</option>
+                        <option value="Vegano">Vegano</option>
+                    </select>
+                    <select class="combo" name="rutina" required="required">
+                        <option value="">Rutina</option>
+                        <option value="Nada">Sedentaria con nada de ejercicio</option>
+                        <option value="Leve">Sedentaria con algo de ejercicio (-30 min.)</option>
+                        <option value="Mediano">Sedentaria con ejercicio (+30 min.)</option>
+                        <option value="Fuerte">Activa sin ejercicio adicional</option>
+    					<option value="Intensivo">Activa con ejercicio adicional (+30 min.)</option>
+                    </select>
+                    <input type="text" name="preferencias" placeholder="Preferencias alimenticias" />
+                    
+                    <input type="submit" value="Registrarse" name="submit" class="btn btn-success btn-sm" />
+                    </form>
             </div>
         </div>
     </div>
@@ -94,5 +98,6 @@
 <script src="../js/jquery.flexslider.js"></script>
 <script src="../js/animate.js"></script>
 <script src="../js/custom.js"></script>
+<script src="../js/validate.js"></script>
 </body>
 </html>

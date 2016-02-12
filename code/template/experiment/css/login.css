@@ -35,7 +35,7 @@ form
     margin: 0 auto;
 }
 
-form.login input[type="text"], form.login input[type="password"]
+form.login input[type="text"], form.login input[type="password"], form.login input[type="email"], form.login input[type="number"]
 {
     width: 100%;
     margin: 0;
@@ -99,7 +99,7 @@ form.login a:hover
     color: #2ecc71;
 }
 
-form.login input[type="text"], form.login input[type="password"]{
+form.login input[type="text"], form.login input[type="password"], form.login input[type="email"], form.login input[type="number"]{
     background-color: #FFFFFF;
     opacity: 0.8;
 }
