@@ -152,7 +152,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="row">
-					<div class="col-lg-3">
+					<div class="col-lg-4">
 						<div>
 							<div class="box-gray aligncenter">
 								<h4>Recetas Aceptadas</h4>								
@@ -169,8 +169,7 @@
 								foreach($arrayRecetasAceptadas as $receta) {
 								
 									echo "<li>" . $receta->getDesc() . "  ";
-									echo "<input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(" . $receta->getId() . ")\" value=\"VER\" class=\"btn btn-theme aligncenter\">";
-									echo "</li>";
+							     	echo "</li>";
 							                   }
 						          ?>
                                
@@ -178,7 +177,7 @@
 							</div>
 						</div>
 					</div>
-				     <div class="col-lg-3">
+				     <div class="col-lg-4">
 						<div>
 							<div class="box-gray aligncenter">
 								<h4>Recetas Calificadas</h4>
@@ -194,14 +193,13 @@
 									foreach($arrayRecetasCalificadas as $receta) {
 					
 										echo "<li>" . $receta->getDesc() . "  ";
-										echo "<input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\">";
 										echo "</li>";
 								                   }
 							          ?>
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-4">
 						<div>
 							<div class="box-gray aligncenter">
 								<h4>Recetas Consultadas</h4>
@@ -217,7 +215,6 @@
 					foreach($arrayRecetasConsultadas as $receta) {
 					    
 						echo "<li>" . $receta->getDesc() . "  ";
-						echo "<input type=\"button\" name=\"Ver\" onclick=\"abrirReceta(".$receta->getId().")\" value=\"VER\" class=\"btn btn-theme aligncenter\">";
 						echo "</li>";
 				                   }
 			          ?>
@@ -226,20 +223,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-3">
-						<div>
-							<div class="box-gray aligncenter">
-								<h4>Tip 4</h4>
-								<div class="icon">
-								<i class="fa fa-clock-o fa-3x"></i>
-								</div>
-								<p>
-								 Recetas rápidas: ¡Todo en 20'!<br><br>
-								</p>
-									
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>

@@ -96,7 +96,7 @@ mysql_select_db($dbname, $con) or die(mysql_error());
 					
 					  <a href="../interfaz/recetasconsultadas.php"><h1>Recetas Consultadas</h1></a>
 					  <a href="../interfaz/xDieta.php"><h1>Recetas por dieta</h1></a>
-					  <a href="../interfaz/xPreferencias.php"><h1>Recetas por preferencias</h1></a>
+					
 					  <a href="../interfaz/xCondimentos.php"><h1>Recetas por condimentos</h1></a>
 					  <a href="../interfaz/xPiramide.php"><h1>Recetas por pirámide</h1></a>
 					  <a href="../interfaz/xCalificadasyEstacion.php"><h1>Recetas por Calificación y Estación</h1></a>

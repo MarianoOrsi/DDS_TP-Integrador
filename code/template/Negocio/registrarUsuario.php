@@ -19,7 +19,7 @@ $datosObj->RegistrarUsuario($userObj);
 	 
 	
 	$_SESSION["idUsuario"]=($id +1); // ya que me devuelve un array, elijo la primera posición
-	header("location: ../index.php"); // para poner el header, no hay que tener NADA 
+	//header("location: ../index.php"); // para poner el header, no hay que tener NADA 
 												//  de HTML o ningún ECHO en el código
 }
  function idUsuarioAnterior(){
