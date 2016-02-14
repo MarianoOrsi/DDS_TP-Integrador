@@ -244,7 +244,7 @@
 						   	ON usuarios.IdUsuario = historiales.IdUsuario
 						   	INNER JOIN recetas 
 						   	ON recetas.IdReceta = historiales.IdReceta
-						   	WHERE historiales.IdAccion = '3'";
+						   	WHERE historiales.IdAccion = '1'";
 
             if(strcmp($dificultad,""))
             {

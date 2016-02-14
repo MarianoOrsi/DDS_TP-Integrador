@@ -6,7 +6,7 @@
 				var posicion_y; 
 				posicion_x=(screen.width/2)-(800/2); 
 				posicion_y=(screen.height/2)-(600/2); 
-				window.open("Interfaz/popUpReceta.php?IdReceta="+IdReceta, "popUpReceta", "width=800,height=600,menubar=0,toolbar=0,directories=0,scrollbars=no,resizable=no,left="+posicion_x+",top="+posicion_y+"");
+				window.open("popUpReceta.php?IdReceta="+IdReceta, "popUpReceta", "width=800,height=600,menubar=0,toolbar=0,directories=0,scrollbars=no,resizable=no,left="+posicion_x+",top="+posicion_y+"");
 			}
 
 		</script>

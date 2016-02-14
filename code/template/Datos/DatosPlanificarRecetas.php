@@ -167,21 +167,9 @@
 			if(mysqli_connect_errno()){
 				echo mysqli_connect_error();
 			}
-			$db->query("call sp_planificarReceta(".$idHorario.",".$idReceta.",".$idUsuario.")");
 			
+			$result = $db->query("call sp_planificarReceta(".$idHorario.",".$idReceta.",".$idUsuario.")");
 		}
-		
-        public function insertHistoriales($idReceta,$idUsuario){
 
-		session_start();
-        $servidor = "localhost";    
-        $user = "root";
-        $pass = "";
-        $dbname = "diseniosistemas";
-        $con = mysql_connect($servidor,$user,$pass);
-        mysql_select_db($dbname,$con);
-		$return2 = mysql_query("INSERT INTO `historiales` (`IdHistoria`, `IdAccion`, `IdUsuario`, `IdReceta`, `Fecha de Accion`, `Fecha de Utilizacion`) VALUES (NULL, '1', ".$idUsuario.", ".$idReceta.", now(), now())",$con) or die (mysql_error());
-       
-        }
 	}
 ?>
