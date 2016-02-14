@@ -9,7 +9,7 @@ if(isset($_POST["submit"])){
 
 	if ($condicion)
 	{
-		header("location: ../interfaz/registrarme.html"); 
+		header("location: ../interfaz/registrarme.php?first"); 
 	}
 	else
 	{
