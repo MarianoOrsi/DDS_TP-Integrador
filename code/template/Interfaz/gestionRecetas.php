@@ -71,7 +71,7 @@
 							$con = mysql_connect($servidor, $user, $pass);
 
 							mysql_select_db($dbname, $con);
-							$result = mysql_query("SELECT recetas.IdReceta, recetas.Receta, SUM(puntuaciones.Puntuacion) as Puntuacion FROM recetas INNER JOIN puntuaciones ON puntuaciones.IdReceta = recetas.IdReceta GROUP BY recetas.IdReceta", $con);
+							$result = mysql_query("SELECT recetas.IdReceta, recetas.Receta, SUM(puntuaciones.Puntuacion) as Puntuacion FROM recetas LEFT OUTER JOIN puntuaciones ON puntuaciones.IdReceta = recetas.IdReceta AND puntuaciones.IdUsuario = '".$_SESSION["idUsuario"]."' GROUP BY recetas.IdReceta", $con);
 
 							while ($row = mysql_fetch_array($result)) {
 								echo "<TR onclick= \"readValuesGroup(this)\">";
