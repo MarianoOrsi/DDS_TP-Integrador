@@ -42,11 +42,11 @@ class accesoDatosRecomendaciones{
 			$consulta = "SELECT IdPreexistente
 			                FROM usuarios
 			                WHERE IdUsuario = " . $IdUsuario;
-
+         
 	     	$result = mysql_query($consulta) or die (mysql_error());
-
+            
 			while ($row = mysql_fetch_array($result)){
-
+                      echo  $row["IdPreexistente"];
 				$usuario= new Usuario("","","","","","","","","",
 					                  $row["IdPreexistente"],"","");
 
