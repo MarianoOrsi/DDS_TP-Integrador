@@ -31,6 +31,17 @@
             <div class="wb-frmvld">
                  <p class="form-title">Registrarme</p>
 
+                    <?php
+                        if(isset($_GET["first"]))
+                        {
+                            echo'   <div class="alert alert-danger" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only">Error:</span>
+                                Usuario o Contraseña incorrectos!
+                            </div>';
+                        };
+                    ?>
+
                     <form class="login" action="../negocio/registrarUsuario.php" method="post" style="background-image:url(../experiment/img/SignUp/SignUp.png)">
     				
                     <input type="text" name="usuario" placeholder="Usuario" data-rule-nowhitespace="true" required="required"/>

@@ -34,7 +34,7 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
 								}
 								else {
 								echo '<li><a href="../interfaz/iniciarSesion.php">Ingresar</a></li>';
-                                echo '<li><a href="../interfaz/registrarme.html">Registrarse</a></li>';
+                                echo '<li><a href="../interfaz/registrarme.php">Registrarse</a></li>';
 								}
 								?>
 								
