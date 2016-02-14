@@ -96,11 +96,18 @@
 
             mysql_query($borroIngredientes) or die (mysql_error());
             $borroCondimentos="DELETE FROM `diseniosistemas`.`receta-condimentos` WHERE `receta-condimentos`.`IdReceta` =".$idReceta.";";
-           mysql_query($borroCondimentos) or die (mysql_error());
+            mysql_query($borroCondimentos) or die (mysql_error());
             $borroEstacion="DELETE FROM `diseniosistemas`.`receta-estaciones` WHERE `receta-estaciones`.`IdReceta` = ".$idReceta.";";
-             mysql_query($borroEstacion) or die (mysql_error());
+            mysql_query($borroEstacion) or die (mysql_error());
             $borroPasos="DELETE FROM `diseniosistemas`.`pasos` WHERE `pasos`.`IdReceta` =".$idReceta.";";
-              mysql_query($borroPasos) or die (mysql_error());
+            mysql_query($borroPasos) or die (mysql_error());
+			  
+			$borroHistorialHorarios = "DELETE FROM `diseniosistemas`.`historial-horarios` WHERE IdHistorial IN (SELECT IdHistorial FROM `diseniosistemas`.`historiales` WHERE `historiales`.`IdReceta` =".$idReceta.")";
+		    mysql_query($borroHistorialHorarios) or die (mysql_error());
+			  
+			$borroHistoriales="DELETE FROM `diseniosistemas`.`historiales` WHERE `historiales`.`IdReceta` =".$idReceta.";";
+            mysql_query($borroHistoriales) or die (mysql_error()); 
+			  
             $borroReceta="DELETE FROM `diseniosistemas`.`recetas` WHERE `recetas`.`IdReceta` =".$idReceta.";";
              mysql_query($borroReceta) or die (mysql_error());
 
