@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -6,6 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://bootstraptaste.com" />
+
+
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
 <!-- css -->
 <link href="../experiment/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../experiment/css/fancybox/jquery.fancybox.css" rel="stylesheet">
@@ -31,22 +37,22 @@
             <div class="wb-frmvld">
                  <p class="form-title">Registrarme</p>
 
-                    <?php
+                    <form class="login" action="../negocio/registrarUsuario.php" method="post" style="background-image:url(../experiment/img/SignUp/SignUp.png)">
+    				
+                     <?php
                         if(isset($_GET["first"]))
                         {
-                            echo'   <div class="alert alert-danger" role="alert">
-                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                <span class="sr-only">Error:</span>
-                                Usuario o Contraseña incorrectos!
-                            </div>';
+                            echo'   <div class="alert alert-danger" role="alert" text-align="center">
+                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                        <span class="sr-only">Error:</span>
+                                        El usuario ya existe!
+                                     </div>';
                         };
                     ?>
 
-                    <form class="login" action="../negocio/registrarUsuario.php" method="post" style="background-image:url(../experiment/img/SignUp/SignUp.png)">
-    				
                     <input type="text" name="usuario" placeholder="Usuario" data-rule-nowhitespace="true" required="required"/>
 
-                    <input type="password" name="contrasenia" placeholder="Contraseña" data-rule-nowhitespace="true" required="required"/>
+                    <input type="password" name="contrasenia" placeholder="Contrase�a" data-rule-nowhitespace="true" required="required"/>
                     <input type="email" name="email" placeholder="mail@algunServidor.com" required="required"  />
 
                     <select class="combo" name="genero" required="required">
@@ -60,7 +66,7 @@
                     
                     <select class="combo" name="complexion" required="required">
                         <option value="">Complexion</option>
-                        <option value="Peque">Pequeña</option>
+                        <option value="Peque">Peque�a</option>
                         <option value="Mediana">Media</option>
                         <option value="Grande">Grande</option>
                     </select>
