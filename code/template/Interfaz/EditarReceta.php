@@ -2,6 +2,9 @@
 
 include("../datos/datosEditarReceta.php");
 
+if ($resultadoBusqueda[3] != $_SESSION["idUsuario"]) {
+	header("location: ../interfaz/NoPuedeModificarEstaReceta.php");
+}
 
 ?>
 
