@@ -22,7 +22,9 @@ if(isset($_GET["logout"]) && $_GET["logout"]==1){
                         <li class="active" ><a href="../index.php">Inicio</a></li>
 
 						
-						<?php if(isset($_SESSION["idUsuario"])){ // SI no esta seteado, muestra lo primero
+						<?php
+                 
+                         if(isset($_SESSION["idUsuario"])){ // SI no esta seteado, muestra lo primero
 								echo '<li><a href="../interfaz/mostrarRecetas.php">Mis Recetas</a></li>';
                                 echo '<li><a href="../interfaz/todasLasRecetas.php">Todas Las Recetas</a></li>';
                                 echo '<li><a href="../interfaz/RecomendacionesRecetasInterfaz.php">Recomendaciones</a></li>';
