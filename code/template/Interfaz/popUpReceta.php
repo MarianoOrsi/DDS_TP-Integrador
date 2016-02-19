@@ -77,7 +77,7 @@
 									<h3 style="margin:15px 0px 0px 0px; text-align:center;">
 										
 										<?php
-											echo "Calorias Totales: ".$datosReceta->Calorias;
+											echo "Calorías Totales: ".$datosReceta->Calorias;
 										?>
 
 									</h3>
@@ -131,7 +131,7 @@
 								</div>
 								<div id="pasos" style="float:left; width:35%; margin-top:2%;">
 									<?php
-										echo "<h4 style=\"margin:0px; float:left;\">Preparacion</h4>";
+										echo "<h4 style=\"margin:0px; float:left;\">Preparación</h4>";
 										echo "<br />";
 										echo "<br />";
 

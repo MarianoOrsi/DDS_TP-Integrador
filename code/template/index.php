@@ -229,13 +229,11 @@
 					<div class="col-lg-3">
 						<div>
 							<div class="box-gray aligncenter">
-								<h4>Tip 4</h4>
+								<h4>Recetas rápidas</h4>
 								<div class="icon">
 								<i class="fa fa-clock-o fa-3x"></i>
 								</div>
-								<p>
-								 Recetas rápidas: ¡Todo en 20'!<br><br>
-								</p>
+								
 									
 							</div>
 						</div>

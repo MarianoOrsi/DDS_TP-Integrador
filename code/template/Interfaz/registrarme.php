@@ -53,7 +53,7 @@
 
                     <input type="text" name="usuario" placeholder="Usuario" data-rule-nowhitespace="true" required="required"/>
 
-                    <input type="password" name="contrasenia" placeholder="Contraseña" data-rule-nowhitespace="true" required="required"/>
+                    <input type="password" name="contrasenia" placeholder="Contrase&ntilde;a" data-rule-nowhitespace="true" required="required"/>
                     <input type="email" name="email" placeholder="mail@algunServidor.com" required="required"  />
 
                     <select class="combo" name="genero" required="required">
@@ -67,7 +67,7 @@
                     
                     <select class="combo" name="complexion" required="required">
                         <option value="">Complexion</option>
-                        <option value="Peque">Peque&ntildea</option>
+                        <option value="Peque">Peque&ntilde;a</option>
                         <option value="Mediana">Media</option>
                         <option value="Grande">Grande</option>
                     </select>
