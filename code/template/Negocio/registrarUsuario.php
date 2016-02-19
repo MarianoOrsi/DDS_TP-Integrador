@@ -7,7 +7,7 @@ if(isset($_POST["submit"])){
 
 	$condicion=yaExiste();
 
-	if ($condicion)
+	if ($condicion==TRUE)
 	{
 		header("location: ../interfaz/registrarme.php?first"); 
 	}
@@ -16,7 +16,7 @@ if(isset($_POST["submit"])){
 		$id= idUsuarioAnterior();
 		
 
-	    $userObj = new Usuario(0,$_POST["usuario"], $_POST["contrasenia"], $_POST["genero"][0], $_POST["altura"], $_POST["dieta"],1, $_POST["rutina"], $_POST["complexion"], $_POST["condPre"], $_POST["email"], $_POST["edad"]);
+	    $userObj = new Usuario(0,$_POST["usuario"], md5($_POST["contrasenia"],TRUE), $_POST["genero"][0], $_POST["altura"], $_POST["dieta"],1, $_POST["rutina"], $_POST["complexion"], $_POST["condPre"], $_POST["email"], $_POST["edad"]);
  
 		$datosObj = new accesoDatos();
 
@@ -49,12 +49,13 @@ function yaExiste(){
  
     $QultimaReceta="SELECT Usuario FROM usuarios WHERE Usuario=\"".$_POST["usuario"]."\";";
 
+	
+	
     $pepe=mysql_query($QultimaReceta) or die (mysql_error());
     $p=mysql_fetch_row($pepe);
-
-
-    if ($pepe)
-    {
+	
+    if ($p)
+    {		
     	return TRUE;
     }
 

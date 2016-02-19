@@ -5,8 +5,9 @@ mysql_select_db($dbname,$con) or die(mysql_error());
 
 if(isset($_POST["submit"])){ 
 
-		$consulta="SELECT idUsuario FROM usuarios WHERE Usuario ='".$_POST["user"]."' AND Contrase ='".$_POST["pass"]."';"; 
+		$consulta="SELECT idUsuario FROM usuarios WHERE Usuario ='".$_POST["user"]."' AND Contrase ='".md5($_POST["pass"],TRUE)."';"; 
 		echo $consulta;
+		
 		$Qid=mysql_query($consulta) or die (mysql_error());
 		$id= mysql_fetch_array($Qid);
 

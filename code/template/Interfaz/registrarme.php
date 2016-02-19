@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+
+<META charset="iso-8859-1">
 <title>TP Integrador - Grupo 81</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
@@ -66,7 +67,7 @@
                     
                     <select class="combo" name="complexion" required="required">
                         <option value="">Complexion</option>
-                        <option value="Peque">Pequeña</option>
+                        <option value="Peque">Peque&ntildea</option>
                         <option value="Mediana">Media</option>
                         <option value="Grande">Grande</option>
                     </select>
