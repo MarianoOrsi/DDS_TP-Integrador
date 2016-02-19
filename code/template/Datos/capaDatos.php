@@ -91,7 +91,18 @@
         }
 
         public function BorrarReceta($idReceta){
-            mysql_select_db($this->nameDB, $this->connectionDB);
+ mysql_select_db($this->nameDB, $this->connectionDB);
+           /* busco los datos de la receta principal*/
+			$consultaReceta="SELECT * FROM recetas WHERE IdReceta=".$_GET["id"].";";
+			$dale=mysql_query($consultaReceta) or die (mysql_error());
+			$resultadoBusqueda = mysql_fetch_array($dale);
+            
+            if ($resultadoBusqueda[3] != $_SESSION["idUsuario"]) {
+	           header("location: ../interfaz/NoPuedeModificarEstaReceta.php");
+               }
+
+
+           
             $borroIngredientes="DELETE FROM `diseniosistemas`.`receta-ingredientes` WHERE `receta-ingredientes`.`IdReceta` =".$idReceta.";";
 
             mysql_query($borroIngredientes) or die (mysql_error());
